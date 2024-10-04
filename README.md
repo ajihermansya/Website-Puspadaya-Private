@@ -1,62 +1,25 @@
-# NextAdmin - Next.js Admin Dashboard Template and Components
+# Puspadaya - Next.js Admin Dashboard with PM2
 
-**NextAdmin** is a Free, open-source Next.js admin dashboard toolkit featuring 200+ UI components and templates that come with pre-built elements, components, pages, high-quality design, integrations, and much more to help you create powerful admin dashboards with ease.
+**Puspadaya** is an admin dashboard application built with **Next.js** designed for monitoring the nutritional status of toddlers. This project uses **PM2** for efficient process management in production, ensuring that the app runs smoothly and remains available at all times.
 
+## What is Puspadaya?
 
-[![nextjs admin template](https://cdn.pimjo.com/nextadmin-2.png)](https://nextadmin.co/)
+**Puspadaya** is a comprehensive platform focused on child nutrition, providing tools for parents, caregivers, and healthcare professionals to monitor and enhance the dietary intake and overall health of toddlers. The application aims to empower users with actionable insights into their children’s nutritional needs, promoting better health outcomes and development.
 
+With **Puspadaya**, you can monitor important health metrics and manage related data seamlessly, leveraging **Next.js** advanced features and integrations to enhance the performance and scalability of your application.
 
-**NextAdmin** provides you with a diverse set of dashboard UI components, elements, examples and pages necessary for creating top-notch admin panels or dashboards with **powerful** features and integrations. Whether you are working on a complex web application or a basic website, **NextAdmin** has got you covered.
-
-### [✨ Visit Website](https://nextadmin.co/)
-### [🚀 Live Demo](https://demo.nextadmin.co/)
-### [📖 Docs](https://docs.nextadmin.co/)
-
-By leveraging the latest features of **Next.js 14** and key functionalities like **server-side rendering (SSR)**, **static site generation (SSG)**, and seamless **API route integration**, **NextAdmin** ensures optimal performance. With the added benefits of **React 18 advancements** and **TypeScript** reliability, **NextAdmin** is the ultimate choice to kickstart your **Next.js** project efficiently.
+### Key Features
+- Built with **Next.js 14** for server-side rendering (SSR), static site generation (SSG), and API routes.
+- **PM2** integration for robust process management and automatic restarts in production environments.
+- **React 18** support for optimized rendering and performance.
+- Ready-to-use dashboard UI components for health monitoring and data visualization.
+- **TypeScript** support for reliability and ease of development.
 
 ## Installation
 
-1. Download/fork/clone the repo and Once you're in the correct directory, it's time to install all the necessary dependencies. You can do this by typing the following command:
+1. Clone or download the repository, then install the dependencies with:
 
-```
-npm install
-```
-If you're using **Yarn** as your package manager, the command will be:
-
-```
-yarn install
-```
-
-2. Okay, you're almost there. Now all you need to do is start the development server. If you're using **npm**, the command is:
-
-```
-npm run dev
-```
-And if you're using **Yarn**, it's:
-
-```
-yarn dev
-```
-
-And voila! You're now ready to start developing. **Happy coding**!
-
-## Highlighted Features
-**200+ Next.js Dashboard Ul Components and Templates** - includes a variety of prebuilt **Ul elements, components, pages, and examples** crafted with a high-quality design.
-Additionally, features seamless **essential integrations and extensive functionalities**.
-
-- A library of over **200** professional dashboard UI components and elements.
-- Five distinctive dashboard variations, catering to diverse use-cases.
-- A comprehensive set of essential dashboard and admin pages.
-- More than **45** **Next.js** files, ready for use.
-- Styling facilitated by **Tailwind CSS** files.
-- A design that resonates premium quality and high aesthetics.
-- A handy UI kit with assets.
-- Over ten web apps complete with examples.
-- Support for both **dark mode** and **light mode**.
-- Essential integrations including - Authentication (**NextAuth**), Database (**Postgres** with **Prisma**), and Search (**Algolia**).
-- Detailed and user-friendly documentation.
-- Customizable plugins and add-ons.
-- **TypeScript** compatibility.
-- Plus, much more!
-
-All these features and more make **NextAdmin** a robust, well-rounded solution for all your dashboard development needs.
+   ```bash
+   npm install
+   # or
+   yarn install
