@@ -78,6 +78,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         aria-current={pageName === item.label.toLowerCase() ? "page" : undefined}
       >
         {item.icon}
+        {/* size fount */}
         <span className="text-[16px]">{item.label}</span>
         {item.message && (
           <span className="ml-2 rounded-full bg-red-500 px-1.5 py-px text-xs font-medium text-white">
@@ -110,7 +111,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       </Link>
 
       {item.children && isOpen && (
-        <div ref={dropdownRef} className={`absolute left-0 mt-10 w-44 bg-white shadow-lg rounded-md z-10`}>
+        <div ref={dropdownRef} className={`absolute left-0 mt-10 w-46 bg-white shadow-lg rounded-md z-10`}>
           <SidebarDropdown item={item.children} />
         </div>
       )}

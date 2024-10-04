@@ -13,7 +13,7 @@ interface SidebarProps {
 const menuGroups = [
   {
     menuItems: [
-   
+
       {
         icon: (
           <img
@@ -27,87 +27,247 @@ const menuGroups = [
         label: "Dashboard",
         route: "#",
         children: [
-          { label: "eCommerce", route: "/" },
+          {
+
+            label: "eCommerce", route: "/"
+          },
         ],
       },
-      
+
 
       {
         icon: (
           <img
-          src="/images/menus/keluarga.svg"
-          alt=""
-          width={16}
-          height={16}
-          className="fill-current"
-        />
+            src="/images/menus/keluarga.svg"
+            alt=""
+            width={16}
+            height={16}
+            className="fill-current"
+          />
         ),
         label: "Data Keluarga",
         route: "#",
-
         children: [
-          { 
-            label: "Data Orang Tua", 
-            route: "/data-keluarga/data-orang-tua" },
-          { label: "Data Balita", route: "/data-keluarga/data-balita" },
-        ],
+          {
+            icon: (
+              <img
+                src="/images/menus/orgtua.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Orang Tua",
+            route: "/data-keluarga/data-orang-tua"
+          },
+          {
+            icon: (
+              <img
+                src="/images/menus/balita.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Balita",
+            route: "/data-keluarga/data-balita"
+          },
 
+          {
+            icon: (
+              <img
+                src="/images/menus/balita.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Ibu Hamil",
+            route: "/data-keluarga/data-bumil"
+          },
+        ],
       },
-      
+
       {
         icon: (
           <img
-          src="/images/menus/pengukuran.svg"
-          alt=""
-          width={16}
-          height={16}
-          className="fill-current"
-        />
+            src="/images/menus/pengukuran.svg"
+            alt=""
+            width={16}
+            height={16}
+            className="fill-current"
+          />
         ),
         label: "Pemeriksaan",
         route: "#",
         children: [
-          { label: "Riwayat Pemeriksaan", route: "/tables" },
+          {
+            icon: (
+              <img
+                src="/images/menus/pemeriksaan.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Pemeriksaan Balita", route: "/tables"
+          },
+
+
+
+          {
+            icon: (
+              <img
+                src="/images/menus/rekap.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Rekap Pemeriksaan", route: "/tables"
+          },
+          {
+            icon: (
+              <img
+                src="/images/menus/riwayat.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Riwayat Pemeriksaan", route: "/tables"
+          },
+          {
+            icon: (
+              <img
+                src="/images/menus/jadwal.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Jadwal Pemeriksaan", route: "/tables"
+          },
         ],
       },
 
       {
         icon: (
           <img
-          src="/images/menus/monitoring.svg"
-          alt=""
-          width={16}
-          height={16}
-          className="fill-current"
-        />
+            src="/images/menus/monitoring.svg"
+            alt=""
+            width={16}
+            height={16}
+            className="fill-current"
+          />
         ),
         label: "Monitoring",
         route: "#",
         children: [
-          { label: "Parameter Stunting", route: "" },
-          { label: "Monitoring Stunting", route: "" },
-          { label: "Monitoring Gizi", route: "" },
+          {
+            icon: (
+              <img
+                src="/images/menus/parameter.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+
+            label: "Parameter Stunting", route: ""
+          },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/status-monitoring.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Monitoring Stunting", route: ""
+          },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/status-monitoring.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Monitoring Gizi", route: ""
+          },
         ],
       },
 
       {
         icon: (
           <img
-          src="/images/menus/posyandu.svg"
-          alt=""
-          width={16}
-          height={16}
-          className="fill-current"
-        />
+            src="/images/menus/posyandu.svg"
+            alt=""
+            width={16}
+            height={16}
+            className="fill-current"
+          />
         ),
         label: "Posyandu",
         route: "#",
         children: [
-           { label: "Tambah Akun", route: "" },
-           { label: "Kunjungan Balita", route: "" },
-           { label: "Data Anggota", route: "" },
+          {
+            icon: (
+              <img
+                src="/images/menus/daftar-hadir.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Daftar Hadir", route: ""
+          },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/tambah-akun.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Tambah Akun", route: ""
+          },
+
+
+          {
+            icon: (
+              <img
+                src="/images/menus/data-anggota.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Anggota", route: ""
+          },
         ],
       },
+
 
       {
         icon: (
@@ -122,12 +282,35 @@ const menuGroups = [
         label: "Pengaturan",
         route: "#",
         children: [
-          { label: "Profile", route: "/pages/settings" },
-          { label: "Kebijakan Aplikasi", route: "" },
-          
+          {
+            icon: (
+              <img
+                src="/images/menus/user.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+
+            label: "Profile", route: "/pages/settings"
+          },
+          {
+            icon: (
+              <img
+                src="/images/menus/kebijakan-aplikasi.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Kebijakan Aplikasi", route: ""
+          },
+
         ],
       },
-      
+
     ],
   },
 
@@ -136,20 +319,20 @@ const menuGroups = [
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
-  const [openDropdown, setOpenDropdown] = useState(""); 
+  const [openDropdown, setOpenDropdown] = useState("");
 
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
   const resetActiveMenu = () => {
-    setPageName("defaultPageName");  
+    setPageName("defaultPageName");
   };
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
-     
+
       <aside
         className={`sticky left-0 top-0 z-9999 border-r border-stroke bg-white dark:border-stroke-dark dark:bg-gray-dark lg:static lg:translate-x-0 ${sidebarOpen
-            ? "translate-x-0 duration-300 ease-linear"
-            : "-translate-x-full"
+          ? "translate-x-0 duration-300 ease-linear"
+          : "-translate-x-full"
           }`}
       >
 
@@ -158,21 +341,21 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <div className="no-scrollbar duration-300 ease-linear">
           {/* <!-- Sidebar Menu --> */}
           <nav className=" items-center justify-normal gap-2 lg:w-full xl:w-auto xl:justify-normal">
-          
+
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>
                 <ul className="flex items-center ">
                   {group.menuItems.map((menuItem, menuIndex) => (
-                    <li key={menuIndex} className="flex-1 p-2"> 
-                 <SidebarItem
-                      key={menuIndex}
-                      item={menuItem}
-                      pageName={pageName}
-                      setPageName={setPageName}
-                      isOpen={openDropdown === menuItem.label.toLowerCase()}
-                      setIsOpen={setOpenDropdown}
-                      resetActiveMenu={resetActiveMenu}
-                    />
+                    <li key={menuIndex} className="flex-1 p-2">
+                      <SidebarItem
+                        key={menuIndex}
+                        item={menuItem}
+                        pageName={pageName}
+                        setPageName={setPageName}
+                        isOpen={openDropdown === menuItem.label.toLowerCase()}
+                        setIsOpen={setOpenDropdown}
+                        resetActiveMenu={resetActiveMenu}
+                      />
                     </li>
                   ))}
                 </ul>
@@ -188,6 +371,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     </ClickOutside>
   );
 
-  
+
 };
 export default Sidebar;
