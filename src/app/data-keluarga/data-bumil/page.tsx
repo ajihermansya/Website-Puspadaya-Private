@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description: "This is Next.js Form Elements page for NextAdmin Dashboard Kit",
 };
 
-const FormElementsPage = () => {
+const Page = () => {
   return (
-    <DefaultLayout>
-      <FormElements />
-    </DefaultLayout>
+    <>
+      <h1>Hellow Wolrd</h1>
+    </>
   );
 };
 
-export default FormElementsPage;
+export default Page;
