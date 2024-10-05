@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { OrangTua } from "@/types/orang-tua";
-import ButtonLink from "../ui/Button";
+import ButtonLink from "../ui/ButtonLink";
 import { SvgDetailOrangTua } from "../ui/Svg";
 
 const dataOrangTua: OrangTua[] = [
