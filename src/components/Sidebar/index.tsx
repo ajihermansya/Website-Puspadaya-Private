@@ -78,7 +78,7 @@ const menuGroups = [
           {
             icon: (
               <img
-                src="/images/menus/balita.svg"
+                src="/images/menus/ibu-hamil.svg"
                 alt=""
                 width={14}
                 height={14}
@@ -114,7 +114,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Pemeriksaan Balita", route: "/tables"
+            label: "Pemeriksaan Balita",  route: "/pemeriksaan/pemeriksaan-balita"
           },
 
 
@@ -129,7 +129,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pemeriksaan", route: "/tables"
+            label: "Rekap Pemeriksaan", route: "/pemeriksaan/rekap-pemeriksaan"
           },
           {
             icon: (
@@ -141,7 +141,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pemeriksaan", route: "/tables"
+            label: "Riwayat Pemeriksaan", route: "/pemeriksaan/riwayat-pemeriksaan"
           },
           {
             icon: (
@@ -153,7 +153,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Jadwal Pemeriksaan", route: "/tables"
+            label: "Jadwal Pemeriksaan",  route: "/pemeriksaan/jadwal-pemeriksaan"
           },
         ],
       },
@@ -182,7 +182,7 @@ const menuGroups = [
               />
             ),
 
-            label: "Parameter Stunting", route: ""
+            label: "Parameter Stunting", route: "/monitoring/parameter-stunting"
           },
 
           {
@@ -195,7 +195,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Monitoring Stunting", route: ""
+            label: "Monitoring Stunting",route: "/monitoring/monitoring-stunting"
           },
 
           {
@@ -208,7 +208,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Monitoring Gizi", route: ""
+            label: "Monitoring Gizi", route: "/monitoring/monitoring-gizi"
           },
         ],
       },
@@ -226,6 +226,7 @@ const menuGroups = [
         label: "Posyandu",
         route: "#",
         children: [
+
           {
             icon: (
               <img
@@ -236,7 +237,20 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Daftar Hadir", route: ""
+            label: "Data Posyandu", route: "/posyandu/data-posyandu"
+          },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/daftar-hadir.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Daftar Hadir", route: "/posyandu/daftar-hadir"
           },
 
           {
@@ -249,7 +263,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Tambah Akun", route: ""
+            label: "Tambah Akun", route: "/posyandu/tambah-akun"
           },
 
 
@@ -263,7 +277,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Data Anggota", route: ""
+            label: "Data Anggota", route: "/posyandu/data-anggota"
           },
         ],
       },
@@ -293,7 +307,7 @@ const menuGroups = [
               />
             ),
 
-            label: "Profile", route: "/pages/settings"
+            label: "Profile", route: "/pengaturan/profile"
           },
           {
             icon: (
@@ -305,7 +319,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Kebijakan Aplikasi", route: ""
+            label: "Kebijakan Aplikasi", route: "/pengaturan/kebijakan-aplikasi"
           },
 
         ],
