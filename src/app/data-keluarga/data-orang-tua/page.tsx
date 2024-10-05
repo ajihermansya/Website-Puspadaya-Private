@@ -1,19 +1,32 @@
 import React from "react";
-import FormElements from "@/components/FormElements";
 import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLaout";
+
 
 export const metadata: Metadata = {
-  title: "Next.js Form Elements Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Form Elements page for NextAdmin Dashboard Kit",
+  title: "Orang Tua",
+  description: "Orang Tua Page",
 };
 
-const FormElementsPage = () => {
+const Page = () => {
   return (
-    <DefaultLayout>
-      <FormElements />
-    </DefaultLayout>
+    <>
+      <div className="container mx-auto">
+        <div className="mb-2 flex justify-between p-2">
+          <div>
+            <h1 className="pb-1 text-3xl font-bold text-black">
+              Data Orang Tua
+            </h1>
+            <h5 className="text-md font-medium">
+              Pantau Data Diri Orang Tua Disini!
+            </h5>
+          </div>
+          <div>
+           <h1>Filter</h1>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
-export default FormElementsPage;
+export default Page;
