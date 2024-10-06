@@ -146,7 +146,7 @@ const Page: React.FC = () => {
     <div className="container mx-auto">
       <div className="mb-8">
         <h1 className="mb-2 text-3xl font-bold text-gray-800">
-          Pemeriksaan Balita
+          Edit Pemeriksaan Balita
         </h1>
         <h5 className="text-lg text-gray-600">
           Ukur data balita sesuai dengan informasi yang tepat
