@@ -122,7 +122,7 @@ const TableOrangTua = () => {
                   }`}
                 >
                   <ButtonLink
-                    href={`data-keluarga/data-orang-tua/${item.nomorKK}`}
+                    href={`/data-keluarga/data-orang-tua/${item.nomorKK}`}
                     className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
                   >
                     <div className="flex items-center gap-1">
