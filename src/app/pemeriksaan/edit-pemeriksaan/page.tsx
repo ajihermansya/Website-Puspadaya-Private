@@ -198,8 +198,7 @@ const Page: React.FC = () => {
                   value={formData.posyandu}
                   onChange={handleInputChange}
                   className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  placeholder="Posyandu Mawar 6"
-                  readOnly
+                  placeholder="Masukkan Posyandu"
                 />
               </div>
 
@@ -408,8 +407,6 @@ const Page: React.FC = () => {
           </div>
         </form>
       </div>
-
-      
     </div>
   );
 };

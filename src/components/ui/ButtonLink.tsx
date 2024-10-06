@@ -16,7 +16,7 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({
     <>
       <Link
         href={href}
-        className={`items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white last:inline-flex hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${className}`}
+        className={`items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white last:inline-flex focus:outline-none ${className}`}
       >
         {children}
       </Link>

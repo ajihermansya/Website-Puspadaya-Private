@@ -1,20 +1,32 @@
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-
+import React from "react";
 import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLaout";
-import SelectGroupOne from "@/components/FormElements/SelectGroup/SelectGroupOne";
-import Link from "next/link";
-import InputGroup from "@/components/FormElements/InputGroup";
+import { SvgFilter } from "@/components/ui/Svg";
+import TableBalita from "@/components/Tables/TableBalita";
 
 export const metadata: Metadata = {
-  title: "Next.js Form Layout Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Form Layout page for NextAdmin Dashboard Kit",
+  title: "Data Balita",
+  description: "Data Balita Page",
 };
 
 const Page = () => {
   return (
     <>
-      <h1>Hello World</h1>
+      <div className="container mx-auto">
+        <div className="mb-4 flex items-center justify-between p-2">
+          <div>
+            <h1 className="pb-1 text-3xl font-bold text-black">Data balita</h1>
+            <h5 className="text-md font-medium">
+              Pantau Data Diri Balita Disini!
+            </h5>
+          </div>
+          <div>
+            <button type="button" className="pe-2">
+              <SvgFilter />
+            </button>
+          </div>
+        </div>
+        <TableBalita />
+      </div>
     </>
   );
 };

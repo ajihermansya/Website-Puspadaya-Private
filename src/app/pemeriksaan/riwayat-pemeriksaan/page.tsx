@@ -1,200 +1,199 @@
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+'use client';
 
-import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLaout";
-import SelectGroupOne from "@/components/FormElements/SelectGroup/SelectGroupOne";
-import Link from "next/link";
-import InputGroup from "@/components/FormElements/InputGroup";
+import { SvgDetailOrangTua } from '@/components/ui/Svg';
+import { Column, ColumnBodyOptions } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { ProgressBar } from 'primereact/progressbar';
+import { Toast } from 'primereact/toast';
+import React, { useEffect, useRef, useState } from 'react';
+import ButtonLinks from "../../../components/ui/ButtonLink";
 
-export const metadata: Metadata = {
-  title: "Next.js Form Layout Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Form Layout page for NextAdmin Dashboard Kit",
+interface DataRow {
+  id: number;
+  contact_ref: string;  
+  nik: string;     // NIK
+  status: string;      // Status
+}
+
+const statusColors: { [key: string]: string } = {
+  'Stunting': 'bg-red-200',
+  'Risiko': 'bg-yellow-200',
+  'Normal': 'bg-green-200',
+  'Gizi Buruk': 'bg-red-300',
+  'Gizi Kurang': 'bg-orange-200',
+  'Gizi Baik': 'bg-green-300',
+  'Berisiko Gizi Lebih': 'bg-yellow-300',
+  'Gizi Lebih': 'bg-orange-300',
+  'Obesitas': 'bg-red-500',
 };
 
-const FormLayout = () => {
+const TablesPage: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [dataWithDisplayId, setDataWithDisplayId] = useState<DataRow[]>([]);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const toast = useRef<Toast>(null);
+
+
+
+  useEffect(() => {
+    setLoading(true);
+    try {
+      const dummyData: DataRow[] = Array.from({ length: 680 }, (_, index) => ({
+        id: index + 1,
+        contact_ref: `Nama Lengkap ${index + 1}`, // Nama Lengkap
+        nik: generateNIK(), // NIK acak 16 angka
+        status: getRandomStatus(), // Status acak
+      }));
+      setDataWithDisplayId(dummyData);
+    } catch (err) {
+      setError('Error fetching data');
+      toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed to load data', life: 3000 });
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+
+  const generateNIK = (): string => {
+    let nik = '';
+    for (let i = 0; i < 16; i++) {
+      nik += Math.floor(Math.random() * 10); // Menghasilkan angka 0-9
+    }
+    return nik;
+  };
+
+  const rowClassName = (data: DataRow) => {
+    return data.id % 2 === 0
+      ? 'bg-gray-100 h-12 text-base text-black rounded-lg'  // Added text-black
+      : 'bg-white h-12 text-base text-black rounded-lg';    // Added text-black
+  };
+
+
+  const getRandomStatus = () => {
+    const statuses = Object.keys(statusColors);
+    return statuses[Math.floor(Math.random() * statuses.length)];
+  };
+
+  const handleEdit = (rowData: DataRow) => {
+    console.log('Edit', rowData);
+    toast.current?.show({ severity: 'info', summary: 'Edit', detail: `Editing ${rowData.contact_ref}`, life: 3000 });
+  };
+
+
+
+
+  const actionBodyTemplate = (data: DataRow, options: ColumnBodyOptions) => {
+    return (
+      <ButtonLinks
+        href={`/data-keluarga/data-balita/`}
+        className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
+      >
+        <div className="flex items-center gap-1">
+          <SvgDetailOrangTua />
+          <span>Lihat Detail</span>
+        </div>
+      </ButtonLinks>
+    );
+  };
+  
+
+
+  const statusBodyTemplate = (rowData: DataRow) => {
+    return (
+      <span className={`${statusColors[rowData.status]} text-sm font-medium px-3 py-1 rounded-full`}>
+        {rowData.status}
+      </span>
+    );
+  };
+
+
+
   return (
-    <DefaultLayout>
-      <Breadcrumb pageName="Form Layout" />
+    <div className=" container mx-auto">
 
-      <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
-        <div className="flex flex-col gap-9">
-          {/* <!-- Contact Form --> */}
-          <div className="rounded-[10px] border border-stroke bg-white shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
-            <div className="border-b border-stroke px-6.5 py-4 dark:border-dark-3">
-              <h3 className="font-semibold text-dark dark:text-white">
-                Contact Form
-              </h3>
-            </div>
-            <form action="#">
-              <div className="p-6.5">
-                <div className="mb-4.5 flex flex-col gap-4.5 xl:flex-row">
-                  <InputGroup
-                    label="First name"
-                    type="text"
-                    placeholder="Enter your first name"
-                    customClasses="w-full xl:w-1/2"
-                  />
-
-                  <InputGroup
-                    label="Last name"
-                    type="text"
-                    placeholder="Enter your last name"
-                    customClasses="w-full xl:w-1/2"
-                  />
-                </div>
-
-                <InputGroup
-                  label="Email"
-                  type="email"
-                  placeholder="Enter your email address"
-                  customClasses="mb-4.5"
-                  required
-                />
-
-                <InputGroup
-                  label="Subject"
-                  type="text"
-                  placeholder="Enter your subject"
-                  customClasses="mb-4.5"
-                />
-
-                <SelectGroupOne />
-
-                <div className="mb-6">
-                  <label className="mb-3 block text-body-sm font-medium text-dark dark:text-white">
-                    Message
-                  </label>
-                  <textarea
-                    rows={6}
-                    placeholder="Type your message"
-                    className="w-full rounded-[7px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-dark outline-none transition placeholder:text-dark-6 focus:border-primary active:border-primary disabled:cursor-default dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
-                  ></textarea>
-                </div>
-
-                <button className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium text-white hover:bg-opacity-90">
-                  Send Message
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-9">
-          {/* <!-- Sign In Form --> */}
-          <div className="rounded-[10px] border border-stroke bg-white shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
-            <div className="border-b border-stroke px-6.5 py-4 dark:border-dark-3">
-              <h3 className="font-semibold text-dark dark:text-white">
-                Sign In Form
-              </h3>
-            </div>
-            <form action="#">
-              <div className="p-6.5">
-                <InputGroup
-                  label="Email"
-                  type="email"
-                  placeholder="Enter your email address"
-                  customClasses="mb-4.5"
-                />
-
-                <InputGroup
-                  label="Password"
-                  type="password"
-                  placeholder="Enter your password"
-                />
-
-                <div className="mb-5.5 mt-5 flex items-center justify-between">
-                  <label htmlFor="formCheckbox" className="flex cursor-pointer">
-                    <div className="relative pt-0.5">
-                      <input
-                        type="checkbox"
-                        id="formCheckbox"
-                        className="taskCheckbox sr-only"
-                      />
-                      <div className="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-dark-3">
-                        <span className="text-white opacity-0">
-                          <svg
-                            className="fill-current"
-                            width="10"
-                            height="7"
-                            viewBox="0 0 10 7"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M9.70685 0.292804C9.89455 0.480344 10 0.734667 10 0.999847C10 1.26503 9.89455 1.51935 9.70685 1.70689L4.70059 6.7072C4.51283 6.89468 4.2582 7 3.9927 7C3.72721 7 3.47258 6.89468 3.28482 6.7072L0.281063 3.70701C0.0986771 3.5184 -0.00224342 3.26578 3.785e-05 3.00357C0.00231912 2.74136 0.10762 2.49053 0.29326 2.30511C0.4789 2.11969 0.730026 2.01451 0.992551 2.01224C1.25508 2.00996 1.50799 2.11076 1.69683 2.29293L3.9927 4.58607L8.29108 0.292804C8.47884 0.105322 8.73347 0 8.99896 0C9.26446 0 9.51908 0.105322 9.70685 0.292804Z"
-                              fill=""
-                            />
-                          </svg>
-                        </span>
-                      </div>
-                    </div>
-                    <p>Remember me</p>
-                  </label>
-
-                  <Link
-                    href="#"
-                    className="text-body-sm text-primary hover:underline"
-                  >
-                    Forget password?
-                  </Link>
-                </div>
-
-                <button className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium text-white hover:bg-opacity-90">
-                  Sign In
-                </button>
-              </div>
-            </form>
-          </div>
-
-          {/* <!-- Sign Up Form --> */}
-          <div className="rounded-[10px] border border-stroke bg-white shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
-            <div className="border-b border-stroke px-6.5 py-4 dark:border-dark-3">
-              <h3 className="font-semibold text-dark dark:text-white">
-                Sign Up Form
-              </h3>
-            </div>
-            <form action="#">
-              <div className="p-6.5">
-                <InputGroup
-                  label="Name"
-                  type="text"
-                  placeholder="Enter full name"
-                  customClasses="mb-4.5"
-                />
-
-                <InputGroup
-                  label="Email"
-                  type="email"
-                  placeholder="Enter email address"
-                  customClasses="mb-4.5"
-                />
-
-                <InputGroup
-                  label="Password"
-                  type="password"
-                  placeholder="Enter password"
-                  customClasses="mb-4.5"
-                />
-
-                <InputGroup
-                  label="Re-type Password"
-                  type="password"
-                  placeholder="Re-enter"
-                  customClasses="mb-5.5"
-                />
-
-                <button className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium text-white hover:bg-opacity-90">
-                  Sign Up
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+      <div className="mb-8">
+        <h1 className="mb-2 text-3xl font-bold text-gray-800">Riwayat Pemeriksaan</h1>
+        <h5 className="text-lg text-gray-600">Tinjau hasil Pemeriksaan balita disini!</h5>
       </div>
-    </DefaultLayout>
+
+      <div className="card p-4 bg-white shadow-md rounded-lg overflow-hidden">
+        {loading && (
+          <div className="mb-4">
+            <span className="text-sm text-gray-600">Loading...</span>
+            <ProgressBar mode="indeterminate" className="mt-2 h-2" />
+          </div>
+        )}
+        {error && (
+          <div className="mb-4 bg-red-100 text-red-700 p-4 rounded-lg">
+            {error}
+          </div>
+        )}
+
+        <Toast ref={toast} />
+        <div className="rounded-lg ">
+          <DataTable
+            value={dataWithDisplayId}
+            dataKey="id"
+            paginator
+            rows={rowsPerPage}
+            rowsPerPageOptions={[20, 40, 60, 80, 100]}
+            className="datatable-responsive"
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} records"
+            emptyMessage="No data available"
+            responsiveLayout="scroll"
+            rowClassName={rowClassName}
+            paginatorClassName="bg-gray-50 p-4 mt-4 rounded-lg"
+          >
+
+            <Column
+              field="id"
+              header="No"
+              headerStyle={{ height: '54px' }}
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black rounded-l-lg"
+              className="text-center"
+            />
+            <Column
+              field="nik"
+              header="NIK"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: '8rem' }}
+            />
+            <Column
+              field="contact_ref"
+              header="Nama Lengkap"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: '10rem' }}
+            />
+            <Column
+              field="status"
+              header="Status"
+              body={statusBodyTemplate}
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: '10rem' }}
+            />
+            <Column
+              header="Action"
+              body={actionBodyTemplate}
+              headerClassName="bg-[#F7F9FC] text-black rounded-r-lg"
+              style={{ minWidth: '5rem' }}
+
+            />
+          </DataTable>
+
+        </div>
+
+        
+      </div>
+
+
+    </div>
   );
 };
 
-export default FormLayout;
+export default TablesPage;
