@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-@import 'primereact/resources/themes/lara-light-cyan/theme.css';
+@import 'primereact/resources/themes/tailwind-light/theme.css';
 
 @layer tailwind-base, primereact, tailwind-utilities;
 
@@ -21,6 +21,19 @@
 
 @layer components {
 }
+
+.p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: #222e31 !important;
+    background: #fff !important;
+  }
+  
+  .p-radiobutton .p-radiobutton-box.p-highlight .p-radiobutton-icon {
+    background-color: #1ad843 !important;
+  }
+  
+  .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+    border-color: #5CCEEE !important;
+  }
 
 @layer utilities {
     /* Chrome, Safari and Opera */

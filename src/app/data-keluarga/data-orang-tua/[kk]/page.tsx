@@ -1,6 +1,5 @@
 import React from "react";
 import { Metadata } from "next";
-import { Button } from "primereact/button";
 import DetailOrangTua from "@/components/DataKeluarga/DetailOrangTua";
 
 export const metadata: Metadata = {
