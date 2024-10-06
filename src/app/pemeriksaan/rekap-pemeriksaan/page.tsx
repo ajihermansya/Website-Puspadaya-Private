@@ -159,23 +159,23 @@ const TablesPage: React.FC = () => {
             <Column
               field="id"
               header="No"
-              headerStyle={{ height: '50px' }}
+              headerStyle={{ height: '54px' }}
               sortable
-              headerClassName="bg-gray-200 text-black rounded-l-lg"
+              headerClassName="bg-[#F7F9FC] text-black rounded-l-lg"
               className="text-center"
             />
             <Column
               field="nik"
               header="NIK"
               sortable
-              headerClassName="bg-gray-200 text-black"
+              headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: '10rem' }}
             />
             <Column
               field="contact_ref"
               header="Nama Lengkap"
               sortable
-              headerClassName="bg-gray-200 text-black"
+              headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: '10rem' }}
             />
             <Column
@@ -183,13 +183,13 @@ const TablesPage: React.FC = () => {
               header="Status"
               body={statusBodyTemplate}
               sortable
-              headerClassName="bg-gray-200 text-black"
+              headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: '10rem' }}
             />
             <Column
               header="Action"
               body={actionBodyTemplate}
-              headerClassName="bg-gray-200 text-black rounded-r-lg"
+              headerClassName="bg-[#F7F9FC] text-black rounded-r-lg"
               style={{ minWidth: '5rem' }}
 
             />

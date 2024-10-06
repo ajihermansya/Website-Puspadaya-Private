@@ -162,6 +162,7 @@ const TableBalita = () => {
                       <SvgDetailOrangTua />
                       <span>Lihat Detail</span>
                     </div>
+                    
                   </ButtonLink>
                 </td>
               </tr>

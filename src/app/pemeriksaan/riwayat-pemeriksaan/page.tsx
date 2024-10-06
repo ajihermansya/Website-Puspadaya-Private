@@ -1,12 +1,12 @@
 'use client';
 
-import { IconPencil, IconTrash } from '@tabler/icons-react';
-import Link from 'next/link';
-import { Column } from 'primereact/column';
+import { SvgDetailOrangTua } from '@/components/ui/Svg';
+import { Column, ColumnBodyOptions } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { ProgressBar } from 'primereact/progressbar';
 import { Toast } from 'primereact/toast';
 import React, { useEffect, useRef, useState } from 'react';
+import ButtonLinks from "../../../components/ui/ButtonLink";
 
 interface DataRow {
   id: number;
@@ -39,7 +39,7 @@ const TablesPage: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      const dummyData: DataRow[] = Array.from({ length: 30 }, (_, index) => ({
+      const dummyData: DataRow[] = Array.from({ length: 680 }, (_, index) => ({
         id: index + 1,
         contact_ref: `Nama Lengkap ${index + 1}`, // Nama Lengkap
         nik: generateNIK(), // NIK acak 16 angka
@@ -83,29 +83,20 @@ const TablesPage: React.FC = () => {
 
 
 
-  const actionBodyTemplate = (rowData: DataRow) => {
-    const handleEditClick = () => {
-      localStorage.setItem('id', rowData.toString());
-    };
-
+  const actionBodyTemplate = (data: DataRow, options: ColumnBodyOptions) => {
     return (
-      <>
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData}`} passHref>
-
-            <IconPencil onClick={handleEditClick} style={{ color: 'green', cursor: 'pointer' }} />
-          </Link>
-
-          <Link href="#" passHref>
-
-            <IconTrash style={{ color: 'red', cursor: 'pointer' }} />
-          </Link>
-
+      <ButtonLinks
+        href={`/data-keluarga/data-balita/`}
+        className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
+      >
+        <div className="flex items-center gap-1">
+          <SvgDetailOrangTua />
+          <span>Lihat Detail</span>
         </div>
-      </>
+      </ButtonLinks>
     );
   };
-
+  
 
 
   const statusBodyTemplate = (rowData: DataRow) => {
@@ -159,23 +150,23 @@ const TablesPage: React.FC = () => {
             <Column
               field="id"
               header="No"
-              headerStyle={{ height: '50px' }}
+              headerStyle={{ height: '54px' }}
               sortable
-              headerClassName="bg-gray-200 text-black rounded-l-lg"
+              headerClassName="bg-[#F7F9FC] text-black rounded-l-lg"
               className="text-center"
             />
             <Column
               field="nik"
               header="NIK"
               sortable
-              headerClassName="bg-gray-200 text-black"
+              headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: '8rem' }}
             />
             <Column
               field="contact_ref"
               header="Nama Lengkap"
               sortable
-              headerClassName="bg-gray-200 text-black"
+              headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: '10rem' }}
             />
             <Column
@@ -183,19 +174,21 @@ const TablesPage: React.FC = () => {
               header="Status"
               body={statusBodyTemplate}
               sortable
-              headerClassName="bg-gray-200 text-black"
+              headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: '10rem' }}
             />
             <Column
               header="Action"
               body={actionBodyTemplate}
-              headerClassName="bg-gray-200 text-black rounded-r-lg"
+              headerClassName="bg-[#F7F9FC] text-black rounded-r-lg"
               style={{ minWidth: '5rem' }}
 
             />
           </DataTable>
 
         </div>
+
+        
       </div>
 
 

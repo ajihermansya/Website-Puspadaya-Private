@@ -101,6 +101,7 @@ const Page: React.FC = () => {
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
+      [name]: Math.max(0, Number(value))
     }));
   };
 
@@ -197,7 +198,8 @@ const Page: React.FC = () => {
                   value={formData.posyandu}
                   onChange={handleInputChange}
                   className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  placeholder="Masukkan Posyandu"
+                  placeholder="Posyandu Mawar 6"
+                  readOnly
                 />
               </div>
 
@@ -236,9 +238,10 @@ const Page: React.FC = () => {
                     required
                     id="tinggiBadan"
                     name="tinggiBadan"
+                    min="0"
                     value={formData.tinggiBadan}
                     onChange={handleInputChange}
-                    className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                     placeholder="Masukkan Tinggi Badan"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500">
@@ -263,6 +266,7 @@ const Page: React.FC = () => {
                     value={formData.beratBadan}
                     onChange={handleInputChange}
                     className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                   min="0"
                     placeholder="Masukkan Berat Badan"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500">
@@ -282,11 +286,13 @@ const Page: React.FC = () => {
                   <InputText
                     type="number"
                     required
+                    min="0"
                     id="lingkarLenganAtas"
                     name="lingkarLenganAtas"
                     value={formData.lingkarLenganAtas}
                     onChange={handleInputChange}
-                    className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                   
                     placeholder="Masukkan Lingkar Lengan Atas"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500">
@@ -307,10 +313,11 @@ const Page: React.FC = () => {
                     type="number"
                     required
                     id="lingkarKepala"
+                    min="0"
                     name="lingkarKepala"
                     value={formData.lingkarKepala}
                     onChange={handleInputChange}
-                    className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                     placeholder="Masukkan Lingkar Kepala"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500">
@@ -401,6 +408,8 @@ const Page: React.FC = () => {
           </div>
         </form>
       </div>
+
+      
     </div>
   );
 };
