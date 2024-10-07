@@ -52,7 +52,7 @@ const DetailBalita = ({ id }: { id: string }) => {
             </div>
 
             <div className="mb-4">
-              <CardDetail label="Lingkah Lengan Atas" satuan="CM">
+              <CardDetail label="Lingkar Lengan Atas" satuan="CM">
                 15
               </CardDetail>
             </div>

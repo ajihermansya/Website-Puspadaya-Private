@@ -40,6 +40,12 @@ const DataIbu = () => {
           <div className="mb-4">
             <CardDetail label="Golongan Darah">A</CardDetail>
           </div>
+
+          <div className="mb-4">
+            <CardDetail label="Tanggal Kelahiran Pertama">
+              20 Februari 2010
+            </CardDetail>
+          </div>
         </div>
       </div>
     </>
