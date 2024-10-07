@@ -148,43 +148,20 @@ const Page: React.FC = () => {
     <div className="container mx-auto">
       <div className="mb-8">
         <h1 className="mb-2 text-3xl font-bold text-gray-800">
-          Pemeriksaan Balita
+          Detail Riwayat Pemeriksaan
         </h1>
         <h5 className="text-lg text-gray-600">
-          Ukur data balita sesuai dengan informasi yang tepat
+        Pantau pertumbuhan balita disini!
         </h5>
       </div>
 
       <div className="rounded-lg bg-white p-6 shadow-md">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            
+            
             <div>
-              <label
-                htmlFor="nama"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                Nama Lengkap
-              </label>
-              <AutoComplete
-                id="nama"
-                name="nama"
-                value={formData.nama}
-                suggestions={filteredNames}
-                completeMethod={(e: AutoCompleteCompleteEvent) =>
-                  searchName(e.query)
-                }
-                onChange={handleAutoCompleteChange}
-                className="w-full"
-                inputClassName="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                panelClassName="bg-white shadow-lg rounded-md mt-1 border-none"
-                placeholder="Masukkan Nama Lengkap"
-                itemTemplate={itemTemplate}
-              />
-              {showPopup && (
-                <div className="mt-1 rounded-md bg-red-100 p-2 text-red-700">
-                  Nama tidak ditemukan dalam database.
-                </div>
-              )}
+              
 
               <div>
                 <label

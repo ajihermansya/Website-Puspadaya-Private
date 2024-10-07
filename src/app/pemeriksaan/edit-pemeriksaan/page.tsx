@@ -8,6 +8,7 @@ import {
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
+import { RadioButton, RadioButtonChangeEvent } from "primereact/radiobutton";
 import React, { useEffect, useState } from "react";
 
 type Name = string;
@@ -54,6 +55,8 @@ const Page: React.FC = () => {
   const [timezone, setTimezone] = useState("Asia/Jakarta");
   const [filteredNames, setFilteredNames] = useState<Name[]>([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [ingredient, setIngredient] = useState<string>("");
+  const [ingredients, setIngredients] = useState<string>("");
 
   const [formData, setFormData] = useState<FormData>({
     nama: "",
@@ -94,16 +97,25 @@ const Page: React.FC = () => {
   }, []);
 
 
+  // const handleInputChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //     [name]: Math.max(0, Number(value))
+  //   }));
+  // };
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
-      [name]: Math.max(0, Number(value))
+      [name]: value, // Langsung set value yang diinput oleh user
     }));
-  };
+  };  
 
 
   const handleAutoCompleteChange = (e: AutoCompleteChangeEvent) => {
@@ -147,7 +159,7 @@ const Page: React.FC = () => {
     <div className="container mx-auto">
       <div className="mb-8">
         <h1 className="mb-2 text-3xl font-bold text-gray-800">
-          Pemeriksaan Balita
+         Edit Pemeriksaan Balita
         </h1>
         <h5 className="text-lg text-gray-600">
           Ukur data balita sesuai dengan informasi yang tepat
@@ -198,7 +210,8 @@ const Page: React.FC = () => {
                   value={formData.posyandu}
                   onChange={handleInputChange}
                   className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  placeholder="Masukkan Posyandu"
+                  placeholder="Posyandu Mawar 6"
+                  readOnly
                 />
               </div>
 
@@ -237,7 +250,6 @@ const Page: React.FC = () => {
                     required
                     id="tinggiBadan"
                     name="tinggiBadan"
-                    min="0"
                     value={formData.tinggiBadan}
                     onChange={handleInputChange}
                     className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
@@ -265,14 +277,52 @@ const Page: React.FC = () => {
                     value={formData.beratBadan}
                     onChange={handleInputChange}
                     className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                   min="0"
                     placeholder="Masukkan Berat Badan"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500">
                     Kg
                   </span>
                 </div>
+
+               
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Bagaimana Posisi Balita Saat Ditimbang?
+                    </label>
+                    <div className="flex items-center space-x-4">
+                      <label className="flex items-center cursor-pointer">
+                        <RadioButton
+                          inputId="terlentang"
+                          value="terlentang"
+                          onChange={(e: RadioButtonChangeEvent) =>
+                            setIngredients(e.value)
+                          }
+                          checked={ingredients === "terlentang"}
+                        />
+                        <label htmlFor="terlentang" className="ml-2">
+                          Terlentang
+                        </label>
+                      </label>
+
+
+                      <RadioButton
+                        inputId="berdiri"
+                        value="berdiri"
+                        onChange={(e: RadioButtonChangeEvent) =>
+                          setIngredients(e.value)
+                        }
+                        checked={ingredients === "berdiri"}
+                      />
+                      <label htmlFor="ingredient4" className="ml-2">
+                        Berdiri
+                      </label>
+
+                    </div>
+                  </div>
+           
+
               </div>
+
 
               <div>
                 <label
@@ -285,13 +335,11 @@ const Page: React.FC = () => {
                   <InputText
                     type="number"
                     required
-                    min="0"
                     id="lingkarLenganAtas"
                     name="lingkarLenganAtas"
                     value={formData.lingkarLenganAtas}
                     onChange={handleInputChange}
                     className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                   
                     placeholder="Masukkan Lingkar Lengan Atas"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500">
@@ -312,7 +360,6 @@ const Page: React.FC = () => {
                     type="number"
                     required
                     id="lingkarKepala"
-                    min="0"
                     name="lingkarKepala"
                     value={formData.lingkarKepala}
                     onChange={handleInputChange}
@@ -322,6 +369,80 @@ const Page: React.FC = () => {
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500">
                     Cm
                   </span>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="mpasi"
+                  className="mb-1 mt-4 block text-sm font-medium text-gray-700"
+                >
+                  Apakah Balita Mendapatkan MPASI?
+                </label>
+                <div className="flex items-center space-x-4">
+                  <label className="flex cursor-pointer items-center">
+                    <RadioButton
+                      inputId="ingredient2"
+                      value="Ya"
+                      onChange={(e: RadioButtonChangeEvent) =>
+                        setIngredient(e.value)
+                      }
+                      checked={ingredient === "Ya"}
+                    />
+                    <label htmlFor="ingredient2" className="ml-2">
+                      Ya
+                    </label>
+                  </label>
+                  <label className="flex cursor-pointer items-center">
+                    <RadioButton
+                      inputId="ingredient2"
+                      value="Tidak"
+                      onChange={(e: RadioButtonChangeEvent) =>
+                        setIngredient(e.value)
+                      }
+                      checked={ingredient === "Tidak"}
+                    />
+                    <label htmlFor="ingredient2" className="ml-2">
+                      Tidak
+                    </label>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="mpasi"
+                  className="mb-1 mt-4 block text-sm font-medium text-gray-700"
+                >
+                  Apakah Balita Mendapatkan ASI Eksklusif?
+                </label>
+                <div className="flex items-center space-x-4">
+                  <label className="flex cursor-pointer items-center">
+                    <RadioButton
+                      inputId="ingredient3"
+                      value="ya"
+                      onChange={(e: RadioButtonChangeEvent) =>
+                        setIngredients(e.value)
+                      }
+                      checked={ingredients === "ya"}
+                    />
+                    <label htmlFor="ingredient4" className="ml-2">
+                      Ya
+                    </label>
+                  </label>
+                  <label className="flex cursor-pointer items-center">
+                    <RadioButton
+                      inputId="ingredient5"
+                      value="tidak"
+                      onChange={(e: RadioButtonChangeEvent) =>
+                        setIngredients(e.value)
+                      }
+                      checked={ingredients === "tidak"}
+                    />
+                    <label htmlFor="ingredient6" className="ml-2">
+                      Tidak
+                    </label>
+                  </label>
                 </div>
               </div>
             </div>
@@ -359,33 +480,39 @@ const Page: React.FC = () => {
                 placeholder="Masukkan keluhan"
               />
 
-              <div className="mt-6 bg-gray-50 p-4 rounded-lg shadow-sm">
-                <h2 className="text-lg font-medium text-gray-700 mb-3">Hasil Perhitungan</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-md shadow-sm p-3 border border-gray-200">
-                    <h3 className="text-sm font-medium text-gray-600 mb-2">Status Gizi</h3>
+              <div className="mt-6 rounded-lg bg-gray-50 p-4 shadow-sm">
+                <h2 className="mb-3 text-lg font-medium text-gray-700">
+                  Hasil Perhitungan
+                </h2>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="rounded-md border border-gray-200 bg-white p-3 shadow-sm">
+                    <h3 className="mb-2 text-sm font-medium text-gray-600">
+                      Status Gizi
+                    </h3>
                     <div className="relative">
                       <InputText
                         id="statusGizi"
                         name="statusGizi"
                         value={formData.statusGizi || ""}
                         onChange={handleInputChange}
-                        className="w-full outline-none rounded-md border-gray-300 bg-gray-50 p-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                        className="w-full rounded-md border-gray-300 bg-gray-50 p-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         placeholder="Menunggu hasil..."
                         readOnly
                       />
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-md shadow-sm p-3 border border-gray-200">
-                    <h3 className="text-sm font-medium text-gray-600 mb-2">Status Stunting</h3>
+                  <div className="rounded-md border border-gray-200 bg-white p-3 shadow-sm">
+                    <h3 className="mb-2 text-sm font-medium text-gray-600">
+                      Status Stunting
+                    </h3>
                     <div className="relative">
                       <InputText
                         id="statusStunting"
                         name="statusStunting"
                         value={formData.statusStunting || ""}
                         onChange={handleInputChange}
-                        className="w-full outline-none rounded-md border-gray-300 bg-gray-50 p-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                        className="w-full rounded-md border-gray-300 bg-gray-50 p-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         placeholder="Menunggu hasil..."
                         readOnly
                       />
@@ -393,20 +520,19 @@ const Page: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-
             </div>
 
             <div className="flex justify-center md:col-span-4">
               <Button
                 type="submit"
                 label="Simpan"
-                className="rounded bg-[#486284] px-20 py-2 font-bold text-white hover:bg-[#3a4f6a] transition duration-300 ease-in-out"
+                className="rounded bg-[#486284] px-20 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-[#3a4f6a]"
               />
             </div>
           </div>
         </form>
       </div>
+      
     </div>
   );
 };

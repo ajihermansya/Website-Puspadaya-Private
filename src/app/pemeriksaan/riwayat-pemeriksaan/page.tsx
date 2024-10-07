@@ -86,7 +86,7 @@ const TablesPage: React.FC = () => {
   const actionBodyTemplate = (data: DataRow, options: ColumnBodyOptions) => {
     return (
       <ButtonLinks
-        href={`/data-keluarga/data-balita/`}
+        href={`/pemeriksaan/detail-pemeriksaan/`}
         className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
       >
         <div className="flex items-center gap-1">
