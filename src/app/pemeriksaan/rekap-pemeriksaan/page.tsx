@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 interface DataRow {
   id: number;
-  contact_ref: string;  
+  contact_ref: string;
   nik: string;     // NIK
   status: string;      // Status
 }
@@ -191,34 +191,34 @@ const TablesPage: React.FC = () => {
 
       {/* Dialog Konfirmasi Hapus */}
       <Dialog
-  visible={deleteProductDialog}
-  header="Konfirmasi Hapus"
-  modal
-  onHide={() => setDeleteProductDialog(false)}
-  draggable={false} // Menghindari dialog dapat digeser
-  className="max-w-md rounded-lg shadow-lg bg-white bg-gray-100"
->
-  <div className="p-6">
-    <p className="text-lg font-medium">
-      Apakah Anda yakin ingin menghapus <strong>{information?.contact_ref}</strong>?
-    </p>
-  </div>
-  <div className="flex justify-end p-4  rounded-b-lg">
-    <button
-      className="px-4 py-2 text-gray-700 bg-gray-300 rounded-md hover:bg-gray-400 transition duration-300 ease-in-out"
-      onClick={() => setDeleteProductDialog(false)}
-    >
-      Batal
-    </button>
-    <button
-      className="ml-2 px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-300 ease-in-out"
-      onClick={deleteProduct}
-    >
-      Hapus
-    </button>
-  </div>
-</Dialog>
-     
+        visible={deleteProductDialog}
+        header="Konfirmasi Hapus"
+        modal
+        onHide={() => setDeleteProductDialog(false)}
+        draggable={false} // Menghindari dialog dapat digeser
+        className="max-w-md rounded-lg shadow-lg bg-white bg-gray-100"
+      >
+        <div className="p-6">
+          <p className="text-lg font-medium">
+            Apakah Anda yakin ingin menghapus <strong>{information?.contact_ref}</strong>?
+          </p>
+        </div>
+        <div className="flex justify-end p-4  rounded-b-lg">
+          <button
+            className="px-4 py-2 text-gray-700 bg-gray-300 rounded-md hover:bg-gray-400 transition duration-300 ease-in-out"
+            onClick={() => setDeleteProductDialog(false)}
+          >
+            Batal
+          </button>
+          <button
+            className="ml-2 px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-300 ease-in-out"
+            onClick={deleteProduct}
+          >
+            Hapus
+          </button>
+        </div>
+      </Dialog>
+
     </div>
   );
 };
