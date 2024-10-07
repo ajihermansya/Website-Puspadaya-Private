@@ -19,4 +19,6 @@ module.exports = {
 }
 
 
-// run : pm2 start ecosystem.config.js
+// run : pm2 start ecosystem.config.js --env env_dev
+// pm2 start ecosystem.config.js --env env_dev --no-daemon
+
