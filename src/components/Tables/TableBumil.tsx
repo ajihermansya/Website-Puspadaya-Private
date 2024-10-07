@@ -1,9 +1,51 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import ButtonLink from "../ui/ButtonLink";
 import { SvgDetailOrangTua } from "../ui/Svg";
 import { Bumil } from "@/types/bumil";
+import { DataTable } from "primereact/datatable";
+import { Column, ColumnBodyOptions } from "primereact/column";
+import { InputText } from "primereact/inputtext";
 
 const TableBumil = () => {
+  const [globalFilter, setGlobalFilter] = useState("");
+
+  const header = (
+    <div className="flex flex-wrap items-center justify-end gap-2 py-3">
+      <div className="relative max-w-sm">
+        <span className="p-input-icon-left">
+          <i className="pi pi-search" />
+          <InputText
+            type="search"
+            placeholder="Search..."
+            className="w-[280px] rounded-lg border p-2 pl-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+            onInput={(e) =>
+              setGlobalFilter((e.target as HTMLInputElement).value)
+            }
+          />
+        </span>
+      </div>
+    </div>
+  );
+
+  const indexTemplate = (data: any, options: ColumnBodyOptions) => {
+    return <span className="text-center">{options.rowIndex + 1}</span>;
+  };
+
+  const actionTemplate = (data: any, options: ColumnBodyOptions) => {
+    return (
+      <ButtonLink
+        href={`/data-keluarga/data-bumil/${data.nik}`}
+        className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
+      >
+        <div className="flex items-center gap-1">
+          <SvgDetailOrangTua />
+          <span>Lihat Detail</span>
+        </div>
+      </ButtonLink>
+    );
+  };
+
   const dummyDataBumil: Bumil[] = [
     {
       nik: "3201234567890123",
@@ -70,102 +112,72 @@ const TableBumil = () => {
   return (
     <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
       <div className="max-w-full overflow-x-auto">
-        <table className="w-full table-auto">
-          <thead>
-            <tr className="bg-[#F7F9FC] text-left dark:bg-dark-2">
-              <th className="min-w-[60px] px-4 py-4 font-medium text-dark dark:text-white xl:pl-7.5">
-                No
-              </th>
-              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
-                NIK
-              </th>
-              <th className="min-w-[160px] px-4 py-4 font-medium text-dark dark:text-white">
-                Nama Lengkap
-              </th>
-              <th className="min-w-[140px] px-4 py-4 font-medium text-dark dark:text-white">
-                Usia Kehamilan
-              </th>
-              <th className="min-w-[140px] px-4 py-4 text-center font-medium text-dark dark:text-white">
-                Tanggal Pendampingan
-              </th>
-              <th className="px-4 py-4 pr-7 text-right font-medium text-dark dark:text-white xl:pr-14">
-                Aksi
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {dummyDataBumil.map((item, index) => (
-              <tr key={index}>
-                <td
-                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 xl:pl-7.5 ${
-                    index === dummyDataBumil.length - 1
-                      ? "border-b-0"
-                      : "border-b"
-                  }`}
-                >
-                  <h5 className="text-dark dark:text-white">{index + 1}</h5>
-                </td>
-                <td
-                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${
-                    index === dummyDataBumil.length - 1
-                      ? "border-b-0"
-                      : "border-b"
-                  }`}
-                >
-                  <h5 className="text-dark dark:text-white">{item.nik}</h5>
-                </td>
-                <td
-                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${
-                    index === dummyDataBumil.length - 1
-                      ? "border-b-0"
-                      : "border-b"
-                  }`}
-                >
-                  <p className="text-dark dark:text-white">{item.nama}</p>
-                </td>
-                <td
-                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${
-                    index === dummyDataBumil.length - 1
-                      ? "border-b-0"
-                      : "border-b"
-                  }`}
-                >
-                  <p className="inline-flex rounded-full bg-gray-2 px-3 py-1 text-body-sm font-medium text-dark dark:bg-dark-3 dark:text-white">
-                    {item.usiaKehamilan}
-                  </p>
-                </td>
-                <td
-                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${
-                    index === dummyDataBumil.length - 1
-                      ? "border-b-0"
-                      : "border-b"
-                  }`}
-                >
-                  <p className="text-center text-dark dark:text-white">
-                    {item.tanggalPendampingan}
-                  </p>
-                </td>
-                <td
-                  className={`border-[#eee] px-4 py-4 text-right dark:border-dark-3 ${
-                    index === dummyDataBumil.length - 1
-                      ? "border-b-0"
-                      : "border-b"
-                  }`}
-                >
-                  <ButtonLink
-                    href={`/data-keluarga/data-bumil/${index}`}
-                    className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
-                  >
-                    <div className="flex items-center gap-1">
-                      <SvgDetailOrangTua />
-                      <span>Lihat Detail</span>
-                    </div>
-                  </ButtonLink>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="rounded-lg ">
+          <DataTable
+            value={dummyDataBumil}
+            dataKey="nik"
+            paginator
+            rows={5}
+            rowsPerPageOptions={[20, 40, 60, 80, 100]}
+            className="datatable-responsive"
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} records"
+            emptyMessage="No data available"
+            stripedRows
+            globalFilter={globalFilter}
+            filters={{ global: { value: globalFilter, matchMode: "contains" } }}
+            globalFilterFields={["nama", "nik"]}
+            header={header}
+            paginatorClassName="bg-gray-50 p-4 mt-4 rounded-lg"
+          >
+            <Column
+              header="No"
+              headerStyle={{ height: "54px", width: "4rem" }}
+              body={indexTemplate}
+              headerClassName="bg-[#F7F9FC] text-black rounded-l-lg"
+              className="text-center"
+            />
+
+            <Column
+              field="nik"
+              header="NIK"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: "10rem" }}
+            />
+
+            <Column
+              field="nama"
+              header="Nama Lengkap"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: "10rem" }}
+            />
+
+            <Column
+              field="usiaKehamilan"
+              header="Usia Kehamilan"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: "10rem" }}
+            />
+
+            <Column
+              field="tanggalPendampingan"
+              header="Tgl. Pendampingan"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: "10rem" }}
+            />
+
+            <Column
+              header="Aksi"
+              headerClassName="bg-[#F7F9FC] text-black rounded-r-lg text-center"
+              body={actionTemplate}
+              style={{ minWidth: "5rem" }}
+            />
+          </DataTable>
+        </div>
       </div>
     </div>
   );
