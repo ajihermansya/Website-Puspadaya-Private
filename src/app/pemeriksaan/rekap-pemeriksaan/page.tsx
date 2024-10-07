@@ -195,8 +195,8 @@ const TablesPage: React.FC = () => {
         header="Konfirmasi Hapus"
         modal
         onHide={() => setDeleteProductDialog(false)}
-        draggable={false} // Menghindari dialog dapat digeser
-        className="max-w-md rounded-lg shadow-lg bg-white bg-gray-100"
+        draggable={false} 
+        className="max-w-md rounded-lg shadow-lg bg-white "
       >
         <div className="p-6">
           <p className="text-lg font-medium">
