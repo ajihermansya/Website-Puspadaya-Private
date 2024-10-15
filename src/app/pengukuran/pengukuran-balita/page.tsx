@@ -25,6 +25,7 @@ type FormData = {
   keluhan: string;
   statusGizi: string;
   statusStunting: string;
+  mpasi: string;
 };
 
 const existingNames: Name[] = [
@@ -47,9 +48,8 @@ const existingNames: Name[] = [
   "Wawan Setiawan",
   "Ayu Lestari",
   "Fajar Nugraha",
-  "Rina Puspita"
+  "Rina Puspita",
 ];
-
 
 const Page: React.FC = () => {
   const [timezone, setTimezone] = useState("Asia/Jakarta");
@@ -70,8 +70,8 @@ const Page: React.FC = () => {
     keluhan: "",
     statusGizi: "",
     statusStunting: "",
+    mpasi: "",
   });
-
 
   const getCurrentDateTime = (): string => {
     const now = new Date();
@@ -96,27 +96,15 @@ const Page: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-
-  // const handleInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //     [name]: Math.max(0, Number(value))
-  //   }));
-  // };
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value, // Langsung set value yang diinput oleh user
+      [name]: value,
     }));
-  };  
-
+  };
 
   const handleAutoCompleteChange = (e: AutoCompleteChangeEvent) => {
     const { value } = e;
@@ -134,7 +122,7 @@ const Page: React.FC = () => {
       filtered = [];
     } else {
       filtered = existingNames.filter((name) =>
-        name.toLowerCase().includes(query.toLowerCase())
+        name.toLowerCase().includes(query.toLowerCase()),
       );
     }
     setFilteredNames(filtered);
@@ -157,16 +145,18 @@ const Page: React.FC = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-bold text-gray-800">
-         Edit Pemeriksaan Balita
-        </h1>
-        <h5 className="text-lg text-gray-600">
-          Ukur data balita sesuai dengan informasi yang tepat
-        </h5>
+      <div className="mb-2">
+        <div className="rounded-lg bg-white p-6 shadow-lg">
+          <h1 className="mb-2 text-3xl font-bold text-gray-800">
+            Pemeriksaan Balita
+          </h1>
+          <h5 className="text-lg text-gray-600">
+            Ukur data balita sesuai dengan informasi yang tepat
+          </h5>
+        </div>
       </div>
 
-      <div className="rounded-lg bg-white p-6 shadow-md">
+      <div className="rounded-lg bg-white p-6 shadow-lg">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
@@ -284,13 +274,13 @@ const Page: React.FC = () => {
                   </span>
                 </div>
 
-               
+                {formData.beratBadan && (
                   <div className="mt-4">
                     <label className="block text-sm font-medium text-gray-700">
                       Bagaimana Posisi Balita Saat Ditimbang?
                     </label>
                     <div className="flex items-center space-x-4">
-                      <label className="flex items-center cursor-pointer">
+                      <label className="flex cursor-pointer items-center">
                         <RadioButton
                           inputId="terlentang"
                           value="terlentang"
@@ -304,7 +294,6 @@ const Page: React.FC = () => {
                         </label>
                       </label>
 
-
                       <RadioButton
                         inputId="berdiri"
                         value="berdiri"
@@ -316,13 +305,10 @@ const Page: React.FC = () => {
                       <label htmlFor="ingredient4" className="ml-2">
                         Berdiri
                       </label>
-
                     </div>
                   </div>
-           
-
+                )}
               </div>
-
 
               <div>
                 <label
@@ -532,7 +518,6 @@ const Page: React.FC = () => {
           </div>
         </form>
       </div>
-      
     </div>
   );
 };

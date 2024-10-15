@@ -25,7 +25,6 @@ type FormData = {
   keluhan: string;
   statusGizi: string;
   statusStunting: string;
-  mpasi: string;
 };
 
 const existingNames: Name[] = [
@@ -70,7 +69,6 @@ const Page: React.FC = () => {
     keluhan: "",
     statusGizi: "",
     statusStunting: "",
-    mpasi: "",
   });
 
   const getCurrentDateTime = (): string => {
@@ -96,14 +94,23 @@ const Page: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // const handleInputChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //     [name]: Math.max(0, Number(value))
+  //   }));
+  // };
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
-
+      [name]: value, // Langsung set value yang diinput oleh user
     }));
   };
 
@@ -146,9 +153,9 @@ const Page: React.FC = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="mb-8">
+      <div className="mb-2 rounded-lg bg-white p-6 shadow-lg">
         <h1 className="mb-2 text-3xl font-bold text-gray-800">
-          Pemeriksaan Balita
+          Edit Pemeriksaan Balita
         </h1>
         <h5 className="text-lg text-gray-600">
           Ukur data balita sesuai dengan informasi yang tepat
@@ -273,45 +280,39 @@ const Page: React.FC = () => {
                   </span>
                 </div>
 
-                {formData.beratBadan && (
-                  <div className="mt-4">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Bagaimana Posisi Balita Saat Ditimbang?
-                    </label>
-                    <div className="flex items-center space-x-4">
-                      <label className="flex items-center cursor-pointer">
-                        <RadioButton
-                          inputId="terlentang"
-                          value="terlentang"
-                          onChange={(e: RadioButtonChangeEvent) =>
-                            setIngredients(e.value)
-                          }
-                          checked={ingredients === "terlentang"}
-                        />
-                        <label htmlFor="terlentang" className="ml-2">
-                          Terlentang
-                        </label>
-                      </label>
-
-
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Bagaimana Posisi Balita Saat Ditimbang?
+                  </label>
+                  <div className="flex items-center space-x-4">
+                    <label className="flex cursor-pointer items-center">
                       <RadioButton
-                        inputId="berdiri"
-                        value="berdiri"
+                        inputId="terlentang"
+                        value="terlentang"
                         onChange={(e: RadioButtonChangeEvent) =>
                           setIngredients(e.value)
                         }
-                        checked={ingredients === "berdiri"}
+                        checked={ingredients === "terlentang"}
                       />
-                      <label htmlFor="ingredient4" className="ml-2">
-                        Berdiri
+                      <label htmlFor="terlentang" className="ml-2">
+                        Terlentang
                       </label>
+                    </label>
 
-                    </div>
+                    <RadioButton
+                      inputId="berdiri"
+                      value="berdiri"
+                      onChange={(e: RadioButtonChangeEvent) =>
+                        setIngredients(e.value)
+                      }
+                      checked={ingredients === "berdiri"}
+                    />
+                    <label htmlFor="ingredient4" className="ml-2">
+                      Berdiri
+                    </label>
                   </div>
-                )}
-
+                </div>
               </div>
-
 
               <div>
                 <label
@@ -521,7 +522,6 @@ const Page: React.FC = () => {
           </div>
         </form>
       </div>
-      
     </div>
   );
 };

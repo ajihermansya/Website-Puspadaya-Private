@@ -35,6 +35,8 @@ const menuGroups = [
       },
 
 
+      // data
+
       {
         icon: (
           <img
@@ -45,7 +47,7 @@ const menuGroups = [
             className="fill-current"
           />
         ),
-        label: "Data Keluarga",
+        label: "Data",
         route: "#",
         children: [
           {
@@ -88,9 +90,115 @@ const menuGroups = [
             label: "Data Ibu Hamil",
             route: "/data-keluarga/data-bumil"
           },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/daftar-hadir.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Posyandu",
+            route: "/data-keluarga/data-bumil"
+          },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/data-anggota.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Anggota",
+            route: "/data-keluarga/data-bumil"
+          },
         ],
       },
 
+
+
+      // posyandu
+      {
+        icon: (
+          <img
+            src="/images/menus/posyandu.svg"
+            alt=""
+            width={16}
+            height={16}
+            className="fill-current"
+          />
+        ),
+        label: "Posyandu",
+        route: "#",
+        children: [
+
+          {
+            icon: (
+              <img
+                src="/images/menus/daftar-hadir.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Posyandu", route: "/posyandu/data-posyandu"
+          },
+          
+
+          {
+            icon: (
+              <img
+                src="/images/menus/daftar-hadir.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Daftar Hadir", route: "/posyandu/daftar-hadir"
+          },
+
+
+          {
+            icon: (
+              <img
+                src="/images/menus/tambah-akun.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Tambah Akun", route: "/posyandu/tambah-akun"
+          },
+
+
+          {
+            icon: (
+              <img
+                src="/images/menus/data-anggota.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Anggota", route: "/posyandu/data-anggota"
+          },
+
+
+        ],
+      },
+
+
+      // pengukuran
       {
         icon: (
           <img
@@ -101,7 +209,8 @@ const menuGroups = [
             className="fill-current"
           />
         ),
-        label: "Pemeriksaan",
+
+        label: "Pengukuran",
         route: "#",
         children: [
           {
@@ -114,7 +223,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Pemeriksaan Balita",  route: "/pemeriksaan/pemeriksaan-balita"
+            label: "Pengukuran Balita", route: "/pengukuran/pengukuran-balita"
           },
 
 
@@ -129,7 +238,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pemeriksaan", route: "/pemeriksaan/rekap-pemeriksaan"
+            label: "Rekap Pengukuran", route: "/pengukuran/rekap-pengukuran"
           },
           {
             icon: (
@@ -141,7 +250,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pemeriksaan", route: "/pemeriksaan/riwayat-pemeriksaan"
+            label: "Riwayat Pengukuran", route: "/pengukuran/riwayat-pengukuran"
           },
           {
             icon: (
@@ -153,11 +262,12 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Jadwal Pemeriksaan",  route: "/pemeriksaan/jadwal-pemeriksaan"
+            label: "Jadwal Pengukuran", route: "/pengukuran/jadwal-pengukuran"
           },
         ],
       },
 
+      // monitoring
       {
         icon: (
           <img
@@ -195,7 +305,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Monitoring Stunting",route: "/monitoring/monitoring-stunting"
+            label: "Monitoring Stunting", route: "/monitoring/monitoring-stunting"
           },
 
           {
@@ -213,76 +323,10 @@ const menuGroups = [
         ],
       },
 
-      {
-        icon: (
-          <img
-            src="/images/menus/posyandu.svg"
-            alt=""
-            width={16}
-            height={16}
-            className="fill-current"
-          />
-        ),
-        label: "Posyandu",
-        route: "#",
-        children: [
-
-          {
-            icon: (
-              <img
-                src="/images/menus/daftar-hadir.svg"
-                alt=""
-                width={14}
-                height={14}
-                className="fill-current"
-              />
-            ),
-            label: "Data Posyandu", route: "/posyandu/data-posyandu"
-          },
-
-          {
-            icon: (
-              <img
-                src="/images/menus/daftar-hadir.svg"
-                alt=""
-                width={14}
-                height={14}
-                className="fill-current"
-              />
-            ),
-            label: "Daftar Hadir", route: "/posyandu/daftar-hadir"
-          },
-
-          {
-            icon: (
-              <img
-                src="/images/menus/tambah-akun.svg"
-                alt=""
-                width={14}
-                height={14}
-                className="fill-current"
-              />
-            ),
-            label: "Tambah Akun", route: "/posyandu/tambah-akun"
-          },
 
 
-          {
-            icon: (
-              <img
-                src="/images/menus/data-anggota.svg"
-                alt=""
-                width={14}
-                height={14}
-                className="fill-current"
-              />
-            ),
-            label: "Data Anggota", route: "/posyandu/data-anggota"
-          },
-        ],
-      },
 
-
+      // pengaturan
       {
         icon: (
           <img
@@ -324,6 +368,8 @@ const menuGroups = [
 
         ],
       },
+
+
 
     ],
   },
