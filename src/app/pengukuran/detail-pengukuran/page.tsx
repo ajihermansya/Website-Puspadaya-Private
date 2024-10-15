@@ -103,7 +103,6 @@ const Page: React.FC = () => {
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
-
     }));
   };
 
@@ -146,23 +145,19 @@ const Page: React.FC = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="mb-8">
+      <div className="mb-2 rounded-lg bg-white p-6 shadow-lg">
         <h1 className="mb-2 text-3xl font-bold text-gray-800">
           Detail Riwayat Pemeriksaan
         </h1>
         <h5 className="text-lg text-gray-600">
-        Pantau pertumbuhan balita disini!
+          Pantau pertumbuhan balita disini!
         </h5>
       </div>
 
       <div className="rounded-lg bg-white p-6 shadow-md">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            
-            
             <div>
-              
-
               <div>
                 <label
                   htmlFor="posyandu"
@@ -256,7 +251,7 @@ const Page: React.FC = () => {
                       Bagaimana Posisi Balita Saat Ditimbang?
                     </label>
                     <div className="flex items-center space-x-4">
-                      <label className="flex items-center cursor-pointer">
+                      <label className="flex cursor-pointer items-center">
                         <RadioButton
                           inputId="terlentang"
                           value="terlentang"
@@ -270,7 +265,6 @@ const Page: React.FC = () => {
                         </label>
                       </label>
 
-
                       <RadioButton
                         inputId="berdiri"
                         value="berdiri"
@@ -282,13 +276,10 @@ const Page: React.FC = () => {
                       <label htmlFor="ingredient4" className="ml-2">
                         Berdiri
                       </label>
-
                     </div>
                   </div>
                 )}
-
               </div>
-
 
               <div>
                 <label
@@ -498,7 +489,6 @@ const Page: React.FC = () => {
           </div>
         </form>
       </div>
-      
     </div>
   );
 };

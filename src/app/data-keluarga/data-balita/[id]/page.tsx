@@ -11,11 +11,13 @@ const Page = ({ params }: { params: { id: string } }) => {
   return (
     <>
       <div className="container mx-auto">
-        <div className="mb-4 py-2">
-          <h1 className="pb-1 text-3xl font-bold text-black">
+        <div className="mb-2 rounded-lg bg-white p-6 shadow-lg">
+          <h1 className="mb-2 text-3xl font-bold text-gray-800">
             Detail Data Balita
           </h1>
-          <h5 className="text-md font-medium">Informasi Detail Data Balita</h5>
+          <h5 className="text-lg text-gray-600">
+            Informasi Detail Data Balita
+          </h5>
         </div>
         <DetailBalita id={params.id} />
       </div>

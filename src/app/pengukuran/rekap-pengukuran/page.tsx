@@ -1,40 +1,42 @@
-'use client';
+"use client";
 
-import { IconPencil, IconTrash } from '@tabler/icons-react';
-import Link from 'next/link';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { Dialog } from 'primereact/dialog'; // Import Dialog
-import { ProgressBar } from 'primereact/progressbar';
-import { Toast } from 'primereact/toast';
-import React, { useEffect, useRef, useState } from 'react';
+import { IconPencil, IconTrash, IconSearch } from "@tabler/icons-react";
+import Link from "next/link";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { Dialog } from "primereact/dialog"; // Import Dialog
+import { ProgressBar } from "primereact/progressbar";
+import { Toast } from "primereact/toast";
+import React, { useEffect, useRef, useState } from "react";
+import { InputText } from "primereact/inputtext";
 
 interface DataRow {
   id: number;
   contact_ref: string;
-  nik: string;     // NIK
-  status: string;      // Status
+  nik: string; // NIK
+  status: string; // Status
 }
 
 const statusColors: { [key: string]: string } = {
-  'Stunting': 'bg-red-200',
-  'Risiko': 'bg-yellow-200',
-  'Normal': 'bg-green-200',
-  'Gizi Buruk': 'bg-red-300',
-  'Gizi Kurang': 'bg-orange-200',
-  'Gizi Baik': 'bg-green-300',
-  'Berisiko Gizi Lebih': 'bg-yellow-300',
-  'Gizi Lebih': 'bg-orange-300',
-  'Obesitas': 'bg-red-500',
+  Stunting: "bg-red-200",
+  Risiko: "bg-yellow-200",
+  Normal: "bg-green-200",
+  "Gizi Buruk": "bg-red-300",
+  "Gizi Kurang": "bg-orange-200",
+  "Gizi Baik": "bg-green-300",
+  "Berisiko Gizi Lebih": "bg-yellow-300",
+  "Gizi Lebih": "bg-orange-300",
+  Obesitas: "bg-red-500",
 };
 
 const TablesPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [dataWithDisplayId, setDataWithDisplayId] = useState<DataRow[]>([]);
-  const [formData, setFormData] = useState<{ nama: string }>({ nama: '' });
+  const [formData, setFormData] = useState<{ nama: string }>({ nama: "" });
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const toast = useRef<Toast>(null);
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const [information, setInformation] = useState<DataRow | null>(null);
   const [deleteProductDialog, setDeleteProductDialog] = useState(false);
@@ -50,15 +52,20 @@ const TablesPage: React.FC = () => {
       }));
       setDataWithDisplayId(dummyData);
     } catch (err) {
-      setError('Error fetching data');
-      toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed to load data', life: 3000 });
+      setError("Error fetching data");
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Failed to load data",
+        life: 3000,
+      });
     } finally {
       setLoading(false);
     }
   }, []);
 
   const generateNIK = (): string => {
-    let nik = '';
+    let nik = "";
     for (let i = 0; i < 16; i++) {
       nik += Math.floor(Math.random() * 10); // Menghasilkan angka 0-9
     }
@@ -67,8 +74,8 @@ const TablesPage: React.FC = () => {
 
   const rowClassName = (data: DataRow) => {
     return data.id % 2 === 0
-      ? 'bg-gray-100 h-12 text-base text-black rounded-lg'
-      : 'bg-white h-12 text-base text-black rounded-lg';
+      ? "bg-gray-100 h-12 text-base text-black rounded-lg"
+      : "bg-white h-12 text-base text-black rounded-lg";
   };
 
   const getRandomStatus = () => {
@@ -77,8 +84,13 @@ const TablesPage: React.FC = () => {
   };
 
   const handleEdit = (rowData: DataRow) => {
-    console.log('Edit', rowData);
-    toast.current?.show({ severity: 'info', summary: 'Edit', detail: `Editing ${rowData.contact_ref}`, life: 3000 });
+    console.log("Edit", rowData);
+    toast.current?.show({
+      severity: "info",
+      summary: "Edit",
+      detail: `Editing ${rowData.contact_ref}`,
+      life: 3000,
+    });
   };
 
   const confirmDeleteProduct = (rowData: DataRow) => {
@@ -88,26 +100,38 @@ const TablesPage: React.FC = () => {
 
   const deleteProduct = () => {
     if (information) {
-      setDataWithDisplayId(prev => prev.filter(item => item.id !== information.id));
-      toast.current?.show({ severity: 'success', summary: 'Deleted', detail: 'Product deleted successfully', life: 3000 });
+      setDataWithDisplayId((prev) =>
+        prev.filter((item) => item.id !== information.id),
+      );
+      toast.current?.show({
+        severity: "success",
+        summary: "Deleted",
+        detail: "Product deleted successfully",
+        life: 3000,
+      });
     }
     setDeleteProductDialog(false);
   };
 
   const actionBodyTemplate = (rowData: DataRow) => {
     return (
-      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
         <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData.id}`} passHref>
-          <IconPencil style={{ color: 'green', cursor: 'pointer' }} />
+          <IconPencil style={{ color: "green", cursor: "pointer" }} />
         </Link>
-        <IconTrash onClick={() => confirmDeleteProduct(rowData)} style={{ color: 'red', cursor: 'pointer' }} />
+        <IconTrash
+          onClick={() => confirmDeleteProduct(rowData)}
+          style={{ color: "red", cursor: "pointer" }}
+        />
       </div>
     );
   };
 
   const statusBodyTemplate = (rowData: DataRow) => {
     return (
-      <span className={`${statusColors[rowData.status]} text-sm font-medium px-3 py-1 rounded-full`}>
+      <span
+        className={`${statusColors[rowData.status]} rounded-full px-3 py-1 text-sm font-medium`}
+      >
         {rowData.status}
       </span>
     );
@@ -115,12 +139,25 @@ const TablesPage: React.FC = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-bold text-gray-800">Rekap Pemeriksaan</h1>
-        <h5 className="text-lg text-gray-600">Pantau perkembangan balita di sini!</h5>
-      </div>
-
-      <div className="card p-4 bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="card overflow-hidden rounded-lg bg-white p-4 shadow-md">
+        <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+          <h2 className="pb-1 text-2xl font-bold text-black">
+            Rekap Pemeriksaan
+          </h2>
+          <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
+            <span className="relative flex items-center">
+              <IconSearch className="absolute left-3 text-gray-500" />
+              <InputText
+                type="search"
+                onInput={(e) =>
+                  setGlobalFilter((e.target as HTMLInputElement).value)
+                }
+                placeholder="Search..."
+                className="rounded-lg border border-gray-300 py-2 pl-10 pr-4"
+              />
+            </span>
+          </div>
+        </div>
         {loading && (
           <div className="mb-4">
             <span className="text-sm text-gray-600">Loading...</span>
@@ -128,7 +165,7 @@ const TablesPage: React.FC = () => {
           </div>
         )}
         {error && (
-          <div className="mb-4 bg-red-100 text-red-700 p-4 rounded-lg">
+          <div className="mb-4 rounded-lg bg-red-100 p-4 text-red-700">
             {error}
           </div>
         )}
@@ -152,7 +189,7 @@ const TablesPage: React.FC = () => {
             <Column
               field="id"
               header="No"
-              headerStyle={{ height: '54px' }}
+              headerStyle={{ height: "54px" }}
               sortable
               headerClassName="bg-[#F7F9FC] text-black rounded-l-lg"
               className="text-center"
@@ -162,14 +199,14 @@ const TablesPage: React.FC = () => {
               header="NIK"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: '10rem' }}
+              style={{ minWidth: "10rem" }}
             />
             <Column
               field="contact_ref"
               header="Nama Lengkap"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: '10rem' }}
+              style={{ minWidth: "10rem" }}
             />
             <Column
               field="status"
@@ -177,13 +214,13 @@ const TablesPage: React.FC = () => {
               body={statusBodyTemplate}
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: '10rem' }}
+              style={{ minWidth: "10rem" }}
             />
             <Column
               header="Action"
               body={actionBodyTemplate}
               headerClassName="bg-[#F7F9FC] text-black rounded-r-lg"
-              style={{ minWidth: '5rem' }}
+              style={{ minWidth: "5rem" }}
             />
           </DataTable>
         </div>
@@ -195,30 +232,30 @@ const TablesPage: React.FC = () => {
         header="Konfirmasi Hapus"
         modal
         onHide={() => setDeleteProductDialog(false)}
-        draggable={false} 
-        className="max-w-md rounded-lg shadow-lg bg-white "
+        draggable={false}
+        className="max-w-md rounded-lg bg-white shadow-lg "
       >
         <div className="p-6">
           <p className="text-lg font-medium">
-            Apakah Anda yakin ingin menghapus <strong>{information?.contact_ref}</strong>?
+            Apakah Anda yakin ingin menghapus{" "}
+            <strong>{information?.contact_ref}</strong>?
           </p>
         </div>
-        <div className="flex justify-end p-4  rounded-b-lg">
+        <div className="flex justify-end rounded-b-lg  p-4">
           <button
-            className="px-4 py-2 text-gray-700 bg-gray-300 rounded-md hover:bg-gray-400 transition duration-300 ease-in-out"
+            className="rounded-md bg-gray-300 px-4 py-2 text-gray-700 transition duration-300 ease-in-out hover:bg-gray-400"
             onClick={() => setDeleteProductDialog(false)}
           >
             Batal
           </button>
           <button
-            className="ml-2 px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-300 ease-in-out"
+            className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white transition duration-300 ease-in-out hover:bg-red-600"
             onClick={deleteProduct}
           >
             Hapus
           </button>
         </div>
       </Dialog>
-
     </div>
   );
 };

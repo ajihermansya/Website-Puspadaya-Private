@@ -1,30 +1,32 @@
-'use client';
+"use client";
 
-import { SvgDetailOrangTua } from '@/components/ui/Svg';
-import { Column, ColumnBodyOptions } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { ProgressBar } from 'primereact/progressbar';
-import { Toast } from 'primereact/toast';
-import React, { useEffect, useRef, useState } from 'react';
+import { SvgDetailOrangTua } from "@/components/ui/Svg";
+import { Column, ColumnBodyOptions } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { ProgressBar } from "primereact/progressbar";
+import { Toast } from "primereact/toast";
+import React, { useEffect, useRef, useState } from "react";
 import ButtonLinks from "../../../components/ui/ButtonLink";
+import { InputText } from "primereact/inputtext";
+import { IconSearch } from "@tabler/icons-react";
 
 interface DataRow {
   id: number;
-  contact_ref: string;  
-  nik: string;     // NIK
-  status: string;      // Status
+  contact_ref: string;
+  nik: string; // NIK
+  status: string; // Status
 }
 
 const statusColors: { [key: string]: string } = {
-  'Stunting': 'bg-red-200',
-  'Risiko': 'bg-yellow-200',
-  'Normal': 'bg-green-200',
-  'Gizi Buruk': 'bg-red-300',
-  'Gizi Kurang': 'bg-orange-200',
-  'Gizi Baik': 'bg-green-300',
-  'Berisiko Gizi Lebih': 'bg-yellow-300',
-  'Gizi Lebih': 'bg-orange-300',
-  'Obesitas': 'bg-red-500',
+  Stunting: "bg-red-200",
+  Risiko: "bg-yellow-200",
+  Normal: "bg-green-200",
+  "Gizi Buruk": "bg-red-300",
+  "Gizi Kurang": "bg-orange-200",
+  "Gizi Baik": "bg-green-300",
+  "Berisiko Gizi Lebih": "bg-yellow-300",
+  "Gizi Lebih": "bg-orange-300",
+  Obesitas: "bg-red-500",
 };
 
 const TablesPage: React.FC = () => {
@@ -33,8 +35,7 @@ const TablesPage: React.FC = () => {
   const [dataWithDisplayId, setDataWithDisplayId] = useState<DataRow[]>([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const toast = useRef<Toast>(null);
-
-
+  const [globalFilter, setGlobalFilter] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -47,16 +48,20 @@ const TablesPage: React.FC = () => {
       }));
       setDataWithDisplayId(dummyData);
     } catch (err) {
-      setError('Error fetching data');
-      toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed to load data', life: 3000 });
+      setError("Error fetching data");
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Failed to load data",
+        life: 3000,
+      });
     } finally {
       setLoading(false);
     }
   }, []);
 
-
   const generateNIK = (): string => {
-    let nik = '';
+    let nik = "";
     for (let i = 0; i < 16; i++) {
       nik += Math.floor(Math.random() * 10); // Menghasilkan angka 0-9
     }
@@ -65,10 +70,9 @@ const TablesPage: React.FC = () => {
 
   const rowClassName = (data: DataRow) => {
     return data.id % 2 === 0
-      ? 'bg-gray-100 h-12 text-base text-black rounded-lg'  // Added text-black
-      : 'bg-white h-12 text-base text-black rounded-lg';    // Added text-black
+      ? "bg-gray-100 h-12 text-base text-black rounded-lg" // Added text-black
+      : "bg-white h-12 text-base text-black rounded-lg"; // Added text-black
   };
-
 
   const getRandomStatus = () => {
     const statuses = Object.keys(statusColors);
@@ -76,12 +80,14 @@ const TablesPage: React.FC = () => {
   };
 
   const handleEdit = (rowData: DataRow) => {
-    console.log('Edit', rowData);
-    toast.current?.show({ severity: 'info', summary: 'Edit', detail: `Editing ${rowData.contact_ref}`, life: 3000 });
+    console.log("Edit", rowData);
+    toast.current?.show({
+      severity: "info",
+      summary: "Edit",
+      detail: `Editing ${rowData.contact_ref}`,
+      life: 3000,
+    });
   };
-
-
-
 
   const actionBodyTemplate = (data: DataRow, options: ColumnBodyOptions) => {
     return (
@@ -96,28 +102,38 @@ const TablesPage: React.FC = () => {
       </ButtonLinks>
     );
   };
-  
-
 
   const statusBodyTemplate = (rowData: DataRow) => {
     return (
-      <span className={`${statusColors[rowData.status]} text-sm font-medium px-3 py-1 rounded-full`}>
+      <span
+        className={`${statusColors[rowData.status]} rounded-full px-3 py-1 text-sm font-medium`}
+      >
         {rowData.status}
       </span>
     );
   };
 
-
-
   return (
     <div className=" container mx-auto">
-
-      <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-bold text-gray-800">Riwayat Pemeriksaan</h1>
-        <h5 className="text-lg text-gray-600">Tinjau hasil Pemeriksaan balita disini!</h5>
-      </div>
-
-      <div className="card p-4 bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="card overflow-hidden rounded-lg bg-white p-4 shadow-md">
+        <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+          <h2 className="pb-1 text-2xl font-bold text-black">
+            Riwayat Pemeriksaan
+          </h2>
+          <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
+            <span className="relative flex items-center">
+              <IconSearch className="absolute left-3 text-gray-500" />
+              <InputText
+                type="search"
+                onInput={(e) =>
+                  setGlobalFilter((e.target as HTMLInputElement).value)
+                }
+                placeholder="Search..."
+                className="rounded-lg border border-gray-300 py-2 pl-10 pr-4"
+              />
+            </span>
+          </div>
+        </div>
         {loading && (
           <div className="mb-4">
             <span className="text-sm text-gray-600">Loading...</span>
@@ -125,7 +141,7 @@ const TablesPage: React.FC = () => {
           </div>
         )}
         {error && (
-          <div className="mb-4 bg-red-100 text-red-700 p-4 rounded-lg">
+          <div className="mb-4 rounded-lg bg-red-100 p-4 text-red-700">
             {error}
           </div>
         )}
@@ -146,11 +162,10 @@ const TablesPage: React.FC = () => {
             rowClassName={rowClassName}
             paginatorClassName="bg-gray-50 p-4 mt-4 rounded-lg"
           >
-
             <Column
               field="id"
               header="No"
-              headerStyle={{ height: '54px' }}
+              headerStyle={{ height: "54px" }}
               sortable
               headerClassName="bg-[#F7F9FC] text-black rounded-l-lg"
               className="text-center"
@@ -160,14 +175,14 @@ const TablesPage: React.FC = () => {
               header="NIK"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: '8rem' }}
+              style={{ minWidth: "8rem" }}
             />
             <Column
               field="contact_ref"
               header="Nama Lengkap"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: '10rem' }}
+              style={{ minWidth: "10rem" }}
             />
             <Column
               field="status"
@@ -175,23 +190,17 @@ const TablesPage: React.FC = () => {
               body={statusBodyTemplate}
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: '10rem' }}
+              style={{ minWidth: "10rem" }}
             />
             <Column
               header="Action"
               body={actionBodyTemplate}
               headerClassName="bg-[#F7F9FC] text-black rounded-r-lg"
-              style={{ minWidth: '5rem' }}
-
+              style={{ minWidth: "5rem" }}
             />
           </DataTable>
-
         </div>
-
-        
       </div>
-
-
     </div>
   );
 };
