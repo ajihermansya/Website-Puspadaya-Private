@@ -26,6 +26,14 @@ const DataAyah = () => {
               <CardDetail label="Tanggal Lahir">28 Januari 1987</CardDetail>
             </div>
           </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="mb-4">
+              <CardDetail label="Nomor Telepon">0123456789</CardDetail>
+            </div>
+            <div className="mb-4">
+              <CardDetail label="Golongan Darah">A</CardDetail>
+            </div>
+          </div>
         </div>
 
         <div>
@@ -57,14 +65,18 @@ const DataAyah = () => {
           </div>
 
           <div className="mb-4">
-            <CardDetail label="Alamat">Jalan Kertanegara</CardDetail>
+            <CardDetail label="Alamat Lengkap">Jalan Kertanegara</CardDetail>
           </div>
 
-          <div className="mb-4">
-            <CardDetail label="Nomor Telepon">0123456789</CardDetail>
-          </div>
-          <div className="mb-4">
-            <CardDetail label="Golongan Darah">A</CardDetail>
+          <div>
+            <h2 className="mb-2 text-lg font-semibold">
+              Informasi Disabilitas
+            </h2>
+            <ul className="list-disc pl-5">
+              <li>
+                Autis <span>Kesulitan Berbicara / Berkomunikasi</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
