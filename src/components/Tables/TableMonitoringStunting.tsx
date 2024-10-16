@@ -1,54 +1,48 @@
 "use client";
 
-import { IconPencil, IconTrash, IconSearch } from "@tabler/icons-react";
+import {
+  IconEye,
+  IconFileSearch,
+  IconSearch,
+  IconSoup,
+} from "@tabler/icons-react";
 import Link from "next/link";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { Dialog } from "primereact/dialog"; // Import Dialog
+import { InputText } from "primereact/inputtext";
 import { ProgressBar } from "primereact/progressbar";
 import { Toast } from "primereact/toast";
 import React, { useEffect, useRef, useState } from "react";
-import { InputText } from "primereact/inputtext";
 
 interface DataRow {
   id: number;
   contact_ref: string;
-  nik: string; // NIK
-  status: string; // Status
+  nik: string; 
+  status: string; 
+  pelaksana: string;
 }
 
 const statusColors: { [key: string]: string } = {
   Stunting: "bg-red-200",
-  Risiko: "bg-yellow-200",
-  Normal: "bg-green-200",
-  "Gizi Buruk": "bg-red-300",
-  "Gizi Kurang": "bg-orange-200",
-  "Gizi Baik": "bg-green-300",
-  "Berisiko Gizi Lebih": "bg-yellow-300",
-  "Gizi Lebih": "bg-orange-300",
-  Obesitas: "bg-red-500",
 };
 
-const TablesPage: React.FC = () => {
+const TableMonitoringStunting: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [dataWithDisplayId, setDataWithDisplayId] = useState<DataRow[]>([]);
-  const [formData, setFormData] = useState<{ nama: string }>({ nama: "" });
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const toast = useRef<Toast>(null);
   const [globalFilter, setGlobalFilter] = useState("");
-
-  const [information, setInformation] = useState<DataRow | null>(null);
-  const [deleteProductDialog, setDeleteProductDialog] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     try {
       const dummyData: DataRow[] = Array.from({ length: 30 }, (_, index) => ({
         id: index + 1,
-        contact_ref: `Nama Lengkap ${index + 1}`, // Nama Lengkap
+        contact_ref: `Nama Balita ${index + 1}`, // Nama Balita
         nik: generateNIK(), // NIK acak 16 angka
         status: getRandomStatus(), // Status acak
+        pelaksana: `Tenaga Pelaksana ${index + 1}`,
       }));
       setDataWithDisplayId(dummyData);
     } catch (err) {
@@ -67,7 +61,7 @@ const TablesPage: React.FC = () => {
   const generateNIK = (): string => {
     let nik = "";
     for (let i = 0; i < 16; i++) {
-      nik += Math.floor(Math.random() * 10); 
+      nik += Math.floor(Math.random() * 10); // Menghasilkan angka 0-9
     }
     return nik;
   };
@@ -83,46 +77,27 @@ const TablesPage: React.FC = () => {
     return statuses[Math.floor(Math.random() * statuses.length)];
   };
 
-  const handleEdit = (rowData: DataRow) => {
-    console.log("Edit", rowData);
-    toast.current?.show({
-      severity: "info",
-      summary: "Edit",
-      detail: `Editing ${rowData.contact_ref}`,
-      life: 3000,
-    });
-  };
-
-  const confirmDeleteProduct = (rowData: DataRow) => {
-    setInformation(rowData);
-    setDeleteProductDialog(true);
-  };
-
-  const deleteProduct = () => {
-    if (information) {
-      setDataWithDisplayId((prev) =>
-        prev.filter((item) => item.id !== information.id),
-      );
-      toast.current?.show({
-        severity: "success",
-        summary: "Deleted",
-        detail: "Product deleted successfully",
-        life: 3000,
-      });
-    }
-    setDeleteProductDialog(false);
-  };
-
   const actionBodyTemplate = (rowData: DataRow) => {
     return (
       <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-        <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData.id}`} passHref>
-          <IconPencil style={{ color: "green", cursor: "pointer" }} />
-        </Link>
-        <IconTrash
-          onClick={() => confirmDeleteProduct(rowData)}
-          style={{ color: "red", cursor: "pointer" }}
-        />
+        <div className="flex space-x-2">
+          <Link
+            href={`/monitoring/monitoring-stunting/satu`}
+            passHref
+            className="rounded-lg bg-gray-500 p-1"
+          >
+            <IconEye className="text-white" />
+          </Link>
+          <Link
+            href={`/monitoring/monitoring-stunting/dua`}
+            className="rounded-lg bg-gray-500 p-1"
+          >
+            <IconFileSearch className="text-white" />
+          </Link>
+          <Link href="#" className="rounded-lg bg-gray-500 p-1">
+            <IconSoup className="text-white" />
+          </Link>
+        </div>
       </div>
     );
   };
@@ -139,11 +114,16 @@ const TablesPage: React.FC = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="card overflow-hidden rounded-lg bg-white p-4 shadow-md">
-        <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
-          <h2 className="pb-1 text-2xl font-bold text-black">
-            Rekap Pengukuran Balita
-          </h2>
+      <div className="card -mt-4 overflow-hidden rounded-lg bg-white p-4 shadow-md">
+        <div className="mb-6 flex flex-col justify-between md:flex-row md:items-center">
+          <div className="md:mb-0">
+            <h2 className="pb-1 text-2xl font-bold text-black">
+              Monitoring Stunting
+            </h2>
+            <p className="text-sm font-light text-gray-5">
+              Digunakan untuk menampilkan monitoring stunting
+            </p>
+          </div>
           <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
             <span className="relative flex items-center">
               <IconSearch className="absolute left-3 text-gray-500" />
@@ -199,14 +179,14 @@ const TablesPage: React.FC = () => {
               header="NIK"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: "10rem" }}
+              style={{ minWidth: "5rem" }}
             />
             <Column
               field="contact_ref"
-              header="Nama Lengkap"
+              header="Nama Balita"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: "10rem" }}
+              style={{ minWidth: "5rem" }}
             />
             <Column
               field="status"
@@ -214,7 +194,14 @@ const TablesPage: React.FC = () => {
               body={statusBodyTemplate}
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: "10rem" }}
+              style={{ minWidth: "5rem" }}
+            />
+            <Column
+              field="contact_ref"
+              header="Tenaga Pelaksana"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: "5rem" }}
             />
             <Column
               header="Action"
@@ -225,39 +212,8 @@ const TablesPage: React.FC = () => {
           </DataTable>
         </div>
       </div>
-
-     
-      <Dialog
-        visible={deleteProductDialog}
-        header="Konfirmasi Hapus"
-        modal
-        onHide={() => setDeleteProductDialog(false)}
-        draggable={false}
-        className="max-w-md rounded-lg bg-white shadow-lg "
-      >
-        <div className="p-6">
-          <p className="text-lg font-medium">
-            Apakah Anda yakin ingin menghapus{" "}
-            <strong>{information?.contact_ref}</strong>?
-          </p>
-        </div>
-        <div className="flex justify-end rounded-b-lg  p-4">
-          <button
-            className="rounded-md bg-gray-300 px-4 py-2 text-gray-700 transition duration-300 ease-in-out hover:bg-gray-400"
-            onClick={() => setDeleteProductDialog(false)}
-          >
-            Batal
-          </button>
-          <button
-            className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white transition duration-300 ease-in-out hover:bg-red-600"
-            onClick={deleteProduct}
-          >
-            Hapus
-          </button>
-        </div>
-      </Dialog>
     </div>
   );
 };
 
-export default TablesPage;
+export default TableMonitoringStunting;
