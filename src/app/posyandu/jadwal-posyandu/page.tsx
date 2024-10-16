@@ -5,24 +5,21 @@ import TableTwo from "@/components/Tables/TableTwo";
 
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
+import TableJadwalPosyandu from "@/components/Tables/TableJadwalPosyandu";
 
 export const metadata: Metadata = {
-  title: "Next.js Tables Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Tables page for NextAdmin Dashboard Kit",
+  title: "Jadwal Posyandu",
+  description: "Jadwal Posyandu Page",
 };
 
-const TablesPage = () => {
+const Page = () => {
   return (
-    <DefaultLayout>
-      <Breadcrumb pageName="Tables" />
-
-      <div className="flex flex-col gap-10">
-        <TableOne />
-        <TableTwo />
-        <TableThree />
+    <>
+      <div className="container mx-auto">
+        <TableJadwalPosyandu />
       </div>
-    </DefaultLayout>
+    </>
   );
 };
 
-export default TablesPage;
+export default Page;
