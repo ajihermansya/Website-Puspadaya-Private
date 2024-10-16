@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { DataTable } from "primereact/datatable";
-import { Column, ColumnBodyOptions } from "primereact/column";
+import { Column } from "primereact/column";
 import { IconSearch, IconClock } from "@tabler/icons-react";
 import { Posyandu } from "@/types/posyandu";
 import { SvgAdd, SvgEdit, SvgDelete } from "../ui/Svg";
@@ -25,8 +25,8 @@ const TableJadwalPosyandu: React.FC = () => {
     namaPosyandu: "",
     lokasi: "",
     tanggalPelaksanaan: null,
-    waktuMulai: "",
-    waktuSelesai: "",
+    waktuMulai: null,
+    waktuSelesai: null,
   });
 
   // State for the table data
@@ -36,16 +36,16 @@ const TableJadwalPosyandu: React.FC = () => {
       namaPosyandu: "Posyandu Mawar 6",
       lokasi: "Balai Desa",
       tanggalPelaksanaan: new Date("2024-10-17"),
-      waktuMulai: "09:00",
-      waktuSelesai: "12:00",
+      waktuMulai: new Date("2024-10-17T09:00:00"),
+      waktuSelesai: new Date("2024-10-17T12:00:00"),
     },
     {
       id: 2,
       namaPosyandu: "Posyandu Mawar 2",
       lokasi: "Rumah Bu Sri",
       tanggalPelaksanaan: new Date("2024-10-17"),
-      waktuMulai: "09:00",
-      waktuSelesai: "12:00",
+      waktuMulai: new Date("2024-10-17T09:00:00"),
+      waktuSelesai: new Date("2024-10-17T12:00:00"),
     },
   ]);
 
@@ -55,8 +55,8 @@ const TableJadwalPosyandu: React.FC = () => {
       namaPosyandu: "",
       lokasi: "",
       tanggalPelaksanaan: null,
-      waktuMulai: "",
-      waktuSelesai: "",
+      waktuMulai: null,
+      waktuSelesai: null,
     });
     setIsEditMode(false);
     setSelectedPosyandu(null);
@@ -67,8 +67,8 @@ const TableJadwalPosyandu: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleDateChange = (date: Date | null) => {
-    setFormData({ ...formData, tanggalPelaksanaan: date });
+  const handleDateChange = (date: Date | null, field: keyof Posyandu) => {
+    setFormData({ ...formData, [field]: date });
   };
 
   const handleAddOrUpdateData = () => {
@@ -170,8 +170,9 @@ const TableJadwalPosyandu: React.FC = () => {
           {selectedPosyandu.tanggalPelaksanaan?.toLocaleDateString()}
         </li>
         <li>
-          <strong>Waktu:</strong> {selectedPosyandu.waktuMulai} -{" "}
-          {selectedPosyandu.waktuSelesai}
+          <strong>Waktu:</strong>{" "}
+          {selectedPosyandu.waktuMulai?.toLocaleTimeString()} -{" "}
+          {selectedPosyandu.waktuSelesai?.toLocaleTimeString()}
         </li>
       </ul>
       <p className="mt-2">Tindakan ini tidak dapat dibatalkan.</p>
@@ -180,6 +181,11 @@ const TableJadwalPosyandu: React.FC = () => {
 
   const dateBodyTemplate = (rowData: Posyandu) => {
     return rowData.tanggalPelaksanaan?.toLocaleDateString();
+  };
+
+  const timeBodyTemplate = (rowData: Posyandu, field: keyof Posyandu) => {
+    const time = rowData[field];
+    return time instanceof Date ? time.toLocaleTimeString() : "";
   };
 
   return (
@@ -203,8 +209,16 @@ const TableJadwalPosyandu: React.FC = () => {
             header="Tanggal Pelaksanaan"
             body={dateBodyTemplate}
           />
-          <Column field="waktuMulai" header="Waktu Mulai" />
-          <Column field="waktuSelesai" header="Waktu Selesai" />
+          <Column
+            field="waktuMulai"
+            header="Waktu Mulai"
+            body={(rowData) => timeBodyTemplate(rowData, "waktuMulai")}
+          />
+          <Column
+            field="waktuSelesai"
+            header="Waktu Selesai"
+            body={(rowData) => timeBodyTemplate(rowData, "waktuSelesai")}
+          />
           <Column header="Aksi" body={actionTemplate} />
         </DataTable>
       </div>
@@ -222,78 +236,80 @@ const TableJadwalPosyandu: React.FC = () => {
       >
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Nama Posyandu
-            </label>
+            <label htmlFor="namaPosyandu">Nama Posyandu</label>
             <InputText
+              id="namaPosyandu"
               name="namaPosyandu"
               value={formData.namaPosyandu}
               onChange={handleInputChange}
-              placeholder="Nama Posyandu"
-              className="w-full rounded-md border p-2"
+              className="w-full"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Lokasi
-            </label>
+            <label htmlFor="lokasi">Lokasi</label>
             <InputText
+              id="lokasi"
               name="lokasi"
               value={formData.lokasi}
               onChange={handleInputChange}
-              placeholder="Lokasi"
-              className="w-full rounded-md border p-2"
+              className="w-full"
             />
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Tanggal Pelaksanaan
-              </label>
+          <div className="flex flex-wrap gap-4">
+            <div className="flex-1">
+              <label htmlFor="tanggalPelaksanaan">Tanggal Pelaksanaan</label>
               <Calendar
+                id="tanggalPelaksanaan"
+                name="tanggalPelaksanaan"
                 value={formData.tanggalPelaksanaan}
-                onChange={(e) => handleDateChange(e.value as Date)}
-                placeholder="Pilih tanggal"
+                onChange={(e) =>
+                  handleDateChange(e.value as Date, "tanggalPelaksanaan")
+                }
                 dateFormat="dd/mm/yy"
+                showIcon
+                className="w-full"
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Waktu Mulai
-              </label>
-              <div className="relative">
-                <InputText
-                  name="waktuMulai"
-                  value={formData.waktuMulai}
-                  onChange={handleInputChange}
-                  placeholder="Waktu Mulai"
-                  className="w-full rounded-md border p-2"
-                />
-                <IconClock className="absolute right-2 top-3 text-gray-500" />
-              </div>
+            <div className="relative flex-1">
+              <label htmlFor="waktuMulai">Waktu Mulai</label>
+              <Calendar
+                id="waktuMulai"
+                name="waktuMulai"
+                value={formData.waktuMulai}
+                onChange={(e) =>
+                  handleDateChange(e.value as Date, "waktuMulai")
+                }
+                timeOnly
+                showIcon
+                hourFormat="24"
+                className="w-full"
+              />
+              {/* <IconClock className="absolute right-2 top-9 text-gray-500" /> */}
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Waktu Selesai
-              </label>
-              <div className="relative">
-                <InputText
-                  name="waktuSelesai"
-                  value={formData.waktuSelesai}
-                  onChange={handleInputChange}
-                  placeholder="Waktu Selesai"
-                  className="w-full rounded-md border p-2"
-                />
-                <IconClock className="absolute right-2 top-3 text-gray-500" />
-              </div>
+            <div className="relative flex-1">
+              <label htmlFor="waktuSelesai">Waktu Selesai</label>
+              <Calendar
+                id="waktuSelesai"
+                name="waktuSelesai"
+                value={formData.waktuSelesai}
+                onChange={(e) =>
+                  handleDateChange(e.value as Date, "waktuSelesai")
+                }
+                timeOnly
+                showIcon
+                hourFormat="24"
+                className="w-full"
+              />
+              {/* <IconClock className="absolute right-2 top-9 text-gray-500" /> */}
             </div>
           </div>
         </div>
       </Modal>
+
       <ModalDelete
         visible={isDeleteModalVisible}
         onHide={() => setIsDeleteModalVisible(false)}
