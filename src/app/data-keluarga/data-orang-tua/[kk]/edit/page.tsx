@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const Page = ({ params }: { params: { kk: string } }) => {
   return (
     <>
-      <div className="mt-0 py-2">
+      <div className="mt-0 px-2 md:px-10">
         <EditOrangTua kk={params.kk} />
       </div>
     </>

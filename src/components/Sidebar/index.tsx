@@ -13,7 +13,6 @@ interface SidebarProps {
 const menuGroups = [
   {
     menuItems: [
-
       {
         icon: (
           <img
@@ -28,12 +27,11 @@ const menuGroups = [
         route: "#",
         children: [
           {
-
-            label: "eCommerce", route: "/"
+            label: "eCommerce",
+            route: "/",
           },
         ],
       },
-
 
       // data
 
@@ -61,7 +59,7 @@ const menuGroups = [
               />
             ),
             label: "Data Orang Tua",
-            route: "/data-keluarga/data-orang-tua"
+            route: "/data-keluarga/data-orang-tua",
           },
           {
             icon: (
@@ -74,7 +72,7 @@ const menuGroups = [
               />
             ),
             label: "Data Balita",
-            route: "/data-keluarga/data-balita"
+            route: "/data-keluarga/data-balita",
           },
 
           {
@@ -88,7 +86,7 @@ const menuGroups = [
               />
             ),
             label: "Data Ibu Hamil",
-            route: "/data-keluarga/data-bumil"
+            route: "/data-keluarga/data-bumil",
           },
 
           {
@@ -102,7 +100,7 @@ const menuGroups = [
               />
             ),
             label: "Data Posyandu",
-            route: "/data-keluarga/data-bumil"
+            route: "/data-keluarga/data-bumil",
           },
 
           {
@@ -116,12 +114,10 @@ const menuGroups = [
               />
             ),
             label: "Data Anggota",
-            route: "/data-keluarga/data-bumil"
+            route: "/data-keluarga/data-bumil",
           },
         ],
       },
-
-
 
       // posyandu
       {
@@ -137,6 +133,19 @@ const menuGroups = [
         label: "Posyandu",
         route: "#",
         children: [
+          {
+            icon: (
+              <img
+                src="/images/menus/daftar-hadir.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Posyandu",
+            route: "/posyandu/data-posyandu",
+          },
 
           {
             icon: (
@@ -148,23 +157,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Data Posyandu", route: "/posyandu/data-posyandu"
+            label: "Daftar Hadir",
+            route: "/posyandu/daftar-hadir",
           },
-          
-
-          {
-            icon: (
-              <img
-                src="/images/menus/daftar-hadir.svg"
-                alt=""
-                width={14}
-                height={14}
-                className="fill-current"
-              />
-            ),
-            label: "Daftar Hadir", route: "/posyandu/daftar-hadir"
-          },
-
 
           {
             icon: (
@@ -176,9 +171,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Tambah Akun", route: "/posyandu/tambah-akun"
+            label: "Tambah Akun",
+            route: "/posyandu/tambah-akun",
           },
-
 
           {
             icon: (
@@ -190,13 +185,11 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Data Anggota", route: "/posyandu/data-anggota"
+            label: "Data Anggota",
+            route: "/posyandu/data-anggota",
           },
-
-
         ],
       },
-
 
       // pengukuran
       {
@@ -223,10 +216,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Pengukuran Balita", route: "/pengukuran/pengukuran-balita"
+            label: "Pengukuran Balita",
+            route: "/pengukuran/pengukuran-balita",
           },
-
-
 
           {
             icon: (
@@ -238,7 +230,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran", route: "/pengukuran/rekap-pengukuran"
+            label: "Rekap Pengukuran",
+            route: "/pengukuran/rekap-pengukuran",
           },
           {
             icon: (
@@ -250,7 +243,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran", route: "/pengukuran/riwayat-pengukuran"
+            label: "Riwayat Pengukuran",
+            route: "/pengukuran/riwayat-pengukuran",
           },
           {
             icon: (
@@ -262,7 +256,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Jadwal Pengukuran", route: "/pengukuran/jadwal-pengukuran"
+            label: "Jadwal Pengukuran",
+            route: "/pengukuran/jadwal-pengukuran",
           },
         ],
       },
@@ -292,7 +287,8 @@ const menuGroups = [
               />
             ),
 
-            label: "Parameter Stunting", route: "/monitoring/parameter-stunting"
+            label: "Parameter Stunting",
+            route: "/monitoring/parameter-stunting",
           },
 
           {
@@ -305,7 +301,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Monitoring Stunting", route: "/monitoring/monitoring-stunting"
+            label: "Monitoring Stunting",
+            route: "/monitoring/monitoring-stunting",
           },
 
           {
@@ -318,13 +315,11 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Monitoring Gizi", route: "/monitoring/monitoring-gizi"
+            label: "Monitoring Gizi",
+            route: "/monitoring/monitoring-gizi",
           },
         ],
       },
-
-
-
 
       // pengaturan
       {
@@ -351,7 +346,8 @@ const menuGroups = [
               />
             ),
 
-            label: "Profile", route: "/pengaturan/profile"
+            label: "Profile",
+            route: "/pengaturan/profile",
           },
           {
             icon: (
@@ -363,18 +359,13 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Kebijakan Aplikasi", route: "/pengaturan/kebijakan-aplikasi"
+            label: "Kebijakan Aplikasi",
+            route: "/pengaturan/kebijakan-aplikasi",
           },
-
         ],
       },
-
-
-
     ],
   },
-
-
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
@@ -388,20 +379,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
-
       <aside
-        className={`sticky left-0 top-0 z-9999 border-r border-stroke bg-white dark:border-stroke-dark dark:bg-gray-dark lg:static lg:translate-x-0 ${sidebarOpen
-          ? "translate-x-0 duration-300 ease-linear"
-          : "-translate-x-full"
-          }`}
+        className={`sticky left-0 top-0 z-9999 border-r border-stroke bg-white dark:border-stroke-dark dark:bg-gray-dark lg:static lg:translate-x-0 ${
+          sidebarOpen
+            ? "translate-x-0 duration-300 ease-linear"
+            : "-translate-x-full md:px-14"
+        }`}
       >
-
         {/* <!-- SIDEBAR HEADER --> */}
 
         <div className="no-scrollbar duration-300 ease-linear">
           {/* <!-- Sidebar Menu --> */}
           <nav className=" items-center justify-normal gap-2 lg:w-full xl:w-auto xl:justify-normal">
-
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>
                 <ul className="flex items-center ">
@@ -424,13 +413,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </nav>
           {/* <!-- Sidebar Menu --> */}
         </div>
-
-
       </aside>
-
     </ClickOutside>
   );
-
-
 };
 export default Sidebar;

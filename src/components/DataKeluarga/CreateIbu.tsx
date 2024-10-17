@@ -158,7 +158,7 @@ const CreateIbu = () => {
           </div>
 
           <div>
-            <h1 className="py-2 text-xl font-bold">
+            <h1 className="pb-2 text-xl font-semibold">
               Informasi Kelahiran Pertama
             </h1>
           </div>
