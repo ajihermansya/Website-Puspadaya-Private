@@ -8,6 +8,10 @@ import ButtonLink from "../ui/ButtonLink";
 import AbsensiDropdown from "../Dropdowns/AbsensiDropdown";
 import { Dropdown } from "primereact/dropdown";
 import { DaftarTamuIbuHamil, Kehadiran } from "@/types/daftarTamuIbuHamil";
+import { SvgAdd, SvgDelete } from "../ui/Svg";
+import ModalDelete from "../modal/modalDelete";
+import ModalSearch from "../modal/ModalSearch";
+import { RadioButton } from "primereact/radiobutton";
 
 interface Tahun {
   name: string;
@@ -17,8 +21,21 @@ interface Tahun {
 const TableDaftarTamuIbuHamil: React.FC = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [selectedTahun, setSelectedTahun] = useState<Tahun | null>(null);
-  const [selectedIbuHamil, setSelectedIbuHamil] = useState<DaftarTamuIbuHamil[]>([]);
+  const [selectedIbuHamil, setSelectedIbuHamil] = useState<
+    DaftarTamuIbuHamil[]
+  >([]);
+  const [selectedDeleteData, setSelectedDeleteData] =
+    useState<DaftarTamuIbuHamil | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    nik: "",
+    namaIbu: "",
+    namaSuami: "",
+    namaPosyandu: "",
+  });
+
   const [dataJadwalHadirTamuIbu, setDataJadwalHadirTamuIbu] = useState<
     DaftarTamuIbuHamil[]
   >([
@@ -44,9 +61,9 @@ const TableDaftarTamuIbuHamil: React.FC = () => {
     },
     {
       id: 2,
-      namaIbu: "Tiara Andini",
-      posyandu: "Posyandu Mawar 2",
-      nik: "98356738792",
+      namaIbu: "Dewi Sartika",
+      posyandu: "Posyandu Mawar 3",
+      nik: "98356738793",
       absensi: {
         jan: Kehadiran.Hadir,
         feb: Kehadiran.Izin,
@@ -63,6 +80,7 @@ const TableDaftarTamuIbuHamil: React.FC = () => {
       },
     },
   ]);
+
   const tahun: Tahun[] = [
     { name: "2021", code: "21" },
     { name: "2022", code: "22" },
@@ -70,6 +88,7 @@ const TableDaftarTamuIbuHamil: React.FC = () => {
     { name: "2024", code: "24" },
     { name: "2025", code: "25" },
   ];
+
   const bulan = [
     "Jan",
     "Feb",
@@ -95,15 +114,29 @@ const TableDaftarTamuIbuHamil: React.FC = () => {
         item.id === ibuId
           ? {
               ...item,
-              absensi: {
-                ...item.absensi,
-                [month]: code as Kehadiran,
-              },
+              absensi: { ...item.absensi, [month]: code as Kehadiran },
             }
           : item,
       ),
     );
     setOpenDropdown(null);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleOnSearchData = () => {
+    // Fungsi pencarian data
+  };
+
+  const resetForm = () => {
+    setFormData({
+      nik: "",
+      namaIbu: "",
+      namaSuami: "",
+      namaPosyandu: "",
+    });
   };
 
   const renderStatusBox = (
@@ -134,6 +167,54 @@ const TableDaftarTamuIbuHamil: React.FC = () => {
       }
     />
   ));
+  const RowItem = ({ label, data }: { label: string; data: string }) => {
+    return (
+      <tr>
+        <td className="border border-gray-300 px-4 py-2">{label}</td>
+        <td className="border border-gray-300 px-4 py-2">{data}</td>
+      </tr>
+    );
+  };
+  const HasilPencarian = () => {
+    const dataBalita = {
+      nik: "56478827363667377",
+      namaIbuHamil: "Tiara Andini",
+      namaSuami: "Budiono",
+      anakKe: "1",
+      usiaKandungan: "2 Bulan",
+      alamat: "Dusun Srono RT/RW 001/001 Desa Kebaman, Kec Srono",
+      posyandu: "Mawar 1",
+    };
+
+    return (
+      <div className="align-items-center flex my-5 gap-2">
+        <RadioButton
+          inputId="ingredient1"
+          name="pizza"
+          value="Cheese"
+        />
+        <div className="w-full">
+          <table className="min-w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-4 py-2">Label</th>
+                <th className="border border-gray-300 px-4 py-2">Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <RowItem label="NIK " data={dataBalita.nik} />
+              <RowItem label="Nama Ibu Hamil" data={dataBalita.namaIbuHamil} />
+              <RowItem label="Nama Suami" data={dataBalita.namaSuami} />
+              <RowItem label="Anak-ke" data={dataBalita.anakKe} />
+              <RowItem label="Usia Kandungan" data={dataBalita.usiaKandungan} />
+              <RowItem label="Alamat" data={dataBalita.alamat} />
+              <RowItem label="Posyandu" data={dataBalita.posyandu} />
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  };
   const header = (
     <div className="mb-1 flex flex-col md:flex-row md:items-center md:justify-between">
       <div>
@@ -165,62 +246,29 @@ const TableDaftarTamuIbuHamil: React.FC = () => {
           placeholder="Pilih Tahun"
           className="md:w-14rem h-11 w-full"
         />
-        <ButtonLink
-          href="/posyandu/daftar-hadir-balita/daftar-tamu-balita"
-          className="h-11 w-full bg-primary"
+        <div
+          className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-md border p-[10px] duration-300 ease-in-out hover:bg-gray-100"
+          onClick={() => setIsModalVisible(true)}
         >
-          Daftar Tamu
-        </ButtonLink>
+          <SvgAdd />
+        </div>
+        <div
+          className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-md border border-red-500 p-[10px] duration-300 ease-in-out hover:bg-red-200"
+          onClick={() => setIsDeleteModalVisible(true)}
+        >
+          <SvgDelete />
+        </div>
       </div>
     </div>
   );
-  const Keterangan = () => {
-    return (
-      <>
-        <h1 className="text-xl font-bold text-black">Keterangan</h1>
-        <div className="mt-2 flex items-start justify-start">
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border bg-green-500 p-5">
-              <p className="text-white">H</p>
-            </div>
-            <p className="text-black">Hadir</p>
-          </div>
-        </div>
-        <div className="mt-2 flex items-start justify-start">
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border bg-blue-500 p-5">
-              <p className="text-white">KH</p>
-            </div>
-            <p className="text-black">Kunjungan Hadir</p>
-          </div>
-        </div>
-        <div className="mt-2 flex items-start justify-start">
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border bg-red-500 p-5">
-              <p className="text-white">KTH</p>
-            </div>
-            <p className="text-black">Kunjungan Tidak Hadir</p>
-          </div>
-        </div>
-        <div className="mt-2 flex items-start justify-start">
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border bg-yellow-500 p-5">
-              <p className="text-white">I</p>
-            </div>
-            <p className="text-black">Izin</p>
-          </div>
-        </div>
-      </>
-    );
-  };
 
   return (
     <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
       <div className="max-w-full overflow-x-auto">
         <DataTable
-          selectionMode="multiple" // Ubah menjadi multiple
+          selectionMode="multiple"
           selection={selectedIbuHamil}
-          onSelectionChange={(e) => setSelectedIbuHamil(e.value)} // Perbarui nilai
+          onSelectionChange={(e) => setSelectedIbuHamil(e.value)}
           value={dataJadwalHadirTamuIbu}
           dataKey="id"
           paginator
@@ -231,14 +279,108 @@ const TableDaftarTamuIbuHamil: React.FC = () => {
           globalFilterFields={["nik", "namaIbu"]}
         >
           <Column selectionMode="multiple" />
-          {/* Untuk multiple select */}
           <Column field="nik" header="NIK" />
           <Column field="namaIbu" header="Nama Ibu" />
           <Column field="posyandu" header="Posyandu " />
           {monthColumns}
         </DataTable>
       </div>
-      <Keterangan />
+
+      <ModalDelete
+        visible={isDeleteModalVisible}
+        onHide={() => setIsDeleteModalVisible(false)}
+        onConfirm={() => {
+          if (selectedDeleteData) {
+            setDataJadwalHadirTamuIbu((prevData) =>
+              prevData.filter((item) => item.id !== selectedDeleteData.id),
+            );
+            setSelectedDeleteData(null);
+          }
+        }}
+        headerTitle="Hapus Data Daftar Tamu Ibu Hamil"
+      >
+        {selectedIbuHamil.length > 0 ? (
+          selectedIbuHamil.map((ibu) => (
+            <div key={ibu.id}>
+              <p>NIK: {ibu.nik}</p>
+              <p>Nama Ibu: {ibu.namaIbu}</p>
+              <p>Posyandu: {ibu.posyandu}</p>
+            </div>
+          ))
+        ) : (
+          <p>Tidak ada ibu yang dipilih</p>
+        )}
+      </ModalDelete>
+
+      <ModalSearch
+        isOpen={isModalVisible}
+        title={"Tambah Daftar Tamu Ibu Hamil"}
+        onClose={() => {
+          setIsModalVisible(false);
+          resetForm();
+        }}
+        onSearch={handleOnSearchData}
+      >
+        <div className="space-y-4">
+          <div>
+            <label htmlFor="nik">Cari Data Berdasarkan NIK</label>
+            <InputText
+              id="nik"
+              name="nik"
+              placeholder="Masukan NIK disini"
+              value={formData.nik}
+              onChange={handleInputChange}
+              className="w-full"
+            />
+          </div>
+            <HasilPencarian />
+          <h1>
+            Apabila <span className="text-red-400">NIK tidak ditemukan,</span>{" "}
+            cari data berdasarkan data dibawah ini!
+          </h1>
+
+          <div className="flex flex-wrap gap-4">
+            <div className="flex-1">
+              <label htmlFor="namaIbu">Nama Ibu</label>
+              <InputText
+                id="namaIbu"
+                name="namaIbu"
+                placeholder="Masukan nama ibu"
+                value={formData.namaIbu}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+
+            <div className="flex-1">
+              <label htmlFor="namaSuami">Nama Suami</label>
+              <InputText
+                id="namaSuami"
+                name="namaSuami"
+                placeholder="Masukan nama suami"
+                value={formData.namaSuami}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="namaPosyandu">Nama Posyandu</label>
+            <InputText
+              id="namaPosyandu"
+              name="namaPosyandu"
+              placeholder="Masukan nama posyandu"
+              value={formData.namaPosyandu}
+              onChange={handleInputChange}
+              className="w-full"
+            />
+          </div>
+          <HasilPencarian />
+          <HasilPencarian />
+          <HasilPencarian />
+        </div>
+      </ModalSearch>
     </div>
   );
 };
