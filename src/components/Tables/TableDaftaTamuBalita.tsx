@@ -258,8 +258,6 @@ const TableDaftarTamuBalita: React.FC = () => {
           inputId="ingredient1"
           name="pizza"
           value="Cheese"
-          //   onChange={(e) => setIngredient(e.value)}
-          //   checked={ingredient === "Cheese"}
         />
         <div className="w-full">
           <table className="min-w-full border-collapse border border-gray-300">
