@@ -1,9 +1,9 @@
 // Definisi enum untuk kehadiran
-enum Kehadiran {
-  Hadir = "Hadir",
-  KunjunganHadir = "KunjunganHadir",
-  KunjunganTidakHadir = "KunjunganTidakHadir",
-  Izin = "Izin",
+export enum Kehadiran {
+  Hadir = "H",
+  KunjunganHadir = "KH",
+  KunjunganTidakHadir = "KT",
+  Izin = "I",
 }
 
 // Definisi type untuk daftarBalita
@@ -12,17 +12,17 @@ export type DaftarBalita = {
   namaIbu: string;
   namaBalita: string;
   absensi: {
-    jan?: Kehadiran[]; // Absensi untuk bulan Januari, array dari enum Kehadiran
-    feb?: Kehadiran[]; // Contoh untuk bulan Februari (opsional)
-    mar?: Kehadiran[];
-    apr?: Kehadiran[];
-    mei?: Kehadiran[];
-    jun?: Kehadiran[];
-    jul?: Kehadiran[];
-    ags?: Kehadiran[];
-    sep?: Kehadiran[];
-    okt?: Kehadiran[];
-    nov?: Kehadiran[];
-    des?: Kehadiran[];
+    jan?: Kehadiran |null; // Absensi untuk bulan Januari
+    feb?: Kehadiran |null; // Contoh untuk bulan Februari
+    mar?: Kehadiran |null;
+    apr?: Kehadiran |null;
+    mei?: Kehadiran |null;
+    jun?: Kehadiran |null;
+    jul?: Kehadiran |null;
+    ags?: Kehadiran |null;
+    sep?: Kehadiran |null;
+    okt?: Kehadiran |null;
+    nov?: Kehadiran |null;
+    des?: Kehadiran |null;
   };
 };

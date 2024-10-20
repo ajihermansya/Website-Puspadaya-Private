@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const TablesPage = () => {
   return (
     <div className="container mx-auto">
-      <TableDaftarIbuHamil />
+      <TableDaftarTamuIbuHamil />
     </div>
   );
 };

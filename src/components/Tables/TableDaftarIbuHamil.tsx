@@ -4,26 +4,25 @@ import { InputText } from "primereact/inputtext";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { IconSearch } from "@tabler/icons-react";
-import { DaftarBalita } from "@/types/daftarbalita";
-import { Kehadiran } from "@/types/daftarbalita";
 import ButtonLink from "../ui/ButtonLink";
 import AbsensiDropdown from "../Dropdowns/AbsensiDropdown";
 import { Dropdown } from "primereact/dropdown";
+import { DaftarIbuHamil,Kehadiran } from "@/types/daftarIbuHamil";
 
 interface Tahun {
   name: string;
   code: string;
 }
 
-const TableDaftarHadirBalita: React.FC = () => {
+const TableDaftarHadir: React.FC = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [selectedTahun, setSelectedTahun] = useState<Tahun | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [dataJadwalHadirBalita, setDataJadwalHadirBalita] = useState<DaftarBalita[]>([
+  const [dataJadwalHadirIbuHamil, setDataJadwalHadirIbuHamil] = useState<DaftarIbuHamil[]>([
     {
       id: 1,
-      namaIbu: "Tiara Andini",
-      namaBalita: "Soke Bahtera",
+      namaIbu: "Putri Tiara Andika",
+      nik: "9876664546467",
       absensi: {
         jan: Kehadiran.Hadir,
         feb: Kehadiran.Izin,
@@ -41,8 +40,8 @@ const TableDaftarHadirBalita: React.FC = () => {
     },
     {
       id: 2,
-      namaIbu: "Tiara Andini",
-      namaBalita: "Soke Bahtera",
+      namaIbu: "Tiara Andini Fadiyah",
+      nik: "9876664546467",
       absensi: {
         jan: Kehadiran.Hadir,
         feb: Kehadiran.Izin,
@@ -68,10 +67,10 @@ const TableDaftarHadirBalita: React.FC = () => {
   ];
   const bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
 
-  const handleAbsensiSelect = (month: string, code: string|null, balitaId: number) => {
-    setDataJadwalHadirBalita((prevData) => 
+  const handleAbsensiSelect = (month: string, code: string|null, ibuId: number) => {
+    setDataJadwalHadirIbuHamil((prevData) => 
       prevData.map((item) =>
-        item.id === balitaId ? {
+        item.id === ibuId ? {
           ...item,
           absensi: {
             ...item.absensi,
@@ -83,11 +82,11 @@ const TableDaftarHadirBalita: React.FC = () => {
     setOpenDropdown(null);
   };
 
-  const renderStatusBox = (month: string, status: Kehadiran | null, balitaId: number) => {
-    const dropdownId = `${balitaId}-${month}`;
+  const renderStatusBox = (month: string, status: Kehadiran | null, ibuId: number) => {
+    const dropdownId = `${ibuId}-${month}`;
     return (
       <AbsensiDropdown 
-        onSelect={(code) => handleAbsensiSelect(month, code, balitaId)} 
+        onSelect={(code) => handleAbsensiSelect(month, code, ibuId)} 
         currentCode={status} 
         isOpen={openDropdown === dropdownId}
         onToggle={() => setOpenDropdown(openDropdown === dropdownId ? null : dropdownId)}
@@ -106,9 +105,9 @@ const TableDaftarHadirBalita: React.FC = () => {
   const header = (
     <div className="mb-1 flex flex-col md:flex-row md:items-center md:justify-between">
       <div>
-        <h2 className="pb-1 text-2xl font-bold text-black">Daftar Hadir Balita</h2>
+        <h2 className="pb-1 text-2xl font-bold text-black">Daftar Hadir Ibu Hamil</h2>
         <p className="text-normal font-normal text-gray-500">
-          Digunakan untuk merekap daftar hadir balita
+        Digunakan untuk merekap daftar hadir Ibu Hamil
         </p>
       </div>
       <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
@@ -131,7 +130,7 @@ const TableDaftarHadirBalita: React.FC = () => {
           className="md:w-14rem h-11 w-full"
         />
         <ButtonLink
-          href="/posyandu/daftar-hadir-balita/daftar-tamu-balita"
+          href="/posyandu/daftar-hadir-ibu-hamil/daftar-tamu-ibu-hamil"
           className="h-11 w-full bg-primary"
         >
           Daftar Tamu
@@ -183,18 +182,18 @@ const TableDaftarHadirBalita: React.FC = () => {
     <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
       <div className="max-w-full overflow-x-auto">
       <DataTable
-          value={dataJadwalHadirBalita}
+          value={dataJadwalHadirIbuHamil}
           dataKey="id"
           paginator
           rows={5}
           className="datatable-responsive"
           header={header}
           globalFilter={globalFilter}
-          globalFilterFields={["namaBalita", "namaIbu"]}
+          globalFilterFields={["nik", "namaIbu"]}
         >
           <Column field="id" header="No" />
           <Column field="namaIbu" header="Nama Ibu" />
-          <Column field="namaBalita" header="Nama Balita" />
+          <Column field="nik" header="NIK" />
           {monthColumns}
         </DataTable>
       </div>
@@ -203,4 +202,4 @@ const TableDaftarHadirBalita: React.FC = () => {
   );
 };
 
-export default TableDaftarHadirBalita;
+export default TableDaftarHadir;

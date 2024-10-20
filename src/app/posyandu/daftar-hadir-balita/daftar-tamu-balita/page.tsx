@@ -1,8 +1,8 @@
-import TableDaftarHadirBalita from "@/components/Tables/TableDaftarHadirBalita";
+import TableDaftarTamuBalita from "@/components/Tables/TableDaftaTamuBalita";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Daftar Hadir Balita",
+  title: "Daftar Tamu Balita",
   description: "",
 };
 
@@ -10,7 +10,7 @@ const TablesPage = () => {
   return (
     <>
       <div className="container mx-auto">
-        <TableDaftarHadirBalita />
+        <TableDaftarTamuBalita />
       </div>
     </>
   );
