@@ -2,8 +2,6 @@
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import React, { useState } from "react";
-import CreateAyah from "./CreateAyah";
-import CreateIbu from "./CreateIbu";
 import EditAyah from "./EditAyah";
 import EditIbu from "./EditIbu";
 
@@ -33,7 +31,10 @@ const EditOrangTua = ({ kk }: { kk: string }) => {
           </div>
         </div>
         <h5 className="text-lg text-gray-600">Memperbarui Data Orang Tua</h5>
-        <div className="mt-8">
+      </Card>
+
+      <Card className="mt-8 px-2">
+        <div>
           <form>
             {activeTab === "ayah" && (
               <EditAyah kk={kk} setActiveTab={setActiveTab} />

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const Page = ({ params }: { params: { kk: string } }) => {
   return (
     <>
-      <div className="container mx-auto">
+      <div className="mt-0 px-2 md:px-10">
         <DetailOrangTua kk={params.kk} />
       </div>
     </>

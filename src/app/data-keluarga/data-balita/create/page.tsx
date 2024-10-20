@@ -1,17 +1,17 @@
-import React from "react";
+import CreateBalita from "@/components/DataKeluarga/CreateBalita";
 import { Metadata } from "next";
-import CreateOrangTua from "@/components/DataKeluarga/CreateOrangTua";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: "Create Data Orang Tua",
-  description: "Create Data Orang Tua Page",
+  title: "Create Data Balita",
+  description: "Create Data Balita Page",
 };
 
 const Page = () => {
   return (
     <>
       <div className="mt-0 px-2 md:px-10">
-        <CreateOrangTua />
+        <CreateBalita />
       </div>
     </>
   );

@@ -4,7 +4,7 @@ import CardDetail from "../ui/CardDetail";
 const DataIbu = () => {
   return (
     <>
-      <div className="grid grid-cols-1 gap-6  md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
         <div>
           <div className="mb-4">
             <CardDetail label="Nomor Kartu Keluarga">3522010503102</CardDetail>
@@ -18,14 +18,14 @@ const DataIbu = () => {
             <CardDetail label="Nama Lengkap">Siti Nurhalimah</CardDetail>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-4">
             <div className="mb-4">
               <CardDetail label="Jumlah Anak">2</CardDetail>
             </div>
             <div className="mb-4">
               <CardDetail label="Tempat">Bandung</CardDetail>
             </div>
-            <div className="mb-4">
+            <div className="col-span-2 mb-4 md:col-span-1">
               <CardDetail label="Tanggal Lahir">30 Agustus 1990</CardDetail>
             </div>
           </div>
@@ -78,7 +78,7 @@ const DataIbu = () => {
             </CardDetail>
           </div>
 
-          <div>
+          <div className="mb-4">
             <h2 className="mb-2 text-lg font-semibold">
               Informasi Disabilitas
             </h2>

@@ -31,7 +31,10 @@ const CreateOrangTua = () => {
           </div>
         </div>
         <h5 className="text-lg text-gray-600">Menambahkan Data Orang Tua</h5>
-        <div className="mt-8">
+      </Card>
+
+      <Card className="mt-8 px-2">
+        <div>
           <form>
             {activeTab === "ayah" && <CreateAyah setActiveTab={setActiveTab} />}
             {activeTab === "ibu" && <CreateIbu />}
