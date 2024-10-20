@@ -3,7 +3,6 @@ import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import React from "react";
 import 'primeicons/primeicons.css';
-        
 
 // Tipe props untuk ModalSearch
 type ModalSearchProps = {

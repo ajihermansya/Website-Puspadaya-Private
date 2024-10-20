@@ -1,7 +1,5 @@
-
-import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import TableMonitoringStunting from "@/components/Tables/TableMonitoringStunting";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Monitoring | Parameter Stunting",
@@ -10,8 +8,6 @@ export const metadata: Metadata = {
 
 const TablesMonitoringStunting = () => {
   return (
-
-
     <>
       <div className="container mx-auto">
         <TableMonitoringStunting />

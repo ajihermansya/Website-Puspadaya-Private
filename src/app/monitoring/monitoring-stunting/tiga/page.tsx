@@ -1,21 +1,21 @@
 "use client";
-import DetailRiwayatBalita from "@/components/Detail Riwayat Balita/DetailRiwayatBalita";
 import React from "react";
+import DropdownIntervensi from "@/components/Dropdowns/DropdownIntervensi";
 
 const Page: React.FC = () => {
   return (
     <div className="container mx-auto">
-      <div className="mb-4">
+      <div className="mb-2">
         <div className="rounded-lg bg-white p-6 shadow-lg">
           <h2 className="pb-1 text-2xl font-bold text-black">
-            Detail Riwayat Balita
+            Intervensi Pemberian Makanan Tambahan
           </h2>
-          <p className="text-sm font-light text-gray-500">
-            Untuk melihat informasi detail data riwayat Balita
+          <p className="text-sm font-light text-gray-5">
+            Riwayat pemberian detail intervensi
           </p>
         </div>
       </div>
-      <DetailRiwayatBalita />
+      <DropdownIntervensi />
     </div>
   );
 };
