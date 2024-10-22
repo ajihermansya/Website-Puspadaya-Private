@@ -13,8 +13,8 @@ import React, { useEffect, useRef, useState } from "react";
 interface DataRow {
   id: number;
   contact_ref: string;
-  nik: string; // NIK
-  tanggal: string; // Status
+  nik: string;
+  tanggal: string; 
 }
 
 const statusColors: { [key: string]: string } = {
@@ -124,7 +124,7 @@ const TablesPage: React.FC = () => {
   const actionBodyTemplate = (rowData: DataRow) => {
     return (
       <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-        <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData.id}`} passHref>
+        <Link href={`/rekap/pengukuran-ibu-hamil/perbarui`} passHref>
           <IconPencil style={{ color: "purple", cursor: "pointer" }} />
         </Link>
 

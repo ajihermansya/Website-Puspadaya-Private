@@ -17,15 +17,17 @@ type FormData = {
     nama: string;
     posyandu: string;
     tanggalPemeriksaan: string;
-    tinggiBadan: string;
-    beratBadan: string;
-    lingkarLenganAtas: string;
-    lingkarKepala: string;
+    usiakehamilan: string;
+    umurIbu: string;
+    jumlahTablet: string;
+    hemoglobin: string;
     catatan: string;
-    keluhan: string;
-    statusGizi: string;
-    statusStunting: string;
-    mpasi: string;
+    tgl_awal_haid: string;
+    tgl_akhir_haid: string;
+    tinggi_badan: string;
+    berat_badan: string;
+    lingkar_lengan_atas: string;
+    tinggi_fundus: string;
 };
 
 const existingNames: Name[] = [
@@ -62,15 +64,18 @@ const Page: React.FC = () => {
         nama: "",
         posyandu: "",
         tanggalPemeriksaan: "",
-        tinggiBadan: "",
-        beratBadan: "",
-        lingkarLenganAtas: "",
-        lingkarKepala: "",
+        usiakehamilan: "25",
+        umurIbu: "29",
+        jumlahTablet: "",
+        hemoglobin: "",
         catatan: "",
-        keluhan: "",
-        statusGizi: "",
-        statusStunting: "",
-        mpasi: "",
+        tgl_awal_haid: "23/02/2024",
+        tgl_akhir_haid: "02/03/2024",
+        tinggi_badan: "",
+        berat_badan: "",
+        lingkar_lengan_atas: "",
+        tinggi_fundus: "",
+
     });
 
     const getCurrentDateTime = (): string => {
@@ -150,12 +155,10 @@ const Page: React.FC = () => {
                     Perbarui Rekap Pengukuran
                 </h1>
                 <h5 className="text-lg text-gray-600">
-                    Untuk perbarui data pengukuran balita
+                    Untuk melihat detail informasi data Ibu Hamil
                 </h5>
             </div>
-
             <div className="rounded-lg bg-white p-6 shadow-md">
-
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                         <div>
@@ -227,59 +230,33 @@ const Page: React.FC = () => {
                                 </div>
                             </div>
                             <div className="flex gap-4">
-                                {/* Input Tinggi Badan */}
+                                {/* Usia Kehamilan */}
                                 <div className="w-1/2">
                                     <label
                                         htmlFor="tinggiBadan"
                                         className="mb-1 mt-4 block text-sm font-medium text-gray-700"
                                     >
-                                        Tinggi Badan
+                                        Usia Kehamilan
                                     </label>
                                     <div className="relative">
                                         <InputText
                                             type="number"
                                             required
+                                            readOnly
                                             id="tinggiBadan"
                                             name="tinggiBadan"
-                                            value={formData.tinggiBadan}
+                                            value={formData.usiakehamilan}
                                             onChange={handleInputChange}
                                             className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
-                                            placeholder="Masukkan Tinggi Badan"
+                                            placeholder="Masukkan Usia Kehamilan"
                                         />
                                         <span className="absolute inset-y-0 right-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
-                                            Cm
+                                            Mn
                                         </span>
                                     </div>
-                                    {formData.tinggiBadan && (
-                                        <div className="mt-4">
-                                            <label className="block text-sm font-medium text-gray-700">
-                                                Bagaimana Posisi Balita Saat Diukur?
-                                            </label>
-                                            <div className="flex items-center space-x-4">
-                                                <label className="flex cursor-pointer items-center">
-                                                    <RadioButton
-                                                        inputId="terlentang"
-                                                        value="terlentang"
-                                                        onChange={(e: RadioButtonChangeEvent) => setIngredients(e.value)}
-                                                        checked={ingredients === "terlentang"}
-                                                    />
-                                                    <label htmlFor="terlentang" className="ml-2">
-                                                        Terlentang
-                                                    </label>
-                                                </label>
 
-                                                <RadioButton
-                                                    inputId="berdiri"
-                                                    value="berdiri"
-                                                    onChange={(e: RadioButtonChangeEvent) => setIngredients(e.value)}
-                                                    checked={ingredients === "berdiri"}
-                                                />
-                                                <label htmlFor="ingredient4" className="ml-2">
-                                                    Berdiri
-                                                </label>
-                                            </div>
-                                        </div>
-                                    )}
+
+
                                 </div>
 
                                 {/* Input Berat Badan */}
@@ -288,18 +265,189 @@ const Page: React.FC = () => {
                                         htmlFor="beratBadan"
                                         className="mb-1 mt-4 block text-sm font-medium text-gray-700"
                                     >
+                                        Usia Ibu Hamil
+                                    </label>
+                                    <div className="relative">
+                                        <InputText
+                                            type="number"
+                                            required
+                                            readOnly
+                                            id="beratBadan"
+                                            name="beratBadan"
+                                            value={formData.umurIbu}
+                                            onChange={handleInputChange}
+                                            className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
+                                            placeholder="Masukkan Umur Ibu Hamil"
+                                        />
+                                        <span className="absolute inset-y-0 right-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
+                                            Tahun
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div className="flex gap-4">
+                                {/* Input Lingkar Lengan Atas */}
+                                <div className="w-1/2">
+                                    <label
+                                        htmlFor="lingkarLenganAtas"
+                                        className="mb-1 mt-4 block text-sm font-medium text-gray-700"
+                                    >
+                                        Jumlah Tablet (Fe) Yang Diminum
+                                    </label>
+                                    <div className="relative">
+                                        <InputText
+                                            type="number"
+                                            required
+                                            id="lingkarLenganAtas"
+                                            name="lingkarLenganAtas"
+                                            value={formData.jumlahTablet}
+                                            onChange={handleInputChange}
+                                            className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
+                                            placeholder="Masukkan jumlah tablet Fe"
+                                        />
+                                        <span className="absolute inset-y-0 right-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
+                                            Btr
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Input Lingkar Kepala */}
+                                <div className="w-1/2">
+                                    <label
+                                        htmlFor="lingkarKepala"
+                                        className="mb-1 mt-4 block text-sm font-medium text-gray-700"
+                                    >
+                                        Hemoglobin
+                                    </label>
+                                    <div className="relative">
+                                        <InputText
+                                            type="number"
+                                            required
+                                            id="lingkarKepala"
+                                            name="lingkarKepala"
+                                            value={formData.hemoglobin}
+                                            onChange={handleInputChange}
+                                            className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
+                                            placeholder="Masukkan Lingkar Kepala"
+                                        />
+                                        <span className="absolute inset-y-0 right-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
+                                            g/dl
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4">
+                                {/* Input Lingkar Lengan Atas */}
+                                <div className="w-1/2">
+                                    <label
+                                        htmlFor="lingkarLenganAtas"
+                                        className="mb-1 mt-4 block text-sm font-medium text-gray-700"
+                                    >
+                                        Tanggal Pertama Haid
+                                    </label>
+                                    <div className="relative">
+                                        <InputText
+                                            type="text"
+                                            required
+                                            id="lingkarLenganAtas"
+                                            name="lingkarLenganAtas"
+                                            value={formData.tgl_awal_haid}
+                                            onChange={handleInputChange}
+                                            className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
+                                            placeholder="Masukkan jumlah tablet Fe"
+                                        />
+                                        <IconCalendarEvent
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-400"
+                                            size={20}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Input Lingkar Kepala */}
+                                <div className="w-1/2">
+                                    <label
+                                        htmlFor="lingkarKepala"
+                                        className="mb-1 mt-4 block text-sm font-medium text-gray-700"
+                                    >
+                                        Tanggal Terakhir Haid
+                                    </label>
+                                    <div className="relative">
+                                        <InputText
+                                            type="text"
+                                            required
+                                            id="lingkarKepala"
+                                            name="lingkarKepala"
+                                            readOnly
+                                            value={formData.tgl_akhir_haid}
+                                            onChange={handleInputChange}
+                                            className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
+                                            placeholder="Masukkan Lingkar Kepala"
+                                        />
+                                        <IconCalendarEvent
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-400"
+                                            size={20}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div>
+
+                            <div className="flex gap-4">
+                                {/* Input Lingkar Lengan Atas */}
+                                <div className="w-1/2">
+                                    <label
+                                        htmlFor="lingkarLenganAtas"
+                                        className="mb-1  block text-sm font-medium text-gray-700"
+                                    >
+                                        Tinggi Badan
+                                    </label>
+                                    <div className="relative">
+                                        <InputText
+                                            type="number"
+                                            required
+                                            id="lingkarLenganAtas"
+                                            name="lingkarLenganAtas"
+                                            value={formData.tinggi_badan}
+                                            onChange={handleInputChange}
+                                            className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
+                                            placeholder="Masukkan jumlah tablet Fe"
+                                        />
+                                        <span className="absolute inset-y-0 right-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
+                                            Cm
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Input Lingkar Kepala */}
+                                <div className="w-1/2">
+                                    <label
+                                        htmlFor="lingkarKepala"
+                                        className="mb-1 block text-sm font-medium text-gray-700"
+                                    >
                                         Berat Badan
                                     </label>
                                     <div className="relative">
                                         <InputText
                                             type="number"
                                             required
-                                            id="beratBadan"
-                                            name="beratBadan"
-                                            value={formData.beratBadan}
+                                            id="lingkarKepala"
+                                            name="lingkarKepala"
+                                            value={formData.berat_badan}
                                             onChange={handleInputChange}
                                             className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
-                                            placeholder="Masukkan Berat Badan"
+                                            placeholder="Masukkan Lingkar Kepala"
                                         />
                                         <span className="absolute inset-y-0 right-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
                                             Kg
@@ -324,10 +472,10 @@ const Page: React.FC = () => {
                                             required
                                             id="lingkarLenganAtas"
                                             name="lingkarLenganAtas"
-                                            value={formData.lingkarLenganAtas}
+                                            value={formData.lingkar_lengan_atas}
                                             onChange={handleInputChange}
                                             className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
-                                            placeholder="Masukkan Lingkar Lengan Atas"
+                                            placeholder="Masukkan jumlah tablet Fe"
                                         />
                                         <span className="absolute inset-y-0 right-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
                                             Cm
@@ -341,7 +489,7 @@ const Page: React.FC = () => {
                                         htmlFor="lingkarKepala"
                                         className="mb-1 mt-4 block text-sm font-medium text-gray-700"
                                     >
-                                        Lingkar Kepala
+                                        Tinggi Fundus Utari
                                     </label>
                                     <div className="relative">
                                         <InputText
@@ -349,7 +497,7 @@ const Page: React.FC = () => {
                                             required
                                             id="lingkarKepala"
                                             name="lingkarKepala"
-                                            value={formData.lingkarKepala}
+                                            value={formData.tinggi_fundus}
                                             onChange={handleInputChange}
                                             className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
                                             placeholder="Masukkan Lingkar Kepala"
@@ -362,155 +510,71 @@ const Page: React.FC = () => {
                             </div>
 
 
-                            <div>
-                                <label
-                                    htmlFor="mpasi"
-                                    className="mb-1 mt-4 block text-sm font-medium text-gray-700"
-                                >
-                                    Apakah Balita Mendapatkan MPASI?
-                                </label>
-                                <div className="flex items-center space-x-4">
-                                    <label className="flex cursor-pointer items-center">
-                                        <RadioButton
-                                            inputId="ingredient2"
-                                            value="Ya"
-                                            onChange={(e: RadioButtonChangeEvent) =>
-                                                setIngredient(e.value)
-                                            }
-                                            checked={ingredient === "Ya"}
-                                        />
-                                        <label htmlFor="ingredient2" className="ml-2">
-                                            Ya
-                                        </label>
+
+
+                            <div className="grid grid-cols-2 gap-6 pt-2">
+                                {/* Kolom Kiri: Catatan */}
+                                <div >
+                                    <label
+                                        htmlFor="catatan"
+                                        className="mb-1 mt-2 block text-sm font-medium text-gray-700"
+                                    >
+                                        Catatan
                                     </label>
-                                    <label className="flex cursor-pointer items-center">
-                                        <RadioButton
-                                            inputId="ingredient2"
-                                            value="Tidak"
-                                            onChange={(e: RadioButtonChangeEvent) =>
-                                                setIngredient(e.value)
-                                            }
-                                            checked={ingredient === "Tidak"}
-                                        />
-                                        <label htmlFor="ingredient2" className="ml-2">
-                                            Tidak
-                                        </label>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="mpasi"
-                                    className="mb-1 mt-4 block text-sm font-medium text-gray-700"
-                                >
-                                    Apakah Balita Mendapatkan ASI Eksklusif?
-                                </label>
-                                <div className="flex items-center space-x-4">
-                                    <label className="flex cursor-pointer items-center">
-                                        <RadioButton
-                                            inputId="ingredient3"
-                                            value="ya"
-                                            onChange={(e: RadioButtonChangeEvent) =>
-                                                setIngredients(e.value)
-                                            }
-                                            checked={ingredients === "ya"}
-                                        />
-                                        <label htmlFor="ingredient4" className="ml-2">
-                                            Ya
-                                        </label>
-                                    </label>
-                                    <label className="flex cursor-pointer items-center">
-                                        <RadioButton
-                                            inputId="ingredient5"
-                                            value="tidak"
-                                            onChange={(e: RadioButtonChangeEvent) =>
-                                                setIngredients(e.value)
-                                            }
-                                            checked={ingredients === "tidak"}
-                                        />
-                                        <label htmlFor="ingredient6" className="ml-2">
-                                            Tidak
-                                        </label>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label
-                                htmlFor="catatan"
-                                className="mb-1 block text-sm font-medium text-gray-700"
-                            >
-                                Catatan
-                            </label>
-                            <InputTextarea
-                                id="catatan"
-                                name="catatan"
-                                value={formData.catatan}
-                                onChange={handleInputChange}
-                                rows={5}
-                                className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
-                                placeholder="Masukkan catatan"
-                            />
-
-                            <label
-                                htmlFor="keluhan"
-                                className="mb-1 mt-2 block text-sm font-medium text-gray-700"
-                            >
-                                Keluhan
-                            </label>
-                            <InputTextarea
-                                id="keluhan"
-                                name="keluhan"
-                                value={formData.keluhan}
-                                onChange={handleInputChange}
-                                rows={5}
-                                className="w-full rounded-md border border-gray-300 p-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
-                                placeholder="Masukkan keluhan"
-                            />
-
-
-
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div className="rounded-md  border-gray-200 bg-white p-3 shadow-sm">
-                                    <h3 className="mb-2 text-sm font-medium text-gray-600">
-                                        Status Gizi
-                                    </h3>
-                                    <div className="relative">
-                                        <InputText
-                                            id="statusGizi"
-                                            name="statusGizi"
-                                            value={formData.statusGizi || ""}
-                                            onChange={handleInputChange}
-                                            className="w-full rounded-md border-gray-300 bg-gray-50 p-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                                            placeholder="Menunggu hasil..."
-                                            readOnly
-                                        />
-                                    </div>
+                                    <InputTextarea
+                                        id="catatan"
+                                        name="catatan"
+                                        value={formData.catatan}
+                                        onChange={handleInputChange}
+                                        rows={5}
+                                        className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 placeholder:text-xs"
+                                        placeholder="Masukkan catatan"
+                                    />
                                 </div>
 
-                                <div className="rounded-md border-gray-200 bg-white p-3 shadow-sm">
-                                    <h3 className="mb-2 text-sm font-medium text-gray-600">
-                                        Status Stunting
-                                    </h3>
-                                    <div className="relative">
-                                        <InputText
-                                            id="statusStunting"
-                                            name="statusStunting"
-                                            value={formData.statusStunting || ""}
-                                            onChange={handleInputChange}
-                                            className="w-full rounded-md border-gray-300 bg-gray-50 p-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                                            placeholder="Menunggu hasil..."
-                                            readOnly
-                                        />
+                                {/* Kolom Kanan: Radio Button */}
+                                <div>
+                                    <label
+                                        htmlFor="mpasi"
+                                        className="mb-1  mt-2 block text-sm font-medium text-gray-700"
+                                    >
+                                        Keterpaparan Asap Rokok
+                                    </label>
+                                    <div className="flex items-center space-x-4">
+                                        <label className="flex cursor-pointer items-center">
+                                            <RadioButton
+                                                inputId="ingredient1"
+                                                value="Ya"
+                                                onChange={(e: RadioButtonChangeEvent) =>
+                                                    setIngredient(e.value)
+                                                }
+                                                checked={ingredient === "Ya"}
+                                            />
+                                            <span className="ml-2">Ya</span>
+                                        </label>
+                                        <label className="flex cursor-pointer items-center">
+                                            <RadioButton
+                                                inputId="ingredient2"
+                                                value="Tidak"
+                                                onChange={(e: RadioButtonChangeEvent) =>
+                                                    setIngredient(e.value)
+                                                }
+                                                checked={ingredient === "Tidak"}
+                                            />
+                                            <span className="ml-2">Tidak</span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+
+
+
+                        </div>
 
                     </div>
+
+
 
                     <div className="flex justify-center md:col-span-4">
                         <Button
@@ -522,7 +586,7 @@ const Page: React.FC = () => {
 
                 </form>
 
-                
+
             </div>
         </div>
     );
