@@ -48,7 +48,7 @@ const TablesPage: React.FC = () => {
         id: index + 1,
         contact_ref: `Nama Lengkap ${index + 1}`, // Nama Lengkap
         nik: generateNIK(), // NIK acak 16 angka
-        tanggal: getRandomStatus(), // Status acak
+        tanggal: generateRandomDate(), // Status acak
       }));
       setDataWithDisplayId(dummyData);
     } catch (err) {
@@ -78,9 +78,17 @@ const TablesPage: React.FC = () => {
       : "bg-white h-12 text-base text-black rounded-lg";
   };
 
-  const getRandomStatus = () => {
-    const statuses = Object.keys(statusColors);
-    return statuses[Math.floor(Math.random() * statuses.length)];
+  const generateRandomDate = (): string => {
+    const start = new Date(2022, 0, 1); // Tanggal mulai (1 Januari 2022)
+    const end = new Date(); // Tanggal akhir (hari ini)
+
+    // Membuat tanggal acak di antara rentang waktu
+    const randomDate = new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime()),
+    );
+
+    // Mengembalikan dalam format YYYY-MM-DD atau format lainnya yang diinginkan
+    return randomDate.toISOString().split("T")[0]; // Menghasilkan 'YYYY-MM-DD'
   };
 
   const handleEdit = (rowData: DataRow) => {
