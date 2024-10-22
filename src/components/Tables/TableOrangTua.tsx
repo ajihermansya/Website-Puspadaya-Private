@@ -155,6 +155,7 @@ const TableOrangTua = () => {
         >
           <IconEye style={{ color: "green", cursor: "pointer" }} />
         </Link>
+        
         <Link
           href={`/data-keluarga/data-orang-tua/${rowData.nomorKK}/edit`}
           passHref

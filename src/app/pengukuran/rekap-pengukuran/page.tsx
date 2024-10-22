@@ -1,14 +1,14 @@
 "use client";
 
-import { IconPencil, IconTrash, IconSearch } from "@tabler/icons-react";
+import { IconEye, IconPencil, IconSearch, IconTrash } from "@tabler/icons-react";
 import Link from "next/link";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { Dialog } from "primereact/dialog"; // Import Dialog
+import { InputText } from "primereact/inputtext";
 import { ProgressBar } from "primereact/progressbar";
 import { Toast } from "primereact/toast";
 import React, { useEffect, useRef, useState } from "react";
-import { InputText } from "primereact/inputtext";
 
 interface DataRow {
   id: number;
@@ -115,10 +115,15 @@ const TablesPage: React.FC = () => {
 
   const actionBodyTemplate = (rowData: DataRow) => {
     return (
-      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+
+      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>          
+
+        <IconEye style={{ color: "green", cursor: "pointer" }} />
+        
         <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData.id}`} passHref>
-          <IconPencil style={{ color: "green", cursor: "pointer" }} />
+          <IconPencil style={{ color: "purple", cursor: "pointer" }} />
         </Link>
+
         <IconTrash
           onClick={() => confirmDeleteProduct(rowData)}
           style={{ color: "red", cursor: "pointer" }}
