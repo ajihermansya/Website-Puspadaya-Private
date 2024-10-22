@@ -21,7 +21,7 @@ ChartJS.register(
   Legend,
 );
 
-const GrafikTumbuhKembangBalita = () => {
+const Girl2 = () => {
   // Data for the age and weight curves
   const labels = Array.from({ length: 6 * 4 }, (_, i) => (i / 4).toFixed(1)); // Labels from 0 to 6 months
 
@@ -117,4 +117,4 @@ const GrafikTumbuhKembangBalita = () => {
   return <Line data={data} options={options} />;
 };
 
-export default GrafikTumbuhKembangBalita;
+export default Girl2;
