@@ -1,20 +1,19 @@
 "use client";
-
-import { IconEye, IconPencil, IconSearch, IconTrash } from "@tabler/icons-react";
-import Link from "next/link";
-import { Column } from "primereact/column";
+import { SvgDetailOrangTua } from "@/components/ui/Svg";
+import { Column, ColumnBodyOptions } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { Dialog } from "primereact/dialog"; // Import Dialog
-import { InputText } from "primereact/inputtext";
 import { ProgressBar } from "primereact/progressbar";
 import { Toast } from "primereact/toast";
 import React, { useEffect, useRef, useState } from "react";
+import ButtonLinks from "../../../components/ui/ButtonLink";
+import { InputText } from "primereact/inputtext";
+import { IconSearch } from "@tabler/icons-react";
 
 interface DataRow {
   id: number;
   contact_ref: string;
-  nik: string; // NIK
-  status: string; // Status
+  nik: string; 
+  status: string; 
 }
 
 const statusColors: { [key: string]: string } = {
@@ -33,18 +32,14 @@ const TablesPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [dataWithDisplayId, setDataWithDisplayId] = useState<DataRow[]>([]);
-  const [formData, setFormData] = useState<{ nama: string }>({ nama: "" });
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const toast = useRef<Toast>(null);
   const [globalFilter, setGlobalFilter] = useState("");
 
-  const [information, setInformation] = useState<DataRow | null>(null);
-  const [deleteProductDialog, setDeleteProductDialog] = useState(false);
-
   useEffect(() => {
     setLoading(true);
     try {
-      const dummyData: DataRow[] = Array.from({ length: 30 }, (_, index) => ({
+      const dummyData: DataRow[] = Array.from({ length: 680 }, (_, index) => ({
         id: index + 1,
         contact_ref: `Nama Lengkap ${index + 1}`, // Nama Lengkap
         nik: generateNIK(), // NIK acak 16 angka
@@ -67,15 +62,15 @@ const TablesPage: React.FC = () => {
   const generateNIK = (): string => {
     let nik = "";
     for (let i = 0; i < 16; i++) {
-      nik += Math.floor(Math.random() * 10); 
+      nik += Math.floor(Math.random() * 10); // Menghasilkan angka 0-9
     }
     return nik;
   };
 
   const rowClassName = (data: DataRow) => {
     return data.id % 2 === 0
-      ? "bg-gray-100 h-12 text-base text-black rounded-lg"
-      : "bg-white h-12 text-base text-black rounded-lg";
+      ? "bg-gray-100 h-12 text-base text-black rounded-lg" // Added text-black
+      : "bg-white h-12 text-base text-black rounded-lg"; // Added text-black
   };
 
   const getRandomStatus = () => {
@@ -93,42 +88,17 @@ const TablesPage: React.FC = () => {
     });
   };
 
-  const confirmDeleteProduct = (rowData: DataRow) => {
-    setInformation(rowData);
-    setDeleteProductDialog(true);
-  };
-
-  const deleteProduct = () => {
-    if (information) {
-      setDataWithDisplayId((prev) =>
-        prev.filter((item) => item.id !== information.id),
-      );
-      toast.current?.show({
-        severity: "success",
-        summary: "Deleted",
-        detail: "Product deleted successfully",
-        life: 3000,
-      });
-    }
-    setDeleteProductDialog(false);
-  };
-
-  const actionBodyTemplate = (rowData: DataRow) => {
+  const actionBodyTemplate = (data: DataRow, options: ColumnBodyOptions) => {
     return (
-
-      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>          
-
-        <IconEye style={{ color: "green", cursor: "pointer" }} />
-        
-        <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData.id}`} passHref>
-          <IconPencil style={{ color: "purple", cursor: "pointer" }} />
-        </Link>
-
-        <IconTrash
-          onClick={() => confirmDeleteProduct(rowData)}
-          style={{ color: "red", cursor: "pointer" }}
-        />
-      </div>
+      <ButtonLinks
+        href={`/pemeriksaan/detail-pemeriksaan/`}
+        className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
+      >
+        <div className="flex items-center gap-1">
+          <SvgDetailOrangTua />
+          <span>Lihat Detail</span>
+        </div>
+      </ButtonLinks>
     );
   };
 
@@ -142,27 +112,30 @@ const TablesPage: React.FC = () => {
     );
   };
 
+  const header = (
+    <div className="mb-1 flex flex-col md:flex-row md:items-center md:justify-between">
+      <h2 className="pb-1 text-2xl font-bold text-black">
+        Riwayat pengukuran Ibu Hamil
+      </h2>
+      <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
+        <span className="relative flex items-center">
+          <IconSearch className="absolute left-3 text-gray-500" />
+          <InputText
+            type="search"
+            onInput={(e) =>
+              setGlobalFilter((e.target as HTMLInputElement).value)
+            }
+            placeholder="Search..."
+            className="rounded-lg border border-gray-300 py-2 pl-10 pr-4"
+          />
+        </span>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="container mx-auto">
+    <div className=" container mx-auto">
       <div className="card overflow-hidden rounded-lg bg-white p-4 shadow-md">
-        <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
-          <h2 className="pb-1 text-2xl font-bold text-black">
-            Rekap Pengukuran Balita
-          </h2>
-          <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
-            <span className="relative flex items-center">
-              <IconSearch className="absolute left-3 text-gray-500" />
-              <InputText
-                type="search"
-                onInput={(e) =>
-                  setGlobalFilter((e.target as HTMLInputElement).value)
-                }
-                placeholder="Search..."
-                className="rounded-lg border border-gray-300 py-2 pl-10 pr-4"
-              />
-            </span>
-          </div>
-        </div>
         {loading && (
           <div className="mb-4">
             <span className="text-sm text-gray-600">Loading...</span>
@@ -189,6 +162,7 @@ const TablesPage: React.FC = () => {
             emptyMessage="No data available"
             responsiveLayout="scroll"
             rowClassName={rowClassName}
+            header={header}
             paginatorClassName="bg-gray-50 p-4 mt-4 rounded-lg"
           >
             <Column
@@ -204,7 +178,7 @@ const TablesPage: React.FC = () => {
               header="NIK"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
-              style={{ minWidth: "10rem" }}
+              style={{ minWidth: "8rem" }}
             />
             <Column
               field="contact_ref"
@@ -230,37 +204,6 @@ const TablesPage: React.FC = () => {
           </DataTable>
         </div>
       </div>
-
-     
-      <Dialog
-        visible={deleteProductDialog}
-        header="Konfirmasi Hapus"
-        modal
-        onHide={() => setDeleteProductDialog(false)}
-        draggable={false}
-        className="max-w-md rounded-lg bg-white shadow-lg "
-      >
-        <div className="p-6">
-          <p className="text-lg font-medium">
-            Apakah Anda yakin ingin menghapus{" "}
-            <strong>{information?.contact_ref}</strong>?
-          </p>
-        </div>
-        <div className="flex justify-end rounded-b-lg  p-4">
-          <button
-            className="rounded-md bg-gray-300 px-4 py-2 text-gray-700 transition duration-300 ease-in-out hover:bg-gray-400"
-            onClick={() => setDeleteProductDialog(false)}
-          >
-            Batal
-          </button>
-          <button
-            className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white transition duration-300 ease-in-out hover:bg-red-600"
-            onClick={deleteProduct}
-          >
-            Hapus
-          </button>
-        </div>
-      </Dialog>
     </div>
   );
 };
