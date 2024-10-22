@@ -1,11 +1,11 @@
 "use client";
-import React, { useState } from "react";
 import { Parameter } from "@/types/parameter";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Button } from "primereact/button";
 import { IconDownload } from "@tabler/icons-react";
+import { Button } from "primereact/button";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
+import { useState } from "react";
 
 interface City {
   name: string;
@@ -21,7 +21,7 @@ const ParameterStunting = () => {
   ];
 
   const header = (
-    <div className="relative mb-12 flex items-center justify-between">
+    <div className="relative mb-20 flex items-center justify-between">
       <div>
         <h2 className="pb-1 text-2xl font-bold text-black">
           Parameter Stunting
@@ -47,25 +47,27 @@ const ParameterStunting = () => {
       </div>
 
       {/* Tombol Unduh PDF */}
-      <div className="absolute right-0 mt-30 flex items-center space-x-4">
+      <div className="absolute right-0 mt-30 flex flex-col items-center space-y-4">
+        {/* Tombol Unduh PDF */}
+        <Button
+          label="Unduh PDF"
+          onClick={() => console.log("Unduh PDF")} // Ganti dengan fungsi unduh PDF
+          className="mt-10 w-[186px] border-none bg-gray-400 py-2 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
+        >
+          <IconDownload />
+        </Button>
+
+        {/* Dropdown di bawah tombol */}
         <Dropdown
           value={selectedCity}
           onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)}
           options={cities}
           optionLabel="name"
           placeholder="Tinggi Badan (Cm)"
-          className="h-10 w-[186px] border-none bg-blue-50 text-white focus:outline-none focus:ring-2 focus:ring-gray-500" // Menyesuaikan styling button
+          className="h-10 w-[100%] border-none bg-white text-black focus:outline-none focus:ring-2 focus:ring-gray-500"
           checkmark={true}
           highlightOnSelect={false}
         />
-
-        <Button
-          label="Unduh PDF"
-          onClick={() => console.log("Unduh PDF")} // Ganti dengan fungsi unduh PDF
-          className="w-[186px] border-none bg-gray-400 py-2 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
-        >
-          <IconDownload />
-        </Button>
       </div>
     </div>
   );
@@ -155,7 +157,7 @@ const ParameterStunting = () => {
   };
 
   return (
-    <div className="mt-8 rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
+    <div className="mt-10 rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
       <div className="max-w-full overflow-x-auto">
         <div className="rounded-lg ">
           <DataTable
