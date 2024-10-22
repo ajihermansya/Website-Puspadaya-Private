@@ -14,7 +14,7 @@ interface DataRow {
   id: number;
   contact_ref: string;
   nik: string; // NIK
-  status: string; // Status
+  tanggal: string; // Status
 }
 
 const statusColors: { [key: string]: string } = {
@@ -48,7 +48,7 @@ const TablesPage: React.FC = () => {
         id: index + 1,
         contact_ref: `Nama Lengkap ${index + 1}`, // Nama Lengkap
         nik: generateNIK(), // NIK acak 16 angka
-        status: getRandomStatus(), // Status acak
+        tanggal: getRandomStatus(), // Status acak
       }));
       setDataWithDisplayId(dummyData);
     } catch (err) {
@@ -128,12 +128,12 @@ const TablesPage: React.FC = () => {
     );
   };
 
-  const statusBodyTemplate = (rowData: DataRow) => {
+  const tanggalBodyTemplate = (rowData: DataRow) => {
     return (
       <span
-        className={`${statusColors[rowData.status]} rounded-full px-3 py-1 text-sm font-medium`}
+        className={`${statusColors[rowData.tanggal]} rounded-full px-3 py-1 text-sm font-medium`}
       >
-        {rowData.status}
+        {rowData.tanggal}
       </span>
     );
   };
@@ -214,10 +214,9 @@ const TablesPage: React.FC = () => {
               style={{ minWidth: "10rem" }}
             />
             <Column
-              field="status"
-              header="Status"
-              body={statusBodyTemplate}
-              sortable
+              field="tanggal"
+              header="Tanggal Pengukuran"
+              body={tanggalBodyTemplate}
               headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: "10rem" }}
             />
