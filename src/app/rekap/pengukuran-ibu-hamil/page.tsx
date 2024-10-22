@@ -67,7 +67,7 @@ const TablesPage: React.FC = () => {
   const generateNIK = (): string => {
     let nik = "";
     for (let i = 0; i < 16; i++) {
-      nik += Math.floor(Math.random() * 10); 
+      nik += Math.floor(Math.random() * 10);
     }
     return nik;
   };
@@ -115,9 +115,7 @@ const TablesPage: React.FC = () => {
 
   const actionBodyTemplate = (rowData: DataRow) => {
     return (
-
       <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-        
         <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData.id}`} passHref>
           <IconPencil style={{ color: "purple", cursor: "pointer" }} />
         </Link>
@@ -140,32 +138,30 @@ const TablesPage: React.FC = () => {
     );
   };
 
+  const header = (
+    <div className="mb-1 flex flex-col md:flex-row md:items-center md:justify-between">
+      <h2 className="pb-1 text-2xl font-bold text-black">
+        Rekap Pengukuran Ibu Hamil
+      </h2>
+      <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
+        <span className="relative flex items-center">
+          <IconSearch className="absolute left-3 text-gray-500" />
+          <InputText
+            type="search"
+            onInput={(e) =>
+              setGlobalFilter((e.target as HTMLInputElement).value)
+            }
+            placeholder="Search..."
+            className="rounded-lg border border-gray-300 py-2 pl-10 pr-4"
+          />
+        </span>
+      </div>
+    </div>
+  );
+
   return (
     <div className="container mx-auto">
       <div className="card overflow-hidden rounded-lg bg-white p-4 shadow-md">
-
-        <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
-          <h2 className="pb-1 text-2xl font-bold text-black">
-            Rekap Pengukuran Ibu Hamil
-          </h2>
-          <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
-            <span className="relative flex items-center">
-              <IconSearch className="absolute left-3 text-gray-500" />
-              <InputText
-                type="search"
-                onInput={(e) =>
-                  setGlobalFilter((e.target as HTMLInputElement).value)
-                }
-                placeholder="Search..."
-                className="rounded-lg border border-gray-300 py-2 pl-10 pr-4"
-              />
-            </span>
-          </div>
-
-          
-        </div>
-
-        
         {loading && (
           <div className="mb-4">
             <span className="text-sm text-gray-600">Loading...</span>
@@ -192,6 +188,7 @@ const TablesPage: React.FC = () => {
             emptyMessage="No data available"
             responsiveLayout="scroll"
             rowClassName={rowClassName}
+            header={header}
             paginatorClassName="bg-gray-50 p-4 mt-4 rounded-lg"
           >
             <Column
@@ -234,7 +231,6 @@ const TablesPage: React.FC = () => {
         </div>
       </div>
 
-     
       <Dialog
         visible={deleteProductDialog}
         header="Konfirmasi Hapus"
