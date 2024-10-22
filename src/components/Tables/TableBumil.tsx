@@ -167,61 +167,61 @@ const TableBumil = () => {
       nik: "3201234567890123",
       nama: "Ani Lestari",
       usiaKehamilan: "24 minggu",
-      tanggalPendampingan: "2024-01-15",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3209876543210987",
       nama: "Rina Kusuma",
       usiaKehamilan: "16 minggu",
-      tanggalPendampingan: "2024-02-10",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3212345678901234",
       nama: "Siti Fatimah",
       usiaKehamilan: "32 minggu",
-      tanggalPendampingan: "2024-03-20",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3207654321098765",
       nama: "Dewi Kartika",
       usiaKehamilan: "20 minggu",
-      tanggalPendampingan: "2024-04-05",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3203456789012345",
       nama: "Maya Sari",
       usiaKehamilan: "28 minggu",
-      tanggalPendampingan: "2024-05-12",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3210987654321098",
       nama: "Nina Andriani",
       usiaKehamilan: "12 minggu",
-      tanggalPendampingan: "2024-06-18",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3208765432109876",
       nama: "Putri Mawar",
       usiaKehamilan: "24 minggu",
-      tanggalPendampingan: "2024-07-02",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3204567890123456",
       nama: "Rani Utami",
       usiaKehamilan: "36 minggu",
-      tanggalPendampingan: "2024-07-25",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3211234567890123",
       nama: "Lina Apriani",
       usiaKehamilan: "16 minggu",
-      tanggalPendampingan: "2024-08-15",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3205678901234567",
       nama: "Sari Melati",
       usiaKehamilan: "20 minggu",
-      tanggalPendampingan: "2024-09-10",
+      posyandu: "Posyandu Mawar",
     },
   ];
 
@@ -280,19 +280,19 @@ const TableBumil = () => {
             />
 
             <Column
+              field="posyandu"
+              header="Posyandu"
+              sortable
+              headerClassName="bg-[#F7F9FC] text-black"
+              style={{ minWidth: "10rem" }}
+            />
+
+            <Column
               field="usiaKehamilan"
               header="Usia Kehamilan"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
               body={usiaTemplate}
-              style={{ minWidth: "10rem" }}
-            />
-
-            <Column
-              field="tanggalPendampingan"
-              header="Tgl. Pendampingan"
-              sortable
-              headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: "10rem" }}
             />
 

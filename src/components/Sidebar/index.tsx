@@ -92,6 +92,20 @@ const menuGroups = [
           {
             icon: (
               <img
+                src="/images/menus/jamban.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Puskesmas",
+            route: "/data-keluarga/data-puskesmas",
+          },
+
+          {
+            icon: (
+              <img
                 src="/images/menus/daftar-hadir.svg"
                 alt=""
                 width={14}
@@ -100,7 +114,7 @@ const menuGroups = [
               />
             ),
             label: "Data Posyandu",
-            route: "/data-keluarga/data-bumil",
+            route: "/data-keluarga/data-posyandu",
           },
 
           {
@@ -114,7 +128,7 @@ const menuGroups = [
               />
             ),
             label: "Data Anggota",
-            route: "/data-keluarga/data-bumil",
+            route: "/data-keluarga/data-anggota",
           },
         ],
       },
@@ -143,7 +157,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Jadwal Posyandu", route: "/posyandu/jadwal-posyandu"
+            label: "Jadwal Posyandu",
+            route: "/posyandu/jadwal-posyandu",
           },
 
           {
@@ -156,7 +171,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Daftar Hadir Balita", route: "/posyandu/daftar-hadir-balita"
+            label: "Daftar Hadir Balita",
+            route: "/posyandu/daftar-hadir-balita",
           },
 
           {
@@ -169,7 +185,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Daftar Hadir Ibu Hamil", route: "/posyandu/daftar-hadir-ibu-hamil"
+            label: "Daftar Hadir Ibu Hamil",
+            route: "/posyandu/daftar-hadir-ibu-hamil",
           },
 
           {
@@ -182,7 +199,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Imunisasi", route: "/posyandu/imunisasi"
+            label: "Imunisasi",
+            route: "/posyandu/imunisasi",
           },
         ],
       },
@@ -212,7 +230,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Pengukuran Balita & Bumil", route: "/pengukuran/pengukuran-balita-bumil"
+            label: "Pengukuran Balita & Bumil",
+            route: "/pengukuran/pengukuran-balita-bumil",
           },
 
           {
@@ -225,7 +244,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran Balita", route: "/pengukuran/rekap-pengukuran"
+            label: "Rekap Pengukuran Balita",
+            route: "/pengukuran/rekap-pengukuran",
           },
 
           {
@@ -238,7 +258,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran Ibu Hamil", route: "/pengukuran/rekap-pengukuran"
+            label: "Rekap Pengukuran Ibu Hamil",
+            route: "/pengukuran/rekap-pengukuran",
           },
 
           {
@@ -251,9 +272,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran Balita", route: "/pengukuran/riwayat-pengukuran"
+            label: "Riwayat Pengukuran Balita",
+            route: "/pengukuran/riwayat-pengukuran",
           },
-
 
           {
             icon: (
@@ -265,9 +286,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran Ibu Hamil", route: "/pengukuran/riwayat-pengukuran"
+            label: "Riwayat Pengukuran Ibu Hamil",
+            route: "/pengukuran/riwayat-pengukuran",
           },
-     
         ],
       },
 
