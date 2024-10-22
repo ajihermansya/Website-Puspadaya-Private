@@ -1,6 +1,6 @@
 "use client";
 
-import { IconEye, IconPencil, IconSearch, IconTrash } from "@tabler/icons-react";
+import { IconPencil, IconSearch, IconTrash } from "@tabler/icons-react";
 import Link from "next/link";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
@@ -116,9 +116,7 @@ const TablesPage: React.FC = () => {
   const actionBodyTemplate = (rowData: DataRow) => {
     return (
 
-      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>          
-
-        <IconEye style={{ color: "green", cursor: "pointer" }} />
+      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
         
         <Link href={`/pemeriksaan/edit-pemeriksaan?id=${rowData.id}`} passHref>
           <IconPencil style={{ color: "purple", cursor: "pointer" }} />
@@ -145,9 +143,10 @@ const TablesPage: React.FC = () => {
   return (
     <div className="container mx-auto">
       <div className="card overflow-hidden rounded-lg bg-white p-4 shadow-md">
+
         <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
           <h2 className="pb-1 text-2xl font-bold text-black">
-            Rekap Pengukuran Balita
+            Rekap Pengukuran Ibu Hamil
           </h2>
           <div className="mt-2 flex items-center justify-end space-x-4 md:mt-0">
             <span className="relative flex items-center">
@@ -162,7 +161,11 @@ const TablesPage: React.FC = () => {
               />
             </span>
           </div>
+
+          
         </div>
+
+        
         {loading && (
           <div className="mb-4">
             <span className="text-sm text-gray-600">Loading...</span>

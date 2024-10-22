@@ -1,9 +1,9 @@
 "use client";
 import { IconCalendarEvent } from "@tabler/icons-react";
 import {
-    AutoComplete,
-    AutoCompleteChangeEvent,
-    AutoCompleteCompleteEvent,
+  AutoComplete,
+  AutoCompleteChangeEvent,
+  AutoCompleteCompleteEvent,
 } from "primereact/autocomplete";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
@@ -14,138 +14,149 @@ import React, { useEffect, useState } from "react";
 type Name = string;
 
 type FormData = {
-    nama: string;
-    posyandu: string;
-    tanggalPemeriksaan: string;
-    tinggiBadan: string;
-    beratBadan: string;
-    lingkarLenganAtas: string;
-    lingkarKepala: string;
-    catatan: string;
-    keluhan: string;
-    statusGizi: string;
-    statusStunting: string;
-    mpasi: string;
+  nama: string;
+  posyandu: string;
+  tanggalPemeriksaan: string;
+  tinggiBadan: string;
+  beratBadan: string;
+  lingkarLenganAtas: string;
+  lingkarKepala: string;
+  catatan: string;
+  keluhan: string;
+  statusGizi: string;
+  statusStunting: string;
+  mpasi: string;
 };
 
 const existingNames: Name[] = [
-    "Budi Santoso",
-    "Siti Aminah",
-    "Andi Wijaya",
-    "Putri Maharani",
-    "Rizky Pratama",
-    "Desi Puspitasari",
-    "Agus Supriyadi",
-    "Lestari Dewi",
-    "Bayu Saputra",
-    "Ratna Sari",
-    "Eko Purwanto",
-    "Fitriani Rahma",
-    "Teguh Wibowo",
-    "Dewi Sartika",
-    "Hariyanto Siregar",
-    "Lina Kusuma",
-    "Wawan Setiawan",
-    "Ayu Lestari",
-    "Fajar Nugraha",
-    "Rina Puspita",
+  "Budi Santoso",
+  "Siti Aminah",
+  "Andi Wijaya",
+  "Putri Maharani",
+  "Rizky Pratama",
+  "Desi Puspitasari",
+  "Agus Supriyadi",
+  "Lestari Dewi",
+  "Bayu Saputra",
+  "Ratna Sari",
+  "Eko Purwanto",
+  "Fitriani Rahma",
+  "Teguh Wibowo",
+  "Dewi Sartika",
+  "Hariyanto Siregar",
+  "Lina Kusuma",
+  "Wawan Setiawan",
+  "Ayu Lestari",
+  "Fajar Nugraha",
+  "Rina Puspita",
 ];
 
-const PengukuranBalita = () => {
-    const [timezone, setTimezone] = useState("Asia/Jakarta");
-    const [filteredNames, setFilteredNames] = useState<Name[]>([]);
-    const [showPopup, setShowPopup] = useState(false);
-    const [ingredient, setIngredient] = useState<string>("");
-    const [ingredients, setIngredients] = useState<string>("");
+const Page: React.FC = () => {
+  const [timezone, setTimezone] = useState("Asia/Jakarta");
+  const [filteredNames, setFilteredNames] = useState<Name[]>([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [ingredient, setIngredient] = useState<string>("");
+  const [ingredients, setIngredients] = useState<string>("");
 
-    const [formData, setFormData] = useState<FormData>({
-        nama: "",
-        posyandu: "",
-        tanggalPemeriksaan: "",
-        tinggiBadan: "",
-        beratBadan: "",
-        lingkarLenganAtas: "",
-        lingkarKepala: "",
-        catatan: "",
-        keluhan: "",
-        statusGizi: "",
-        statusStunting: "",
-        mpasi: "",
+  const [formData, setFormData] = useState<FormData>({
+    nama: "",
+    posyandu: "",
+    tanggalPemeriksaan: "",
+    tinggiBadan: "",
+    beratBadan: "",
+    lingkarLenganAtas: "",
+    lingkarKepala: "",
+    catatan: "",
+    keluhan: "",
+    statusGizi: "",
+    statusStunting: "",
+    mpasi: "",
+  });
+
+  const getCurrentDateTime = (): string => {
+    const now = new Date();
+    return now.toLocaleString("id-ID", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
     });
+  };
 
-    const getCurrentDateTime = (): string => {
-        const now = new Date();
-        return now.toLocaleString("id-ID", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false,
-        });
-    };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFormData((prevState) => ({
+        ...prevState,
+        tanggalPemeriksaan: getCurrentDateTime(),
+      }));
+    }, 1000);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setFormData((prevState) => ({
-                ...prevState,
-                tanggalPemeriksaan: getCurrentDateTime(),
-            }));
-        }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-        return () => clearInterval(timer);
-    }, []);
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-    const handleInputChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        const { name, value } = e.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
+  const handleAutoCompleteChange = (e: AutoCompleteChangeEvent) => {
+    const { value } = e;
+    setFormData((prevState) => ({
+      ...prevState,
+      nama: value,
+    }));
+    searchName(value);
+  };
 
-    const handleAutoCompleteChange = (e: AutoCompleteChangeEvent) => {
-        const { value } = e;
-        setFormData((prevState) => ({
-            ...prevState,
-            nama: value,
-        }));
-        searchName(value);
-    };
+  // Search for names
+  const searchName = (query: string) => {
+    let filtered: Name[];
+    if (!query.trim().length) {
+      filtered = [];
+    } else {
+      filtered = existingNames.filter((name) =>
+        name.toLowerCase().includes(query.toLowerCase()),
+      );
+    }
+    setFilteredNames(filtered);
+    setShowPopup(filtered.length === 0);
+  };
 
-    // Search for names
-    const searchName = (query: string) => {
-        let filtered: Name[];
-        if (!query.trim().length) {
-            filtered = [];
-        } else {
-            filtered = existingNames.filter((name) =>
-                name.toLowerCase().includes(query.toLowerCase()),
-            );
-        }
-        setFilteredNames(filtered);
-        setShowPopup(filtered.length === 0);
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log(formData);
-    };
+  const itemTemplate = (item: string, index: number) => (
+    <div key={index}>
+      <div className="cursor-pointer px-4 py-2 hover:bg-gray-100">{item}</div>
+      {index < filteredNames.length - 1 && (
+        <div className="border-b border-gray-200"></div>
+      )}
+    </div>
+  );
 
-    const itemTemplate = (item: string, index: number) => (
-        <div key={index}>
-            <div className="cursor-pointer px-4 py-2 hover:bg-gray-100">{item}</div>
-            {index < filteredNames.length - 1 && (
-                <div className="border-b border-gray-200"></div>
-            )}
-        </div>
-    );
+  return (
+    <div className="container mx-auto">
+      <div className="mb-2 rounded-lg bg-white p-6 shadow-lg">
+        <h1 className="mb-2 text-3xl font-bold text-gray-800">
+          Detail Rekap Pengukuran
+        </h1>
+        <h5 className="text-lg text-gray-600">
+          Pantau pertumbuhan balita disini!
+        </h5>
+      </div>
 
-    return (
-        <div className="container mx-auto">
-            <form onSubmit={handleSubmit}>
+      <div className="rounded-lg bg-white p-6 shadow-md">
+
+      <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
                         <label
@@ -510,9 +521,9 @@ const PengukuranBalita = () => {
                 </div>
 
             </form>
-        </div>
-
-    );
+      </div>
+    </div>
+  );
 };
 
-export default PengukuranBalita;
+export default Page;
