@@ -8,9 +8,9 @@ const Perempuan = () => {
   const dummyDataParameter: Parameter[] = [
     {
       umur: 1,
-      min3: 44.38,
-      min2: 46.27,
-      min1: 48.17,
+      min3: 54.38,
+      min2: 66.27,
+      min1: 68.17,
       median: 50.06,
       plus1: 51.96,
       plus2: 53.85,
@@ -90,83 +90,77 @@ const Perempuan = () => {
   };
 
   return (
-    <div className="mt-8 rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
-      <div className="max-w-full overflow-x-auto">
-        <div className="rounded-lg ">
-          <DataTable
-            value={dummyDataParameter}
-            showGridlines
-            className="datatable-responsive"
-            emptyMessage="No data available"
-          >
-            <Column
-              field="umur"
-              header="Umur (hari)"
-              headerStyle={{ height: "54px", width: "10rem" }}
-              style={{ minWidth: "8rem" }}
-              headerClassName="border px-4 py-2 text-center"
-              className="text-center"
-            />
+    <DataTable
+      value={dummyDataParameter}
+      showGridlines
+      className="datatable-responsive"
+      emptyMessage="No data available"
+    >
+      <Column
+        field="umur"
+        header="Umur (hari)"
+        headerStyle={{ height: "54px", width: "10rem" }}
+        style={{ minWidth: "8rem" }}
+        headerClassName="border px-4 py-2 text-center"
+        className="text-center"
+      />
 
-            <Column
-              field="min3"
-              header="-3 SD"
-              bodyClassName={setBackgroundColor("min3")}
-              headerClassName="border px-4 py-2 text-center"
-              style={{ minWidth: "7rem" }}
-            />
+      <Column
+        field="min3"
+        header="-3 SD"
+        bodyClassName={setBackgroundColor("min3")}
+        headerClassName="border px-4 py-2 text-center"
+        style={{ minWidth: "7rem" }}
+      />
 
-            <Column
-              field="min2"
-              header="-2 SD"
-              bodyClassName={setBackgroundColor("min2")}
-              headerClassName="border px-4 py-2 text-center"
-              style={{ minWidth: "7rem" }}
-            />
+      <Column
+        field="min2"
+        header="-2 SD"
+        bodyClassName={setBackgroundColor("min2")}
+        headerClassName="border px-4 py-2 text-center"
+        style={{ minWidth: "7rem" }}
+      />
 
-            <Column
-              field="min1"
-              header="-1 SD"
-              bodyClassName={setBackgroundColor("min1")}
-              headerClassName="border px-4 py-2 text-center"
-              style={{ minWidth: "7rem" }}
-            />
+      <Column
+        field="min1"
+        header="-1 SD"
+        bodyClassName={setBackgroundColor("min1")}
+        headerClassName="border px-4 py-2 text-center"
+        style={{ minWidth: "7rem" }}
+      />
 
-            <Column
-              field="median"
-              header="Median"
-              bodyClassName={setBackgroundColor("median")}
-              headerClassName="border px-4 py-2 text-center"
-              style={{ minWidth: "7rem" }}
-            />
+      <Column
+        field="median"
+        header="Median"
+        bodyClassName={setBackgroundColor("median")}
+        headerClassName="border px-4 py-2 text-center"
+        style={{ minWidth: "7rem" }}
+      />
 
-            <Column
-              field="plus1"
-              header="+1 SD"
-              bodyClassName={setBackgroundColor("plus1")}
-              headerClassName="border px-4 py-2 text-center"
-              style={{ minWidth: "7rem" }}
-            />
+      <Column
+        field="plus1"
+        header="+1 SD"
+        bodyClassName={setBackgroundColor("plus1")}
+        headerClassName="border px-4 py-2 text-center"
+        style={{ minWidth: "7rem" }}
+      />
 
-            <Column
-              field="plus2"
-              header="+2 SD"
-              bodyClassName={setBackgroundColor("plus2")}
-              headerClassName="border px-4 py-2 text-center"
-              style={{ minWidth: "7rem" }}
-            />
+      <Column
+        field="plus2"
+        header="+2 SD"
+        bodyClassName={setBackgroundColor("plus2")}
+        headerClassName="border px-4 py-2 text-center"
+        style={{ minWidth: "7rem" }}
+      />
 
-            <Column
-              field="plus3"
-              header="+3 SD"
-              bodyClassName={setBackgroundColor("plus3")}
-              headerClassName="border px-4 py-2 text-center"
-              style={{ minWidth: "7rem" }}
-            />
-          </DataTable>
-        </div>
-      </div>
-    </div>
+      <Column
+        field="plus3"
+        header="+3 SD"
+        bodyClassName={setBackgroundColor("plus3")}
+        headerClassName="border px-4 py-2 text-center"
+        style={{ minWidth: "7rem" }}
+      />
+    </DataTable>
   );
 };
 
