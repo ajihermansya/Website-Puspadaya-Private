@@ -225,7 +225,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran Balita", route: "/pengukuran/rekap-pengukuran"
+            label: "Rekap Pengukuran Balita", route: "/rekap/pengukuran-balita"
           },
 
           {
@@ -238,7 +238,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran Ibu Hamil", route: "/pengukuran/rekap-pengukuran"
+            label: "Rekap Pengukuran Ibu Hamil", route: "/rekap/pengukuran-ibu-hamil"
           },
 
           {
@@ -251,7 +251,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran Balita", route: "/pengukuran/riwayat-pengukuran"
+            label: "Riwayat Pengukuran Balita", route: "/riwayat/riwayat-pengukuran-balita"
           },
 
 
@@ -265,7 +265,7 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran Ibu Hamil", route: "/pengukuran/riwayat-pengukuran"
+            label: "Riwayat Pengukuran Ibu Hamil", route: "/riwayat/riwayat-pengukuran-bumil"
           },
      
         ],
