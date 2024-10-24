@@ -1,4 +1,5 @@
 import TableOrangTua from "@/components/Tables/TableOrangTua";
+import TablePuskesmas from "@/components/Tables/TablePuskesmas";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ const Page = () => {
   return (
     <>
       <div className="container mx-auto">
-        <TableOrangTua />
+        <TablePuskesmas />
       </div>
     </>
   );
