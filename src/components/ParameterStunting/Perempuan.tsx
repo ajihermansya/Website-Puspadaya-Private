@@ -4,11 +4,11 @@ import { Parameter } from "@/types/parameter";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-const Perempuan = () => {
-  const dummyDataParameter: Parameter[] = [
+const Perempuan = ({ parameter }: { parameter: string }) => {
+  const dummyDataTinggiBadan: Parameter[] = [
     {
       umur: 1,
-      min3: 54.38,
+      min3: 88.56,
       min2: 66.27,
       min1: 68.17,
       median: 50.06,
@@ -78,6 +78,82 @@ const Perempuan = () => {
     },
   ];
 
+  const dummyDataBeratBadan: Parameter[] = [
+    {
+      umur: 1,
+      min3: 5,
+      min2: 8,
+      min1: 6,
+      median: 5,
+      plus1: 51.96,
+      plus2: 53.85,
+      plus3: 55.74,
+    },
+    {
+      umur: 2,
+      min3: 2,
+      min2: 1,
+      min1: 4,
+      median: 50.06,
+      plus1: 51.96,
+      plus2: 53.85,
+      plus3: 55.74,
+    },
+    {
+      umur: 3,
+      min3: 9,
+      min2: 8,
+      min1: 6,
+      median: 50.06,
+      plus1: 51.96,
+      plus2: 53.85,
+      plus3: 55.74,
+    },
+    {
+      umur: 4,
+      min3: 44.38,
+      min2: 46.27,
+      min1: 48.17,
+      median: 50.06,
+      plus1: 51.96,
+      plus2: 53.85,
+      plus3: 55.74,
+    },
+    {
+      umur: 5,
+      min3: 44.38,
+      min2: 46.27,
+      min1: 48.17,
+      median: 50.06,
+      plus1: 51.96,
+      plus2: 53.85,
+      plus3: 55.74,
+    },
+    {
+      umur: 6,
+      min3: 44.38,
+      min2: 46.27,
+      min1: 48.17,
+      median: 50.06,
+      plus1: 51.96,
+      plus2: 53.85,
+      plus3: 55.74,
+    },
+    {
+      umur: 7,
+      min3: 44.38,
+      min2: 46.27,
+      min1: 48.17,
+      median: 50.06,
+      plus1: 51.96,
+      plus2: 53.85,
+      plus3: 55.74,
+    },
+  ];
+
+  const dataToDisplay =
+    parameter === "tinggi_badan" ? dummyDataTinggiBadan : dummyDataBeratBadan;
+
   const setBackgroundColor = (value: string) => {
     if (["min3", "min2", "plus2", "plus3"].includes(value)) {
       return "bg-red-500 text-white";
@@ -91,7 +167,7 @@ const Perempuan = () => {
 
   return (
     <DataTable
-      value={dummyDataParameter}
+      value={dataToDisplay}
       showGridlines
       className="datatable-responsive"
       emptyMessage="No data available"

@@ -8,6 +8,7 @@ import { IconDownload } from "@tabler/icons-react";
 
 const ParameterStunting = () => {
   const [activeTab, setActiveTab] = useState("lakilaki");
+  const [selectedParameter, setSelectedParameter] = useState("tinggi_badan");
 
   return (
     <>
@@ -48,14 +49,22 @@ const ParameterStunting = () => {
       </Card>
       <Card className="mt-2 px-2">
         <div className="flex flex-col gap-2">
-          <select className="w-full border border-white px-4 py-2 text-center text-sm focus:outline-none focus:ring-0 focus:ring-[#e4e7ec]">
+          <select
+            className="w-full border border-white px-4 py-2 text-center text-sm focus:outline-none focus:ring-0 focus:ring-[#e4e7ec]"
+            value={selectedParameter}
+            onChange={(e) => setSelectedParameter(e.target.value)}
+          >
             <option value="tinggi_badan">Tinggi Badan (Cm)</option>
             <option value="berat_badan">Berat Badan (Kg)</option>
           </select>
         </div>
         <div>
-          {activeTab === "lakilaki" && <LakiLaki />}
-          {activeTab === "perempuan" && <Perempuan />}
+          {activeTab === "lakilaki" && (
+            <LakiLaki parameter={selectedParameter} />
+          )}
+          {activeTab === "perempuan" && (
+            <Perempuan parameter={selectedParameter} />
+          )}
         </div>
       </Card>
     </>
