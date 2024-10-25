@@ -1,6 +1,7 @@
 
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import SettingBoxes from "@/components/SettingBoxes";
+import { Metadata } from "next";
 import { Card } from 'primereact/card';
 
 export const metadata: Metadata = {
