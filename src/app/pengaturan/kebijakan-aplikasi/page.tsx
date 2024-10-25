@@ -1,8 +1,7 @@
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
-import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
-import SettingBoxes from "@/components/SettingBoxes";
+import Policy from "@/components/Policy";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Next.js Settings Page | NextAdmin - Next.js Dashboard c",
@@ -12,10 +11,18 @@ export const metadata: Metadata = {
 const Settings = () => {
   return (
     <DefaultLayout>
-      <div className="mx-auto w-full max-w-[1080px]">
-        <Breadcrumb pageName="Settings" />
-
-        <SettingBoxes />
+      <div className="container mx-auto">
+        <div className="mb-4">
+          <div className="rounded-lg bg-white p-6 shadow-lg">
+            <h2 className="pb-1 text-2xl font-bold text-black">
+            Kebijakan Aplikasi
+            </h2>
+            <p className="text-sm font-medium text-gray-500">
+            Melindungi data anda, meningkatkan pengalaman anda
+            </p>
+          </div>
+        </div>
+        <Policy />
       </div>
     </DefaultLayout>
   );

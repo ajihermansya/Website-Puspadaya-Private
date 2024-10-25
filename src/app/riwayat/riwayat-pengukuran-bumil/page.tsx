@@ -1,4 +1,5 @@
 "use client";
+
 import { SvgDetailOrangTua } from "@/components/ui/Svg";
 import { Column, ColumnBodyOptions } from "primereact/column";
 import { DataTable } from "primereact/datatable";
@@ -12,8 +13,8 @@ import { IconSearch } from "@tabler/icons-react";
 interface DataRow {
   id: number;
   contact_ref: string;
-  nik: string; 
-  status: string; 
+  nik: string; // NIK
+  status: string; // Status
 }
 
 const statusColors: { [key: string]: string } = {

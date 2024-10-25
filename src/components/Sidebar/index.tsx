@@ -327,6 +327,21 @@ const menuGroups = [
             label: "Monitoring Gizi",
             route: "/monitoring/monitoring-gizi",
           },
+
+
+          {
+            icon: (
+              <img
+                src="/images/menus/status-monitoring.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Monitoring Ibu Hamil",
+            route: "/monitoring/monitoring-ibu-hamil",
+          },
         ],
       },
 
