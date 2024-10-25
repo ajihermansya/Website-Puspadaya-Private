@@ -12,11 +12,7 @@ const Page = () => {
   return (
     <>
       <div className="container mx-auto">
-        <div className="mb-4 flex items-center justify-between p-2">
-          <div>
-            <TableBumil />
-          </div>
-        </div>
+        <TableBumil />
       </div>
     </>
   );
