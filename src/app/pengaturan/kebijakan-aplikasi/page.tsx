@@ -13,12 +13,17 @@ export const metadata: Metadata = {
 const Settings = () => {
   return (
     <DefaultLayout>
-      <div className="mx-auto w-full max-w-[1080px]">
-      <Card style={{ boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.4)", marginBottom: "10px" }}>
-          <h2 className="text-[26px] font-bold leading-[30px] text-dark dark:text-white mb-3">Kebijakan Aplikasi</h2>
-          <p className="text-sm font-medium text-gray-400">Melindungi data anda, meningkatkan pengalaman anda</p>
-        </Card>
-
+      <div className="container mx-auto">
+        <div className="mb-4">
+          <div className="rounded-lg bg-white p-6 shadow-lg">
+            <h2 className="pb-1 text-2xl font-bold text-black">
+            Kebijakan Aplikasi
+            </h2>
+            <p className="text-sm font-medium text-gray-500">
+            Melindungi data anda, meningkatkan pengalaman anda
+            </p>
+          </div>
+        </div>
         <Policy />
       </div>
     </DefaultLayout>

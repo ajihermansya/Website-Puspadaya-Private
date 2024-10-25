@@ -1,32 +1,18 @@
 "use client";
-import TableRiwayatBalita from "@/components/Tables/TableRiwayatBalita";
-
+import TableRiwayatIbuHamil from "@/components/Tables/TableRiwayatIbuHamil";
 import React from "react";
-import StatusStuntingBalita from "./StatusStantingBalita";
+// import StatusStuntingBalita from "./StatusStantingBalita";
 import DataDiriKeluarga from "./DataDiriKeluarga";
 import GrafikTumbuhKembangBalita from "../Charts/GrafikTumbuhKembangBalita";
 
 
-const DetailRiwayatBalita = () => {
+const DetailRiwayatIbuHamil = () => {
   return (
     <div className="rounded-lg bg-white p-6 shadow-lg">
       {/* Data Diri Keluarga */}
       <DataDiriKeluarga />
 
-      {/* Status Stunting dan Gizi Balita */}
-      <StatusStuntingBalita />
-
       {/* Grafik */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age BOYS</h2>
-        <p className="text-sm font-light text-gray-500">
-          Birth to 6 months (z-scores)
-        </p>
-        <div style={{ width: "80%", margin: "0 auto", paddingTop: "10px" }}>
-          <GrafikTumbuhKembangBalita />
-        </div>
-      </div>
-
       <div className="mt-8">
         <h2 className="text-2xl font-bold text-black">Riwayat Pengukuran</h2>
         <p className="text-sm font-light text-gray-500">
@@ -34,14 +20,16 @@ const DetailRiwayatBalita = () => {
           BB : Berat Badan <br />
           TB : Tinggi Badan <br />
           Lila : Lingkar Lengan Atas <br />
-          LP : Lingkar Kepala
+          TFU : Tinggi Fundus Uteri <br />
+          HB : Hemoglobin <br />
+          KAR : Keterpaparan Asap Rokok
         </p>
       </div>
 
       {/* Tabel Riwayat Balita */}
-      <TableRiwayatBalita />
+      <TableRiwayatIbuHamil />
     </div>
   );
 };
 
-export default DetailRiwayatBalita;
+export default DetailRiwayatIbuHamil;

@@ -43,7 +43,7 @@ const SettingBoxes = () => {
   };
 
   return (
-    <div className="mt-0 py-2">
+    <div className="mt-0 py-0">
       <Card>
       <form onSubmit={handleSubmit}>
         <div className="profile-container">

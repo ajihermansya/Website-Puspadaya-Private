@@ -7,10 +7,10 @@ import { IconPencil } from "@tabler/icons-react";
 const Policy = () => {
 
   return (
-    <div className="mt-0 py-2">
+    <div className="mt-0 py-0">
       <Card>
         <div className='mb-5'>
-          <h2 className="text-[28px] font-bold leading-[30px] text-dark dark:text-white mb-3">Puspadaya</h2>
+          <h2 className="text-[26px] font-bold leading-[30px] text-dark dark:text-white mb-3">Puspadaya</h2>
           <p className="text-m font-medium text-gray-400">Kami di PUSPADAYA berkomitmen untuk menjaga privasi dan keamanan data Anda. Kebijakan ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda saat menggunakan aplikasi kami.</p>
         </div>
         <div className='mb-5'>
@@ -26,7 +26,7 @@ const Policy = () => {
           <p className="text-m font-medium text-gray-400">Kami menggunakan langkah-langkah keamanan yang sesuai untuk melindungi data Anda dari akses yang tidak sah, perubahan, atau pengungkapan.</p>
         </div>
         <div>
-          <p className="text-l font-medium text-gray-500">Jika Anda memiliki pertanyaan tentang Kebijakan Aplikasi ini, silakan hubungi kami di <b>[ puspadaya.id@gmail.com || 0813348765434 ]</b></p>
+          <p className="text-l font-medium text-gray-500">Jika Anda memiliki pertanyaan tentang Kebijakan Aplikasi ini, silakan hubungi kami di <br /><b>[ puspadaya.id@gmail.com || 0813348765434 ]</b></p>
         </div>
 
       </Card>
