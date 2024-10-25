@@ -100,7 +100,7 @@ const menuGroups = [
               />
             ),
             label: "Data Puskesmas",
-            route: "/data-keluarga/data-puskesmas",
+            route: "/data/data-puskesmas",
           },
 
           {
@@ -114,7 +114,7 @@ const menuGroups = [
               />
             ),
             label: "Data Posyandu",
-            route: "/data-keluarga/data-posyandu",
+            route: "/data/data-posyandu",
           },
 
           {
