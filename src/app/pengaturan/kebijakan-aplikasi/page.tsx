@@ -2,7 +2,6 @@
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import Policy from "@/components/Policy";
 import { Metadata } from "next";
-import { Card } from 'primereact/card'
 
 export const metadata: Metadata = {
   title: "Next.js Settings Page | NextAdmin - Next.js Dashboard c",
