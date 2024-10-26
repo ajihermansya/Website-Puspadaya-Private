@@ -387,8 +387,8 @@ const menuGroups = [
               />
             ),
 
-            label: "Profile",
-            route: "/pengaturan/profile",
+            label: "Akun Saya",
+            route: "/pengaturan/akun-saya",
           },
           {
             icon: (

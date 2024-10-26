@@ -18,7 +18,7 @@ const TableJadwalPosyandu: React.FC = () => {
   const [selectedPosyandu, setSelectedPosyandu] = useState<Posyandu | null>(
     null,
   );
-  const [ChangeWaktu, setChangeWaktu] = useState(false)
+  const [ChangeWaktu, setChangeWaktu] = useState(true)
 
   // State for form inputs
   const [formData, setFormData] = useState<Posyandu>({
@@ -284,7 +284,7 @@ const TableJadwalPosyandu: React.FC = () => {
                   handleDateChange(e.value as Date, "waktuMulai")
                 }
                 onBlur={() => {
-                  if (formData.waktuMulai) {
+                  if (formData.waktuMulai && formData.tanggalPelaksanaan) {
                     setChangeWaktu(false); // Hanya aktifkan input waktuSelesai jika waktuMulai sudah terisi
                   }
                 }}
