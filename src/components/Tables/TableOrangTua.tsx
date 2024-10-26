@@ -6,12 +6,19 @@ import { SvgDetailOrangTua } from "../ui/Svg";
 import { DataTable } from "primereact/datatable";
 import { Column, ColumnBodyOptions } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import { IconSearch } from "@tabler/icons-react";
+import {
+  IconEye,
+  IconPencil,
+  IconSearch,
+  IconTrash,
+} from "@tabler/icons-react";
 import {
   CascadeSelect,
   CascadeSelectChangeEvent,
 } from "primereact/cascadeselect";
 import "./style.css";
+import Link from "next/link";
+import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 
 interface City {
   cname: string;
@@ -80,7 +87,7 @@ const TableOrangTua = () => {
               setGlobalFilter((e.target as HTMLInputElement).value)
             }
             placeholder="Search..."
-            className="rounded-lg border border-gray-300 py-2 pl-10 pr-4"
+            className="h-11 rounded-lg border border-gray-300 py-2 pl-10 pr-4"
           />
         </span>
         <div>
@@ -91,44 +98,75 @@ const TableOrangTua = () => {
             optionLabel="cname"
             optionGroupLabel="name"
             optionGroupChildren={["states", "cities"]}
-            className="md:w-14rem w-full"
+            className="md:w-14rem flex h-11 w-full items-center"
             breakpoint="767px"
             placeholder="Select a City"
             style={{ minWidth: "14rem" }}
           />
         </div>
+        <ButtonLink
+          href={`/data-keluarga/data-orang-tua/create`}
+          className="h-11 bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.4286 1.42857C11.4286 0.639593 10.789 0 10 0C9.21103 0 8.57143 0.639593 8.57143 1.42857V8.57143H1.42857C0.639593 8.57143 0 9.21103 0 10C0 10.789 0.639593 11.4286 1.42857 11.4286H8.57143V18.5714C8.57143 19.3604 9.21103 20 10 20C10.789 20 11.4286 19.3604 11.4286 18.5714V11.4286H18.5714C19.3604 11.4286 20 10.789 20 10C20 9.21103 19.3604 8.57143 18.5714 8.57143H11.4286V1.42857Z"
+              fill="#fff"
+            />
+          </svg>
+        </ButtonLink>
       </div>
-      {/* <div className="relative max-w-sm">
-        <span className="p-input-icon-left">
-          <i className="pi pi-search" />
-          <InputText
-            type="search"
-            placeholder="Search..."
-            className="w-[280px] rounded-lg border p-2 pl-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-            onInput={(e) =>
-              setGlobalFilter((e.target as HTMLInputElement).value)
-            }
-          />
-        </span>
-      </div> */}
     </div>
   );
+
+  const confirmDelete = () => {
+    confirmDialog({
+      message: "Do you want to delete this record?",
+      header: "Delete Confirmation",
+      icon: "pi pi-info-circle",
+      defaultFocus: "reject",
+      acceptClassName: "p-button-danger",
+      accept,
+    });
+  };
+
+  const accept = () => {
+    alert("Sukses  Dihapus");
+  };
 
   const indexTemplate = (data: any, options: ColumnBodyOptions) => {
     return <span className="text-center">{options.rowIndex + 1}</span>;
   };
 
-  const actionTemplate = (data: any, options: ColumnBodyOptions) => {
+  const actionBodyTemplate = (rowData: OrangTua) => {
     return (
-      <ButtonLink
-        href={`/data-keluarga/data-orang-tua/${data.nomorKK}`}
-        className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
-      >
-        <div className="flex items-center gap-1">
-          <SvgDetailOrangTua />
-          <span>Lihat Detail</span>
-        </div>
-      </ButtonLink>
+      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+        <Link
+          href={`/data-keluarga/data-orang-tua/${rowData.nomorKK}`}
+          passHref
+        >
+          <IconEye style={{ color: "green", cursor: "pointer" }} />
+        </Link>
+        
+        <Link
+          href={`/data-keluarga/data-orang-tua/${rowData.nomorKK}/edit`}
+          passHref
+        >
+          <IconPencil style={{ color: "purple", cursor: "pointer" }} />
+        </Link>
+        <IconTrash
+          onClick={() => confirmDelete()}
+          style={{ color: "red", cursor: "pointer" }}
+        />
+      </div>
     );
   };
 
@@ -177,6 +215,7 @@ const TableOrangTua = () => {
     <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
       <div className="max-w-full overflow-x-auto">
         <div className="rounded-lg ">
+          <ConfirmDialog />
           <DataTable
             value={dataOrangTua}
             dataKey="nik"
@@ -238,7 +277,7 @@ const TableOrangTua = () => {
             <Column
               header="Aksi"
               headerClassName="bg-[#F7F9FC] text-black rounded-r-lg text-center"
-              body={actionTemplate}
+              body={actionBodyTemplate}
               style={{ minWidth: "5rem" }}
             />
           </DataTable>

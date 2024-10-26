@@ -1,17 +1,23 @@
 "use client";
 import React, { useState } from "react";
 import ButtonLink from "../ui/ButtonLink";
-import { SvgDetailOrangTua } from "../ui/Svg";
 import { Bumil } from "@/types/bumil";
 import { DataTable } from "primereact/datatable";
 import { Column, ColumnBodyOptions } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import { IconSearch } from "@tabler/icons-react";
+import {
+  IconEye,
+  IconPencil,
+  IconSearch,
+  IconTrash,
+} from "@tabler/icons-react";
 import {
   CascadeSelect,
   CascadeSelectChangeEvent,
 } from "primereact/cascadeselect";
 import "./style.css";
+import Link from "next/link";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
 interface City {
   cname: string;
@@ -91,12 +97,31 @@ const TableBumil = () => {
             optionLabel="cname"
             optionGroupLabel="name"
             optionGroupChildren={["states", "cities"]}
-            className="md:w-14rem w-full"
+            className="md:w-14rem flex h-11 w-full items-center"
             breakpoint="767px"
             placeholder="Select a City"
             style={{ minWidth: "14rem" }}
           />
         </div>
+        <ButtonLink
+          href={`/data-keluarga/data-bumil/create`}
+          className="h-11 bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.4286 1.42857C11.4286 0.639593 10.789 0 10 0C9.21103 0 8.57143 0.639593 8.57143 1.42857V8.57143H1.42857C0.639593 8.57143 0 9.21103 0 10C0 10.789 0.639593 11.4286 1.42857 11.4286H8.57143V18.5714C8.57143 19.3604 9.21103 20 10 20C10.789 20 11.4286 19.3604 11.4286 18.5714V11.4286H18.5714C19.3604 11.4286 20 10.789 20 10C20 9.21103 19.3604 8.57143 18.5714 8.57143H11.4286V1.42857Z"
+              fill="#fff"
+            />
+          </svg>
+        </ButtonLink>
       </div>
     </div>
   );
@@ -105,18 +130,36 @@ const TableBumil = () => {
     return <span className="text-center">{options.rowIndex + 1}</span>;
   };
 
-  const actionTemplate = (data: any, options: ColumnBodyOptions) => {
+  const actionBodyTemplate = (rowData: Bumil) => {
     return (
-      <ButtonLink
-        href={`/data-keluarga/data-bumil/${data.nik}`}
-        className="bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
-      >
-        <div className="flex items-center gap-1">
-          <SvgDetailOrangTua />
-          <span>Lihat Detail</span>
-        </div>
-      </ButtonLink>
+      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+        <Link href={`/data-keluarga/data-bumil/${rowData.nik}`} passHref>
+          <IconEye style={{ color: "green", cursor: "pointer" }} />
+        </Link>
+        <Link href={`/data-keluarga/data-bumil/${rowData.nik}/edit`} passHref>
+          <IconPencil style={{ color: "purple", cursor: "pointer" }} />
+        </Link>
+        <IconTrash
+          onClick={() => confirmDelete()}
+          style={{ color: "red", cursor: "pointer" }}
+        />
+      </div>
     );
+  };
+
+  const confirmDelete = () => {
+    confirmDialog({
+      message: "Do you want to delete this record?",
+      header: "Delete Confirmation",
+      icon: "pi pi-info-circle",
+      defaultFocus: "reject",
+      acceptClassName: "p-button-danger",
+      accept,
+    });
+  };
+
+  const accept = () => {
+    alert("Sukses  Dihapus");
   };
 
   const dummyDataBumil: Bumil[] = [
@@ -124,68 +167,77 @@ const TableBumil = () => {
       nik: "3201234567890123",
       nama: "Ani Lestari",
       usiaKehamilan: "24 minggu",
-      tanggalPendampingan: "2024-01-15",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3209876543210987",
       nama: "Rina Kusuma",
       usiaKehamilan: "16 minggu",
-      tanggalPendampingan: "2024-02-10",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3212345678901234",
       nama: "Siti Fatimah",
       usiaKehamilan: "32 minggu",
-      tanggalPendampingan: "2024-03-20",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3207654321098765",
       nama: "Dewi Kartika",
       usiaKehamilan: "20 minggu",
-      tanggalPendampingan: "2024-04-05",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3203456789012345",
       nama: "Maya Sari",
       usiaKehamilan: "28 minggu",
-      tanggalPendampingan: "2024-05-12",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3210987654321098",
       nama: "Nina Andriani",
       usiaKehamilan: "12 minggu",
-      tanggalPendampingan: "2024-06-18",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3208765432109876",
       nama: "Putri Mawar",
       usiaKehamilan: "24 minggu",
-      tanggalPendampingan: "2024-07-02",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3204567890123456",
       nama: "Rani Utami",
       usiaKehamilan: "36 minggu",
-      tanggalPendampingan: "2024-07-25",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3211234567890123",
       nama: "Lina Apriani",
       usiaKehamilan: "16 minggu",
-      tanggalPendampingan: "2024-08-15",
+      posyandu: "Posyandu Mawar",
     },
     {
       nik: "3205678901234567",
       nama: "Sari Melati",
       usiaKehamilan: "20 minggu",
-      tanggalPendampingan: "2024-09-10",
+      posyandu: "Posyandu Mawar",
     },
   ];
+
+  const usiaTemplate = (data: Bumil, options: ColumnBodyOptions) => {
+    return (
+      <span className="inline-flex rounded-full bg-gray-2 px-3 py-1 text-body-sm font-medium text-dark dark:bg-dark-3 dark:text-white">
+        {data.usiaKehamilan}
+      </span>
+    );
+  };
 
   return (
     <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
       <div className="max-w-full overflow-x-auto">
         <div className="rounded-lg ">
+          <ConfirmDialog />
           <DataTable
             value={dummyDataBumil}
             dataKey="nik"
@@ -228,26 +280,27 @@ const TableBumil = () => {
             />
 
             <Column
-              field="usiaKehamilan"
-              header="Usia Kehamilan"
+              field="posyandu"
+              header="Posyandu"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
               style={{ minWidth: "10rem" }}
             />
 
             <Column
-              field="tanggalPendampingan"
-              header="Tgl. Pendampingan"
+              field="usiaKehamilan"
+              header="Usia Kehamilan"
               sortable
               headerClassName="bg-[#F7F9FC] text-black"
+              body={usiaTemplate}
               style={{ minWidth: "10rem" }}
             />
 
             <Column
               header="Aksi"
               headerClassName="bg-[#F7F9FC] text-black rounded-r-lg text-center"
-              body={actionTemplate}
-              style={{ minWidth: "15rem" }}
+              body={actionBodyTemplate}
+              style={{ minWidth: "5rem" }}
             />
           </DataTable>
         </div>

@@ -13,7 +13,6 @@ interface SidebarProps {
 const menuGroups = [
   {
     menuItems: [
-
       {
         icon: (
           <img
@@ -28,12 +27,11 @@ const menuGroups = [
         route: "#",
         children: [
           {
-
-            label: "eCommerce", route: "/"
+            label: "eCommerce",
+            route: "/",
           },
         ],
       },
-
 
       // data
 
@@ -61,7 +59,7 @@ const menuGroups = [
               />
             ),
             label: "Data Orang Tua",
-            route: "/data-keluarga/data-orang-tua"
+            route: "/data-keluarga/data-orang-tua",
           },
           {
             icon: (
@@ -74,7 +72,7 @@ const menuGroups = [
               />
             ),
             label: "Data Balita",
-            route: "/data-keluarga/data-balita"
+            route: "/data-keluarga/data-balita",
           },
 
           {
@@ -88,7 +86,21 @@ const menuGroups = [
               />
             ),
             label: "Data Ibu Hamil",
-            route: "/data-keluarga/data-bumil"
+            route: "/data-keluarga/data-bumil",
+          },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/jamban.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Puskesmas",
+            route: "/data-keluarga/data-puskesmas",
           },
 
           {
@@ -102,7 +114,7 @@ const menuGroups = [
               />
             ),
             label: "Data Posyandu",
-            route: "/data-keluarga/data-bumil"
+            route: "/data-keluarga/data-posyandu",
           },
 
           {
@@ -116,12 +128,10 @@ const menuGroups = [
               />
             ),
             label: "Data Anggota",
-            route: "/data-keluarga/data-bumil"
+            route: "/data-keluarga/data-anggota",
           },
         ],
       },
-
-
 
       // posyandu
       {
@@ -137,7 +147,6 @@ const menuGroups = [
         label: "Posyandu",
         route: "#",
         children: [
-
           {
             icon: (
               <img
@@ -148,9 +157,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Jadwal Posyandu", route: "/posyandu/jadwal-posyandu"
+            label: "Jadwal Posyandu",
+            route: "/posyandu/jadwal-posyandu",
           },
-          
 
           {
             icon: (
@@ -162,9 +171,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Daftar Hadir Balita", route: "/posyandu/daftar-hadir-balita"
+            label: "Daftar Hadir Balita",
+            route: "/posyandu/daftar-hadir-balita",
           },
-
 
           {
             icon: (
@@ -176,9 +185,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Daftar Hadir Ibu Hamil", route: "/posyandu/daftar-hadir-ibu-hamil"
+            label: "Daftar Hadir Ibu Hamil",
+            route: "/posyandu/daftar-hadir-ibu-hamil",
           },
-
 
           {
             icon: (
@@ -190,13 +199,11 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Imunisasi", route: "/posyandu/imunisasi"
+            label: "Imunisasi",
+            route: "/posyandu/imunisasi",
           },
-
-
         ],
       },
-
 
       // pengukuran
       {
@@ -223,10 +230,9 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Pengukuran Balita", route: "/pengukuran/pengukuran-balita"
+            label: "Pengukuran Balita & Bumil",
+            route: "/pengukuran/pengukuran-balita-bumil",
           },
-
-
 
           {
             icon: (
@@ -238,8 +244,22 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran", route: "/pengukuran/rekap-pengukuran"
+            label: "Rekap Pengukuran Balita", route: "/rekap/pengukuran-balita"
           },
+
+          {
+            icon: (
+              <img
+                src="/images/menus/rekap.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Rekap Pengukuran Ibu Hamil", route: "/rekap/pengukuran-ibu-hamil"
+          },
+
           {
             icon: (
               <img
@@ -250,19 +270,20 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran", route: "/pengukuran/riwayat-pengukuran"
+            label: "Riwayat Pengukuran Balita", route: "/riwayat/riwayat-pengukuran-balita"
           },
+
           {
             icon: (
               <img
-                src="/images/menus/jadwal.svg"
+                src="/images/menus/riwayat.svg"
                 alt=""
                 width={14}
                 height={14}
                 className="fill-current"
               />
             ),
-            label: "Jadwal Pengukuran", route: "/pengukuran/jadwal-pengukuran"
+            label: "Riwayat Pengukuran Ibu Hamil", route: "/riwayat/riwayat-pengukuran-bumil"
           },
         ],
       },
@@ -292,7 +313,8 @@ const menuGroups = [
               />
             ),
 
-            label: "Parameter Stunting", route: "/monitoring/parameter-stunting"
+            label: "Parameter Stunting",
+            route: "/monitoring/parameter-stunting",
           },
 
           {
@@ -305,7 +327,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Monitoring Stunting", route: "/monitoring/monitoring-stunting"
+            label: "Monitoring Stunting",
+            route: "/monitoring/monitoring-stunting",
           },
 
           {
@@ -318,13 +341,26 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Monitoring Gizi", route: "/monitoring/monitoring-gizi"
+            label: "Monitoring Gizi",
+            route: "/monitoring/monitoring-gizi",
+          },
+
+
+          {
+            icon: (
+              <img
+                src="/images/menus/status-monitoring.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Monitoring Ibu Hamil",
+            route: "/monitoring/monitoring-ibu-hamil",
           },
         ],
       },
-
-
-
 
       // pengaturan
       {
@@ -351,7 +387,8 @@ const menuGroups = [
               />
             ),
 
-            label: "Profile", route: "/pengaturan/profile"
+            label: "Profile",
+            route: "/pengaturan/profile",
           },
           {
             icon: (
@@ -363,18 +400,13 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Kebijakan Aplikasi", route: "/pengaturan/kebijakan-aplikasi"
+            label: "Kebijakan Aplikasi",
+            route: "/pengaturan/kebijakan-aplikasi",
           },
-
         ],
       },
-
-
-
     ],
   },
-
-
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
@@ -388,20 +420,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
-
       <aside
-        className={`sticky left-0 top-0 z-9999 border-r border-stroke bg-white dark:border-stroke-dark dark:bg-gray-dark lg:static lg:translate-x-0 ${sidebarOpen
-          ? "translate-x-0 duration-300 ease-linear"
-          : "-translate-x-full"
-          }`}
+        className={`sticky left-0 top-0 z-9999 border-r border-stroke bg-white dark:border-stroke-dark dark:bg-gray-dark lg:static lg:translate-x-0 ${
+          sidebarOpen
+            ? "translate-x-0 duration-300 ease-linear"
+            : "-translate-x-full md:px-14"
+        }`}
       >
-
         {/* <!-- SIDEBAR HEADER --> */}
 
         <div className="no-scrollbar duration-300 ease-linear">
           {/* <!-- Sidebar Menu --> */}
           <nav className=" items-center justify-normal gap-2 lg:w-full xl:w-auto xl:justify-normal">
-
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>
                 <ul className="flex items-center ">
@@ -424,13 +454,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </nav>
           {/* <!-- Sidebar Menu --> */}
         </div>
-
-
       </aside>
-
     </ClickOutside>
   );
-
-
 };
 export default Sidebar;
