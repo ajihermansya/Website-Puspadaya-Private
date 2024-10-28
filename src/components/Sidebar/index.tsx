@@ -130,6 +130,19 @@ const menuGroups = [
             label: "Data Anggota",
             route: "/data/data-anggota",
           },
+          {
+            icon: (
+              <img
+                src="/images/menus/artikel.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Artikel",
+            route: "/data/data-artikel",
+          },
         ],
       },
 
@@ -390,8 +403,8 @@ const menuGroups = [
               />
             ),
 
-            label: "Profile",
-            route: "/pengaturan/profile",
+            label: "Akun Saya",
+            route: "/pengaturan/akun-saya",
           },
           {
             icon: (
