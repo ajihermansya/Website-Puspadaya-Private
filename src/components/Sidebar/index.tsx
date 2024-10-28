@@ -128,7 +128,7 @@ const menuGroups = [
               />
             ),
             label: "Data Anggota",
-            route: "/data-keluarga/data-anggota",
+            route: "/data/data-anggota",
           },
         ],
       },
@@ -244,7 +244,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran Balita", route: "/rekap/pengukuran-balita"
+            label: "Rekap Pengukuran Balita",
+            route: "/rekap/pengukuran-balita",
           },
 
           {
@@ -257,7 +258,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Rekap Pengukuran Ibu Hamil", route: "/rekap/pengukuran-ibu-hamil"
+            label: "Rekap Pengukuran Ibu Hamil",
+            route: "/rekap/pengukuran-ibu-hamil",
           },
 
           {
@@ -270,7 +272,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran Balita", route: "/riwayat/riwayat-pengukuran-balita"
+            label: "Riwayat Pengukuran Balita",
+            route: "/riwayat/riwayat-pengukuran-balita",
           },
 
           {
@@ -283,7 +286,8 @@ const menuGroups = [
                 className="fill-current"
               />
             ),
-            label: "Riwayat Pengukuran Ibu Hamil", route: "/riwayat/riwayat-pengukuran-bumil"
+            label: "Riwayat Pengukuran Ibu Hamil",
+            route: "/riwayat/riwayat-pengukuran-bumil",
           },
         ],
       },
@@ -344,7 +348,6 @@ const menuGroups = [
             label: "Monitoring Gizi",
             route: "/monitoring/monitoring-gizi",
           },
-
 
           {
             icon: (
