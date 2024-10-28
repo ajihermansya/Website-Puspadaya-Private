@@ -66,6 +66,9 @@ const CreateArtikel = () => {
     setTotalSize(0); // Set total size menjadi 0 setelah file dihapus ada jika single, tidak ada jika multiple
     callback(); // Lanjutkan proses penghapusan
   };
+  const onTemplateClear = () => {
+    setTotalSize(0);
+  };
 
   const headerTemplate = (options: {
     className: string;
@@ -186,6 +189,7 @@ const CreateArtikel = () => {
             accept="image/*"
             maxFileSize={2000000}
             onSelect={onTemplateSelect}
+            onError={onTemplateClear} onClear={onTemplateClear}
             headerTemplate={headerTemplate}
             itemTemplate={itemTemplate}
             emptyTemplate={emptyTemplate}

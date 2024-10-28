@@ -1,49 +1,48 @@
-"use client";
 import { FileUpload } from "primereact/fileupload";
 import { ProgressBar } from "primereact/progressbar";
-
-import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import { useRef, useState } from "react";
 import { ItemTemplateOptions } from "primereact/fileupload";
 import Image from "next/image";
 
-const ImageUploadSingle = (file:File) => {
-  const [files, setFiles] = useState<File>(file);
-  const fileUploadRef = useRef<FileUpload>(null);
-  const [totalSize, setTotalSize] = useState<number>(0);
+interface ImageUploadSingleProps {
+  file: File | null;
+  onFileSelect: (file: File) => void;
+}
 
-  //single
+const ImageUploadSingle: React.FC<ImageUploadSingleProps> = ({
+  file,
+  onFileSelect,
+}) => {
+  const fileUploadRef = useRef<FileUpload>(null);
+  const [totalSize, setTotalSize] = useState(file ? file.size : 0);
+
   const onTemplateSelect = (e: { files: File[] }) => {
-    const file = e.files[0]; // Hanya ambil file terbaru
-    setTotalSize(file.size); // Set total size dengan ukuran file terbaru
-    setFiles(file); // Set files array hanya dengan file terbaru
+    const selectedFile = e.files[0];
+    onFileSelect(selectedFile); // Kirim file ke komponen Page
+    setTotalSize(selectedFile.size); // Update totalSize saat file dipilih
   };
 
-  const onTemplateRemove = (file: File, callback: Function) => {
-    setTotalSize(0); // Set total size menjadi 0 setelah file dihapus ada jika single, tidak ada jika multiple
-    callback(); // Lanjutkan proses penghapusan
+  const onTemplateRemove = (callback: Function) => {
+    onFileSelect(null as any); // Kosongkan file
+    setTotalSize(0); // Reset totalSize menjadi 0 saat file dihapus
+    callback();
   };
 
   const headerTemplate = (options: {
     className: string;
     chooseButton: JSX.Element;
-    uploadButton: JSX.Element;
     cancelButton: JSX.Element;
   }) => {
     const { className, chooseButton, cancelButton } = options;
     const value = totalSize / 20000;
     const formattedValue =
       fileUploadRef.current?.formatSize(totalSize) || "0 B";
-
+    // setTotalSize(formattedValue);
     return (
       <div
         className={className}
-        style={{
-          backgroundColor: "transparent",
-          display: "flex",
-          alignItems: "center",
-        }}
+        style={{ display: "flex", alignItems: "center" }}
       >
         {chooseButton}
         {cancelButton}
@@ -59,6 +58,10 @@ const ImageUploadSingle = (file:File) => {
     );
   };
 
+  const onTemplateClear = () => {
+    setTotalSize(0);
+  };
+
   const itemTemplate = (file: object, options: ItemTemplateOptions) => {
     const fileObj = file as File;
     const imageUrl = URL.createObjectURL(fileObj);
@@ -68,7 +71,6 @@ const ImageUploadSingle = (file:File) => {
         <div className="align-items-center flex" style={{ width: "40%" }}>
           <Image
             alt={fileObj.name}
-            role="presentation"
             src={imageUrl}
             width={100}
             height={100}
@@ -79,16 +81,11 @@ const ImageUploadSingle = (file:File) => {
             <small>{new Date().toLocaleDateString()}</small>
           </span>
         </div>
-        {/* <Tag
-          value={fileUploadRef.current?.formatSize(fileObj.size)}
-          severity="warning"
-          className="px-3 py-2"
-        /> */}
         <Button
           type="button"
           icon="pi pi-times"
           className="p-button-outlined p-button-rounded p-button-danger ml-auto"
-          onClick={(e) => onTemplateRemove(fileObj, () => options.onRemove(e))}
+          onClick={(e) => onTemplateRemove(() => options.onRemove(e))}
         />
       </div>
     );
@@ -96,19 +93,8 @@ const ImageUploadSingle = (file:File) => {
 
   const emptyTemplate = () => (
     <div className="align-items-center flex-column flex">
-      <i
-        className="pi pi-image mt-3 p-5"
-        style={{
-          fontSize: "5em",
-          borderRadius: "50%",
-          backgroundColor: "var(--surface-b)",
-          color: "var(--surface-d)",
-        }}
-      ></i>
-      <span
-        style={{ fontSize: "1.2em", color: "var(--text-color-secondary)" }}
-        className="my-5"
-      >
+      <i className="pi pi-image mt-3 p-5" style={{ fontSize: "5em" }}></i>
+      <span style={{ fontSize: "1.2em" }} className="my-5">
         Drag and Drop Image Here
       </span>
     </div>
@@ -125,23 +111,27 @@ const ImageUploadSingle = (file:File) => {
     iconOnly: true,
     className:
       "custom-cancel-btn p-button-danger p-button-rounded p-button-outlined",
+
+    onClick: () => {
+      setTotalSize(0); // Reset totalSize menjadi 0
+    },
   };
+
   return (
-    <div className="">
-      <FileUpload
-        ref={fileUploadRef}
-        name="demo[]"
-        multiple={false}
-        accept="image/*"
-        maxFileSize={2000000}
-        onSelect={onTemplateSelect}
-        headerTemplate={headerTemplate}
-        itemTemplate={itemTemplate}
-        emptyTemplate={emptyTemplate}
-        chooseOptions={chooseOptions}
-        cancelOptions={cancelOptions}
-      />
-    </div>
+    <FileUpload
+      ref={fileUploadRef}
+      name="demo[]"
+      multiple={false}
+      accept="image/*"
+      maxFileSize={2000000}
+      onSelect={onTemplateSelect}
+      headerTemplate={headerTemplate}
+      itemTemplate={itemTemplate}
+      onError={onTemplateClear} onClear={onTemplateClear}
+      emptyTemplate={emptyTemplate}
+      chooseOptions={chooseOptions}
+      cancelOptions={cancelOptions}
+    />
   );
 };
 

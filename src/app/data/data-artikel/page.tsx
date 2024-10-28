@@ -1,3 +1,5 @@
+import ImageUploadMultiple from "@/components/FileUpload/Image/fileUploadMultiple";
+import ImageUploadSingle from "@/components/FileUpload/Image/fileUploadSingle";
 import TableArtikel from "@/components/Tables/TableArtikel";
 import { Metadata } from "next";
 

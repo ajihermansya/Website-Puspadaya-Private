@@ -9,8 +9,15 @@ import { Calendar } from "primereact/calendar";
 import ModalDelete from "../modal/modalDelete";
 import { Artikel } from "@/types/artikel";
 import Link from "next/link";
+import ImageUploadSingle from "../FileUpload/Image/fileUploadSingle";
+import ImageUploadMultiple from "../FileUpload/Image/fileUploadMultiple";
 
 const TableArtikel: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileSelect = (file: File) => {
+    setSelectedFile(file); // Update state dengan file baru
+  };
   const [globalFilter, setGlobalFilter] = useState("");
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [selectedArtikel, setSelectedArtikel] = useState<Artikel | null>(null);
@@ -79,10 +86,7 @@ const TableArtikel: React.FC = () => {
 
   const actionTemplate = (data: Artikel) => (
     <div className="flex items-center gap-2">
-      <Link
-        href={`/data/data-artikel/${data.id}`}
-        className="cursor-pointer"
-      >
+      <Link href={`/data/data-artikel/${data.id}`} className="cursor-pointer">
         <SvgDetail />
       </Link>
       <Link
@@ -142,6 +146,11 @@ const TableArtikel: React.FC = () => {
       >
         {deleteModalContent}
       </ModalDelete>
+      <ImageUploadSingle file={selectedFile} onFileSelect={handleFileSelect} />
+      <ImageUploadMultiple
+        initialFiles={[]} // Pass any initial files if needed
+        onFileSelect={(files) => console.log(files)} // Handle selected files
+      />
     </div>
   );
 };

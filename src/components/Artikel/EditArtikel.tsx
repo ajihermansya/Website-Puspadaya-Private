@@ -167,6 +167,9 @@ const EditArtikel = () => {
     );
   };
 
+  const onTemplateClear = () => {
+    setTotalSize(0);
+  };
   const emptyTemplate = () => (
     <div className="align-items-center flex-column flex">
       <i
@@ -223,6 +226,7 @@ const EditArtikel = () => {
             headerTemplate={headerTemplate}
             itemTemplate={itemTemplate}
             emptyTemplate={emptyTemplate}
+            onError={onTemplateClear} onClear={onTemplateClear}
             chooseOptions={chooseOptions}
             cancelOptions={cancelOptions}
           />
