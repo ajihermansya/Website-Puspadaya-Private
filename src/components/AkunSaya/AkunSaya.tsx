@@ -10,6 +10,8 @@ import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { Akun } from "@/types/akun";
 import { Role } from "@/types/role";
+import ProfileBox from "../ProfileBox";
+import SettingBoxes from "../SettingBoxes";
 
 type Kabupaten = {
   name: string;

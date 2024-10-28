@@ -130,6 +130,19 @@ const menuGroups = [
             label: "Data Anggota",
             route: "/data-keluarga/data-anggota",
           },
+          {
+            icon: (
+              <img
+                src="/images/menus/artikel.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Data Artikel",
+            route: "/data/data-artikel",
+          },
         ],
       },
 
