@@ -213,14 +213,14 @@ const TableManagementRole: React.FC = () => {
               name="namaRole"
               value={formData.namaRole}
               onChange={handleInputChange}
-              className="w-full"
+              className="w-full mt-1"
             />
           </div>
           <div>
             <label>Hak Akses</label>
             <div className="grid grid-cols-3 gap-3">
               {accessOptions.map((option) => (
-                <div key={option.value} className="flex items-center gap-2">
+                <div key={option.value} className="flex mt-1 items-center gap-2">
                   <Checkbox
                     inputId={option.value}
                     value={option.value}
@@ -239,7 +239,7 @@ const TableManagementRole: React.FC = () => {
               options={usersList}
               onChange={handleUserChange}
               placeholder="Pilih Pengguna"
-              className="w-full"
+              className="w-full mt-1"
             />
           </div>
         </div>
