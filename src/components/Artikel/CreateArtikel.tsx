@@ -31,6 +31,7 @@ const CreateArtikel = () => {
     const formData = new FormData();
     formData.append("judulArtikel", judulArtikel);
     formData.append("text", text);
+    formData.append("status_publikasi", StatusPublish ? "true" : "false");
     files.forEach((file) => formData.append("files", file)); // Add each file to formData
 
     try {
@@ -185,7 +186,7 @@ const CreateArtikel = () => {
           <FileUpload
             ref={fileUploadRef}
             name="demo[]"
-            multiple={true}
+            multiple={false}
             accept="image/*"
             maxFileSize={2000000}
             onSelect={onTemplateSelect}
