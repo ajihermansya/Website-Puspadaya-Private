@@ -87,9 +87,9 @@ const ImageUploadMultiple: React.FC<ImageUploadMultipleProps> = ({ initialFiles 
   };
 
   const emptyTemplate = () => (
-    <div className="align-items-center flex-column flex">
-      <i className="pi pi-image mt-3 p-5" style={{ fontSize: "5em" }}></i>
-      <span style={{ fontSize: "1.2em" }} className="my-5">
+    <div className="flex flex-col items-center p-3">
+      <i className="pi pi-image mt-3 p-3" style={{ fontSize: "3em" }}></i>
+      <span style={{ fontSize: "1em" }} className="my-5">
         Drag and Drop Image Here
       </span>
     </div>
