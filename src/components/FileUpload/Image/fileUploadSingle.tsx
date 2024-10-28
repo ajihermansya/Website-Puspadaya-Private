@@ -1,19 +1,15 @@
 "use client";
-import { FileUpload, FileUploadUploadEvent } from "primereact/fileupload";
+import { FileUpload } from "primereact/fileupload";
 import { ProgressBar } from "primereact/progressbar";
-import { Toast } from "primereact/toast";
 
 import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import { useRef, useState } from "react";
 import { ItemTemplateOptions } from "primereact/fileupload";
 import Image from "next/image";
-import { InputText } from "primereact/inputtext";
-import { Editor } from "primereact/editor";
 
-const CreateArtikel = () => {
-  const [files, setFiles] = useState<File[]>([]);
-  const toast = useRef<Toast>(null);
+const ImageUploadSingle = (file:File) => {
+  const [files, setFiles] = useState<File>(file);
   const fileUploadRef = useRef<FileUpload>(null);
   const [totalSize, setTotalSize] = useState<number>(0);
 
@@ -21,49 +17,13 @@ const CreateArtikel = () => {
   const onTemplateSelect = (e: { files: File[] }) => {
     const file = e.files[0]; // Hanya ambil file terbaru
     setTotalSize(file.size); // Set total size dengan ukuran file terbaru
-    setFiles([file]); // Set files array hanya dengan file terbaru
+    setFiles(file); // Set files array hanya dengan file terbaru
   };
 
-  const handleSubmit = async () => {
-    const formData = new FormData();
-    files.forEach((file) => formData.append("files", file)); // Add each file to formData
-
-    try {
-      const response = await fetch("/api/post_artikel", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        toast.current?.show({
-          severity: "success",
-          summary: "Success",
-          detail: "Artikel berhasil disimpan",
-        });
-      } else {
-        toast.current?.show({
-          severity: "error",
-          summary: "Error",
-          detail: "Gagal menyimpan artikel",
-        });
-      }
-    } catch (error) {
-      toast.current?.show({
-        severity: "error",
-        summary: "Error",
-        detail: "Terjadi kesalahan saat menyimpan artikel",
-      });
-    }
-  };
-
-
- 
-  
   const onTemplateRemove = (file: File, callback: Function) => {
     setTotalSize(0); // Set total size menjadi 0 setelah file dihapus ada jika single, tidak ada jika multiple
     callback(); // Lanjutkan proses penghapusan
   };
-  
 
   const headerTemplate = (options: {
     className: string;
@@ -167,44 +127,22 @@ const CreateArtikel = () => {
       "custom-cancel-btn p-button-danger p-button-rounded p-button-outlined",
   };
   return (
-    <div className="container mx-auto">
-      <div className="mb-4">
-        <div className="rounded-lg bg-white p-6 shadow-lg">
-          <h2 className="pb-1 text-2xl font-bold text-black">
-            Buat Artikel Baru
-          </h2>
-          <p className="text-sm font-medium text-gray-500">
-            Tambahkan data artikel bermanfaat seputar kesehatan
-          </p>
-        </div>
-      </div>
-      <div className="overflow-hidden rounded-[10px] bg-white px-10 py-9 pt-6 shadow-1">
-        <div className="">
-          <Toast ref={toast}></Toast>
-          <FileUpload
-            ref={fileUploadRef}
-            name="demo[]"
-            multiple={true}
-            accept="image/*"
-            maxFileSize={2000000}
-            onSelect={onTemplateSelect}
-            headerTemplate={headerTemplate}
-            itemTemplate={itemTemplate}
-            emptyTemplate={emptyTemplate}
-            chooseOptions={chooseOptions}
-            cancelOptions={cancelOptions}
-          />
-          <div className="mt-14 flex items-center justify-center px-4">
-            <Button
-              label="Simpan"
-              className="w-full max-w-[370px] bg-[#486284]"
-              onClick={handleSubmit}
-            />
-          </div>
-        </div>
-      </div>
+    <div className="">
+      <FileUpload
+        ref={fileUploadRef}
+        name="demo[]"
+        multiple={false}
+        accept="image/*"
+        maxFileSize={2000000}
+        onSelect={onTemplateSelect}
+        headerTemplate={headerTemplate}
+        itemTemplate={itemTemplate}
+        emptyTemplate={emptyTemplate}
+        chooseOptions={chooseOptions}
+        cancelOptions={cancelOptions}
+      />
     </div>
   );
 };
 
-export default CreateArtikel;
+export default ImageUploadSingle;
