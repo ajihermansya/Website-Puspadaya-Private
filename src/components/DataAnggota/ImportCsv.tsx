@@ -1,11 +1,17 @@
 import Link from "next/link";
 import { Button } from "primereact/button";
-import { Card } from "primereact/card";
-import { FileUpload } from "primereact/fileupload";
 import { Image } from "primereact/image";
-import React from "react";
+import React, { useState } from "react";
+import ImageUploadSingle from "../FileUpload/Image/fileUploadSingle";
 
 const ImportCsv = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("Form submitted", selectedFile);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
       {/* Left Column - Instructions */}
@@ -111,33 +117,25 @@ const ImportCsv = () => {
             </p>
           </div>
 
-          <FileUpload
-            mode="basic"
-            name="file"
-            url="/api/upload"
-            accept=".csv,.xlsx"
-            maxFileSize={1000000}
-            chooseLabel="Klik atau seret file ke area ini untuk mengunggah"
-            className="upload-custom"
-          />
-
-          <Card className="border-none bg-gray-50">
-            <div className="flex items-center gap-3">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500">
-                <i className="pi pi-check text-sm text-white"></i>
-              </div>
-              <span className="text-sm">Data Akun Kabupaten Banyuwangi</span>
+          <form onSubmit={handleSubmit}>
+            <div className="mt-6">
+              <ImageUploadSingle
+                type="exel"
+                file={selectedFile}
+                accept=".xlsx,.csv"
+                onFileSelect={setSelectedFile}
+              />
             </div>
-          </Card>
 
-          <div className="mt-6 w-full">
-            <Button
-              type="submit"
-              className="flex  w-full justify-center border-none bg-[#486284] py-2 hover:bg-[#3c526e]"
-            >
-              Simpan
-            </Button>
-          </div>
+            <div className="mt-8 w-full">
+              <Button
+                type="submit"
+                className="flex  w-full justify-center border-none bg-[#486284] py-2 hover:bg-[#3c526e]"
+              >
+                Simpan
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
