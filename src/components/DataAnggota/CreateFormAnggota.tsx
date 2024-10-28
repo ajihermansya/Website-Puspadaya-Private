@@ -1,15 +1,11 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { PosyanduType } from "@/types/posyandu";
 import PasswordInput from "../ui/PasswordInput";
-import { Toast } from "primereact/toast";
-import { FileUpload } from "primereact/fileupload";
-import { Tooltip } from "primereact/tooltip";
-import Image from "next/image";
-import ImageUpload from "../ui/ImageUpload";
+import ImageUploadSingle from "../FileUpload/Image/fileUploadSingle";
 
 interface Kabupaten {
   name: string;
@@ -29,6 +25,7 @@ const CreateFormAnggota = () => {
   const [selectedPosyandu, setSelectedPosyandu] = useState<PosyanduType | null>(
     null,
   );
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const posyanduData: PosyanduType[] = [
     {
@@ -75,12 +72,21 @@ const CreateFormAnggota = () => {
 
   const handleSubmit: React.FormEventHandler = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log("Form submitted", selectedFile);
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Unggah Foto Pribadi
+          </label>
+          <ImageUploadSingle
+            file={selectedFile}
+            onFileSelect={setSelectedFile}
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
           <div>
             <div className="mb-4">
