@@ -152,11 +152,11 @@ const EditArtikel = () => {
             <small>{new Date().toLocaleDateString()}</small>
           </span>
         </div>
-        <Tag
+        {/* <Tag
           value={fileUploadRef.current?.formatSize(fileObj.size)}
           severity="warning"
           className="px-3 py-2"
-        />
+        /> */}
         <Button
           type="button"
           icon="pi pi-times"
@@ -239,7 +239,7 @@ const EditArtikel = () => {
           </div>
           <div className="mb-3 flex flex-col gap-3">
             <label htmlFor="judulArtikel">Status Publikasi</label>
-            <div className="align-items-center flex">
+            <div className="items-center flex">
               <RadioButton
                 inputId="statusTrue"
                 name="statusPublish"
@@ -251,7 +251,7 @@ const EditArtikel = () => {
                 Iya, Publish Artikel
               </label>
             </div>
-            <div className="align-items-center flex">
+            <div className="items-center flex">
               <RadioButton
                 inputId="ingredient2"
                 name="statusPublish"

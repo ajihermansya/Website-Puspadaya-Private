@@ -84,11 +84,11 @@ const ImageUploadMultiple = (file:File[]) => {
             <small>{new Date().toLocaleDateString()}</small>
           </span>
         </div>
-        <Tag
+        {/* <Tag
           value={fileUploadRef.current?.formatSize(fileObj.size)}
           severity="warning"
           className="px-3 py-2"
-        />
+        /> */}
         <Button
           type="button"
           icon="pi pi-times"
