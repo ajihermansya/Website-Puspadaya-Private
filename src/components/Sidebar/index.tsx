@@ -419,6 +419,19 @@ const menuGroups = [
             label: "Kebijakan Aplikasi",
             route: "/pengaturan/kebijakan-aplikasi",
           },
+          {
+            icon: (
+              <img
+                src="/images/menus/management-role.svg"
+                alt=""
+                width={14}
+                height={14}
+                className="fill-current"
+              />
+            ),
+            label: "Management Role",
+            route: "/pengaturan/management-role",
+          },
         ],
       },
     ],

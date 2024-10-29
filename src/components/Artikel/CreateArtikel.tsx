@@ -136,22 +136,11 @@ const CreateArtikel = () => {
   };
 
   const emptyTemplate = () => (
-    <div className="align-items-center flex-column flex">
-      <i
-        className="pi pi-image mt-3 p-5"
-        style={{
-          fontSize: "5em",
-          borderRadius: "50%",
-          backgroundColor: "var(--surface-b)",
-          color: "var(--surface-d)",
-        }}
-      ></i>
-      <span
-        style={{ fontSize: "1.2em", color: "var(--text-color-secondary)" }}
-        className="my-5"
-      >
-        Drag and Drop Image Here
-      </span>
+    <div className="justify-center items-center flex">
+      <div className="flex flex-col items-center p-3">
+          <i className="pi pi-image mt-3 p-3" style={{ fontSize: "3em" }}></i>
+          <span style={{ fontSize: "1em" }}>Drag and Drop Image Here</span>
+        </div>
     </div>
   );
 
