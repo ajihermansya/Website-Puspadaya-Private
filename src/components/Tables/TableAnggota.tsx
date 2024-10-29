@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import ButtonLink from "../ui/ButtonLink";
 import { DataTable } from "primereact/datatable";
 import { Column, ColumnBodyOptions } from "primereact/column";
 import { InputText } from "primereact/inputtext";
@@ -14,6 +13,7 @@ import Link from "next/link";
 import { IconEye } from "@tabler/icons-react";
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import { Anggota } from "@/types/anggota";
+import { SvgAdd } from "../ui/Svg";
 
 interface City {
   cname: string;
@@ -104,25 +104,12 @@ const TableAnggota = () => {
             style={{ minWidth: "14rem" }}
           />
         </div>
-        <ButtonLink
+        <Link
           href={`/data/data-anggota/create`}
-          className="h-11 bg-[#486284] hover:bg-[#405672] focus-visible:ring-[#405672]"
+          className="flex cursor-pointer items-center justify-center rounded-md border p-[10px]"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M11.4286 1.42857C11.4286 0.639593 10.789 0 10 0C9.21103 0 8.57143 0.639593 8.57143 1.42857V8.57143H1.42857C0.639593 8.57143 0 9.21103 0 10C0 10.789 0.639593 11.4286 1.42857 11.4286H8.57143V18.5714C8.57143 19.3604 9.21103 20 10 20C10.789 20 11.4286 19.3604 11.4286 18.5714V11.4286H18.5714C19.3604 11.4286 20 10.789 20 10C20 9.21103 19.3604 8.57143 18.5714 8.57143H11.4286V1.42857Z"
-              fill="#fff"
-            />
-          </svg>
-        </ButtonLink>
+          <SvgAdd />
+        </Link>
       </div>
     </div>
   );
