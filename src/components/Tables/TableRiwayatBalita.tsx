@@ -1,95 +1,73 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column"; // Perbaikan: impor Column dari 'primereact/column'
+import { ProgressBar } from "primereact/progressbar";
+import { Toast } from "primereact/toast";
+
+// Dummy data
+const dataPengukuran = [
+  { no: 1, tanggal: "12/02/2024", bb: 12, tb: 20, lila: 3, lp: 6, petugas: "Siti Ahyani", status: "Normal", faktor: "Tidak Ada" },
+  { no: 2, tanggal: "13/02/2024", bb: 13, tb: 21, lila: 3.5, lp: 6.2, petugas: "Yovita Nanda", status: "Beresiko", faktor: "Air bersih, Asupan Gizi" },
+  { no: 3, tanggal: "14/02/2024", bb: 10, tb: 18, lila: 2.8, lp: 5.8, petugas: "Risma Tahmidi", status: "Stunting", faktor: "Asupan Gizi" },
+  { no: 4, tanggal: "15/02/2024", bb: 11, tb: 19, lila: 3, lp: 6, petugas: "Willa Wikarsi", status: "Normal", faktor: "Tidak Ada" },
+  { no: 5, tanggal: "16/02/2024", bb: 16, tb: 20, lila: 2, lp: 5, petugas: "Willa Wikarsi", status: "Stunting", faktor: "Tidak Ada" },
+];
 
 const TableRiwayatBalita = () => {
+  const [data, setData] = useState(dataPengukuran);
+  const [loading, setLoading] = useState(false);
+  const toast = useRef(null);
+
+  const statusBodyTemplate = (rowData: any) => { // Mengatur rowData sebagai any
+    return (
+      <span
+        className={`p-2 rounded-lg text-white ${
+          rowData.status === "Normal" ? "bg-green-500" : rowData.status === "Beresiko" ? "bg-yellow-500" : "bg-red-500"
+        }`}
+      >
+        {rowData.status}
+      </span>
+    );
+  };
+
   return (
     <div className="mt-8">
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black">No.</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black">Tanggal Pengukuran</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black">BB (Kg)</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black">TB (Cm)</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black">Lila (Cm)</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black">LP (Cm)</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black max-w-xs">Petugas</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold tracking-wider text-black max-w-xs">Faktor Resiko</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200 bg-white">
-            {/* Data Pengukuran */}
-            {dataPengukuran.map((item, index) => (
-              <tr
-                key={index}
-                className={`${
-                  index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                }`}
-              >
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black">{item.no}</td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black">{item.tanggal}</td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black">{item.bb}</td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black">{item.tb}</td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black">{item.lila}</td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black">{item.lp}</td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black max-w-xs truncate">{item.petugas}</td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black">
-                  <span
-                    className={`inline-block px-2 py-1 rounded text-white ${
-                      item.status === "Normal"
-                        ? "bg-green-500"
-                        : item.status === "Beresiko"
-                        ? "bg-yellow-500"
-                        : item.status === "Stunting"
-                        ? "bg-red-500"
-                        : "bg-gray-500"
-                    }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-                <td className="whitespace-nowrap px-6 py-4 text-xs font-medium text-black max-w-xs truncate">{item.faktor}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="flex justify-between items-center mt-4">
-        <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-          Sebelumnya
-        </button>
-        <div className="flex space-x-2">
-          <button className="px-4 py-2 bg-purple-500 text-white rounded">
-            1
-          </button>
-          <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-            2
-          </button>
-          <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-            3
-          </button>
+        {loading && (
+          <div className="mb-4">
+            <span className="text-sm text-gray-600">Loading...</span>
+            <ProgressBar mode="indeterminate" className="mt-2 h-2" />
+          </div>
+        )}
+        <Toast ref={toast} />
+        <div className="rounded-lg">
+          <DataTable
+            value={data}
+            paginator
+            rows={5}
+            rowsPerPageOptions={[5, 10, 20]}
+            className="datatable-responsive"
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} records"
+            emptyMessage="No data available"
+            responsiveLayout="scroll"
+            paginatorClassName="bg-gray-50 p-4 mt-4 rounded-lg"
+          >
+            <Column field="no" header="No" sortable headerClassName="bg-[#F7F9FC] text-black" bodyClassName="text-center" />
+            <Column field="tanggal" header="Tanggal Pengukuran" sortable headerClassName="bg-[#F7F9FC] text-black" style={{ minWidth: "10rem" }} />
+            <Column field="bb" header="BB (Kg)" sortable headerClassName="bg-[#F7F9FC] text-black" />
+            <Column field="tb" header="TB (Cm)" sortable headerClassName="bg-[#F7F9FC] text-black" />
+            <Column field="lila" header="Lila (Cm)" sortable headerClassName="bg-[#F7F9FC] text-black" />
+            <Column field="lp" header="LP (Cm)" sortable headerClassName="bg-[#F7F9FC] text-black" />
+            <Column field="petugas" header="Petugas" sortable headerClassName="bg-[#F7F9FC] text-black" style={{ minWidth: "10rem" }} />
+            <Column field="status" header="Status" sortable body={statusBodyTemplate} headerClassName="bg-[#F7F9FC] text-black" />
+            <Column field="faktor" header="Faktor Resiko" sortable headerClassName="bg-[#F7F9FC] text-black" style={{ minWidth: "15rem" }} />
+          </DataTable>
         </div>
-        <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-          Selanjutnya
-        </button>
       </div>
     </div>
   );
 };
-
-// Data Pengukuran Dummy
-const dataPengukuran = [
-  { no: 1, tanggal: "12 September 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Normal", petugas: "Siti Ahyani", faktor: "Tidak Ada" },
-  { no: 2, tanggal: "1 September 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Normal", petugas: "Siti Ahyani", faktor: "Tidak Ada" },
-  { no: 3, tanggal: "12 Agustus 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Beresiko", petugas: "Yovita Nanda", faktor: "Air bersih, Asupan Gizi, infeksi berulang" },
-  { no: 4, tanggal: "1 Agustus 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Beresiko", petugas: "Yovita Nanda", faktor: "Air bersih, Asupan Gizi, infeksi berulang" },
-  { no: 5, tanggal: "12 Juli 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Stunting", petugas: "Risma Tahmidi", faktor: "Air bersih, Asupan Gizi, infeksi berulang" },
-  { no: 6, tanggal: "1 Juli 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Stunting", petugas: "Risma Tahmidi", faktor: "Air bersih, Asupan Gizi, infeksi berulang" },
-  { no: 7, tanggal: "12 Juni 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Normal", petugas: "Willa Wikarsi", faktor: "Tidak Ada" },
-  { no: 8, tanggal: "1 Juni 2024", bb: 12, tb: 20, lila: 3, lp: 6, status: "Normal", petugas: "Willa Wikarsi", faktor: "Tidak Ada" }
-];
 
 export default TableRiwayatBalita;

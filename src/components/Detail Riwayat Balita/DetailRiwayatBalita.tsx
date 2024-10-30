@@ -18,7 +18,7 @@ const DetailRiwayatBalita = () => {
 
       {/* Grafik */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age BOYS</h2>
+        <h2 className="text-2xl font-bold text-black">Grafik Tumbuh Kembang Balita</h2>
         <p className="text-sm font-light text-gray-500">
           Birth to 6 months (z-scores)
         </p>
@@ -28,18 +28,20 @@ const DetailRiwayatBalita = () => {
       </div>
 
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Riwayat Pengukuran</h2>
+        <h2 className="text-2xl font-bold text-black">Riwayat Pengukuran Balita</h2>
+      </div>
+
+      {/* Tabel Riwayat Balita */}
+      <TableRiwayatBalita />
+      <div className="mt-5">
         <p className="text-sm font-light text-gray-500">
-          <b>keterangan :</b><br />
+          <b>Keterangan :</b><br />
           BB : Berat Badan <br />
           TB : Tinggi Badan <br />
           Lila : Lingkar Lengan Atas <br />
           LP : Lingkar Kepala
         </p>
       </div>
-
-      {/* Tabel Riwayat Balita */}
-      <TableRiwayatBalita />
     </div>
   );
 };
