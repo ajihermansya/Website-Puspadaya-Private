@@ -21,86 +21,30 @@ const DetailRiwayatBalita = () => {
       <StatusStuntingBalita />
 
       {/* Grafik */}
-      {/* Boy 0-2 */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age BOYS</h2>
-        <p className="text-sm font-light text-gray-500">
-          Birth to 2 years (z-scores)
-        </p>
-        <div style={{ width: "80%", margin: "0 auto", paddingTop: "10px" }}>
-          <Boy2 />
-        </div>
-      </div>
-
-      {/* Boy 0-5 */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age BOYS</h2>
-        <p className="text-sm font-light text-gray-500">
-          Birth to 5 years (z-scores)
-        </p>
-        <div style={{ width: "80%", margin: "0 auto", paddingTop: "10px" }}>
-          <Boy5 />
-        </div>
-      </div>
-
-      {/* Boy 0-6 */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age BOYS</h2>
+        <h2 className="text-2xl font-bold text-black">Grafik Tumbuh Kembang Balita</h2>
         <p className="text-sm font-light text-gray-500">
           Birth to 6 months (z-scores)
         </p>
         <div style={{ width: "80%", margin: "0 auto", paddingTop: "10px" }}>
-          <Boy6 />
-        </div>
-      </div>
-
-      {/* Girl 0-2 */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age GIRL</h2>
-        <p className="text-sm font-light text-gray-500">
-          Birth to 2 years (z-scores)
-        </p>
-        <div style={{ width: "80%", margin: "0 auto", paddingTop: "10px" }}>
-          <Girl2 />
-        </div>
-      </div>
-
-      {/* Boy 0-5 */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age GIRL</h2>
-        <p className="text-sm font-light text-gray-500">
-          Birth to 5 years (z-scores)
-        </p>
-        <div style={{ width: "80%", margin: "0 auto", paddingTop: "10px" }}>
-          <Girl5 />
-        </div>
-      </div>
-
-      {/* Boy 0-6 */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Weight-for-age GIRL</h2>
-        <p className="text-sm font-light text-gray-500">
-          Birth to 6 months (z-scores)
-        </p>
-        <div style={{ width: "80%", margin: "0 auto", paddingTop: "10px" }}>
-          <Girl6 />
+          <GrafikTumbuhKembangBalita />
         </div>
       </div>
 
       <div className="mt-8">
-        <h2 className="pb-4 text-xl font-bold text-black">
-          Riwayat Pengukuran
-        </h2>
-        <p className="text-base text-gray-500">*Keterangan</p>
-        <p className="text-base text-gray-500">BB : Berat Badan</p>
-        <p className="text-base text-gray-500">TB : Tinggi Badan</p>
-        <p className="text-base text-gray-500">Lila : Lingkar Lengan Atas</p>
-        <p className="text-base text-gray-500">LP : Lingkar Kepala</p>
+        <h2 className="text-2xl font-bold text-black">Riwayat Pengukuran Balita</h2>
       </div>
 
       {/* Tabel Riwayat Balita */}
-      <div className="mt-8">
-        <TableRiwayatBalita />
+      <TableRiwayatBalita />
+      <div className="mt-5">
+        <p className="text-sm font-light text-gray-500">
+          <b>Keterangan :</b><br />
+          BB : Berat Badan <br />
+          TB : Tinggi Badan <br />
+          Lila : Lingkar Lengan Atas <br />
+          LP : Lingkar Kepala
+        </p>
       </div>
     </div>
   );
