@@ -87,8 +87,21 @@ const DetailRiwayatBalita = () => {
         </div>
       </div>
 
+      <div className="mt-8">
+        <h2 className="pb-4 text-xl font-bold text-black">
+          Riwayat Pengukuran
+        </h2>
+        <p className="text-base text-gray-500">*Keterangan</p>
+        <p className="text-base text-gray-500">BB : Berat Badan</p>
+        <p className="text-base text-gray-500">TB : Tinggi Badan</p>
+        <p className="text-base text-gray-500">Lila : Lingkar Lengan Atas</p>
+        <p className="text-base text-gray-500">LP : Lingkar Kepala</p>
+      </div>
+
       {/* Tabel Riwayat Balita */}
-      <TableRiwayatBalita />
+      <div className="mt-8">
+        <TableRiwayatBalita />
+      </div>
     </div>
   );
 };

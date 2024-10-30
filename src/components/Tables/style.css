@@ -1,8 +1,11 @@
-/* Tambahkan aturan untuk striped rows */
 .p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
   background-color: #f1f5f9; /* Warna latar belakang baris ganjil */
 }
 
 .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
   background-color: #ffffff; /* Warna latar belakang baris genap */
+}
+
+.small-text-table {
+  font-size: 12px; /* Atur ukuran font sesuai kebutuhan */
 }
