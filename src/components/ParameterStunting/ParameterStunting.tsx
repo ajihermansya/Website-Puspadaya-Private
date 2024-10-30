@@ -1,10 +1,16 @@
 "use client";
-import { Button } from "primereact/button";
-import React, { useState } from "react";
-import { Card } from "primereact/card";
-import Perempuan from "./Perempuan";
-import LakiLaki from "./LakiLaki";
+import { Parameter } from "@/types/parameter";
 import { IconDownload } from "@tabler/icons-react";
+import { Button } from "primereact/button";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
+import { useState } from "react";
+
+interface City {
+  name: string;
+  code: string;
+}
 
 const ParameterStunting = () => {
   const [activeTab, setActiveTab] = useState("laki-laki");
@@ -159,16 +165,8 @@ const ParameterStunting = () => {
 
 
         </div>
-        <div>
-          {activeTab === "lakilaki" && (
-            <LakiLaki parameter={selectedParameter} />
-          )}
-          {activeTab === "perempuan" && (
-            <Perempuan parameter={selectedParameter} />
-          )}
-        </div>
-      </Card>
-    </>
+      </div>
+    </div>
   );
 };
 
