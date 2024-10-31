@@ -34,8 +34,8 @@ const DetailRiwayatBalita = () => {
       {/* Tabel Riwayat Balita */}
       <TableRiwayatBalita />
       <div className="mt-5">
+        <h4><b>Keterangan :</b></h4>
         <p className="text-sm font-light text-gray-500">
-          <b>Keterangan :</b><br />
           BB : Berat Badan <br />
           TB : Tinggi Badan <br />
           Lila : Lingkar Lengan Atas <br />

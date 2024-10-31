@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column"; // Perbaikan: impor Column dari 'primereact/column'
+import { Column } from "primereact/column";
 import { ProgressBar } from "primereact/progressbar";
 import { Toast } from "primereact/toast";
 
@@ -19,7 +19,7 @@ const TableRiwayatBalita = () => {
   const [loading, setLoading] = useState(false);
   const toast = useRef(null);
 
-  const statusBodyTemplate = (rowData: any) => { // Mengatur rowData sebagai any
+  const statusBodyTemplate = (rowData: any) => {
     return (
       <span
         className={`p-2 rounded-lg text-white ${
@@ -44,15 +44,9 @@ const TableRiwayatBalita = () => {
         <div className="rounded-lg">
           <DataTable
             value={data}
-            paginator
-            rows={5}
-            rowsPerPageOptions={[5, 10, 20]}
             className="datatable-responsive"
-            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} records"
             emptyMessage="No data available"
             responsiveLayout="scroll"
-            paginatorClassName="bg-gray-50 p-4 mt-4 rounded-lg"
           >
             <Column field="no" header="No" sortable headerClassName="bg-[#F7F9FC] text-black" bodyClassName="text-center" />
             <Column field="tanggal" header="Tanggal Pengukuran" sortable headerClassName="bg-[#F7F9FC] text-black" style={{ minWidth: "10rem" }} />

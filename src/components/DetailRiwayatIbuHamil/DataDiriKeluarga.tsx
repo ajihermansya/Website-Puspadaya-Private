@@ -6,7 +6,7 @@ import { InputText } from "primereact/inputtext"; // Pastikan primereact sudah t
 const DataDiriKeluarga = () => {
   return (
     <div>
-      <h3 className="pb-4 text-xl font-bold text-black">Data Diri Keluarga</h3>
+      <h2 className="pb-5 text-2xl font-bold text-black">Data Diri Keluarga</h2>
       <div className="grid grid-cols-2 gap-6">
         {/* Bagian Kiri */}
         <div>
@@ -58,7 +58,7 @@ const DataDiriKeluarga = () => {
               <div className="mb-2">
                 <CardDetail label="Usia Kehamilan">4</CardDetail>
               </div>
-              <span className="absolute right-0 top-6 bottom-0 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
+              <span className="absolute right-0 top-6 bottom-2 flex items-center text-gray-500 bg-gray-200 px-2 rounded-r-md border-l border-gray-300">
                 Mg
               </span>
             </div>

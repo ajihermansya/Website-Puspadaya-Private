@@ -14,9 +14,14 @@ const DetailRiwayatIbuHamil = () => {
 
       {/* Grafik */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-black">Riwayat Pengukuran</h2>
+        <h2 className="pb-1 text-2xl font-bold text-black">Riwayat Pengukuran Ibu Hamil</h2>
+      </div>
+
+      {/* Tabel Riwayat Balita */}
+      <TableRiwayatIbuHamil />
+      <div className="mt-8">
+        <h4><b>Keterangan :</b></h4>
         <p className="text-sm font-light text-gray-500">
-          <b>keterangan :</b><br />
           BB : Berat Badan <br />
           TB : Tinggi Badan <br />
           Lila : Lingkar Lengan Atas <br />
@@ -25,9 +30,6 @@ const DetailRiwayatIbuHamil = () => {
           KAR : Keterpaparan Asap Rokok
         </p>
       </div>
-
-      {/* Tabel Riwayat Balita */}
-      <TableRiwayatIbuHamil />
     </div>
   );
 };
