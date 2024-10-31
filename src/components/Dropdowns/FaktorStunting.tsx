@@ -6,18 +6,18 @@ const factors = [
   {
     title: "Ketersediaan Air Bersih",
     description: (
-      <p>
-        Berdasarkan hasil Studi Kualitas Air Minum Rumah Tangga (SKAMRT) dari
-        Kementerian Kesehatan pada tahun 2020 menyatakan bahwa 7 dari 10 rumah
-        tangga Indonesia mengonsumsi air minum yang terkontaminasi bakteri
-        Escherichia coli (E-coli).
+      <p className="text-justify">
         <img
           src="/images/dropdown/airbersih.svg"
           alt="Air Bersih"
           width={400}
           height={400}
-          className="mx-2 inline"
+          className="mb-3 mx-auto"
         />
+        Berdasarkan hasil Studi Kualitas Air Minum Rumah Tangga (SKAMRT) dari
+        Kementerian Kesehatan pada tahun 2020 menyatakan bahwa 7 dari 10 rumah
+        tangga Indonesia mengonsumsi air minum yang terkontaminasi bakteri
+        Escherichia coli (E-coli).
         Mengingat air juga merupakan komponen utama penyusun tubuh manusia,
         ancaman krisis air bersih dan layak minum sudah seharusnya menjadi
         perhatian. Namun di Indonesia, menurut Kementerian Perencanaan
@@ -40,20 +40,19 @@ const factors = [
   {
     title: "Penyakit Penyerta Balita",
     description: (
-      <p>
-        Penyakit penyerta pada balita merujuk pada kondisi medis yang sering
-        muncul bersamaan dengan penyakit utama, mempengaruhi kesehatan dan
-        perkembangan anak. Beberapa penyakit penyerta umum meliputi: Infeksi
-        Saluran Pernapasan, Alergi dan Asma, Gangguan Pencernaan, Penyakit
-        Kulit, Gangguan Tumbuh Kembang
+      <p className="text-justify">
         <img
           src="/images/dropdown/bayi.svg"
           alt="Air Bersih"
           width={400}
           height={400}
-          className="mx-2 inline"
+          className="mb-3 mx-auto"
         />
-        Penting bagi orang tua untuk memantau kesehatan balita secara menyeluruh
+        Penyakit penyerta pada balita merujuk pada kondisi medis yang sering
+        muncul bersamaan dengan penyakit utama, mempengaruhi kesehatan dan
+        perkembangan anak. Beberapa penyakit penyerta umum meliputi: Infeksi
+        Saluran Pernapasan, Alergi dan Asma, Gangguan Pencernaan, Penyakit
+        Kulit, Gangguan Tumbuh Kembang Penting bagi orang tua untuk memantau kesehatan balita secara menyeluruh
         dan berkonsultasi dengan tenaga medis untuk penanganan yang tepat.
         Pengawasan rutin dan vaksinasi juga sangat penting untuk mencegah
         penyakit dan komplikasi yang lebih serius.
@@ -72,18 +71,18 @@ const factors = [
   {
     title: "Jamban Sehat",
     description: (
-      <p>
-        Pentingnya penggunaan jamban sehat adalah untuk mencegah penyebaran
-        penyakit melalui air dan menjaga kebersihan lingkungan. Jamban sehat
-        harus memenuhi standar dan persyaratan kesehatan, serta mudah dijangkau
-        oleh penghuni rumah.
+      <p className="text-justify">
         <img
           src="/images/dropdown/wc.svg"
           alt="Air Bersih"
           width={400}
           height={400}
-          className="mx-2 inline"
+          className="mb-3 mx-auto"
         />
+        Pentingnya penggunaan jamban sehat adalah untuk mencegah penyebaran
+        penyakit melalui air dan menjaga kebersihan lingkungan. Jamban sehat
+        harus memenuhi standar dan persyaratan kesehatan, serta mudah dijangkau
+        oleh penghuni rumah.
         Berdasarkan Permenkes No. 3 Tahun 2014 tentang STBM bahwa kondisi jamban
         yang saniter merupakan kondisi fasilitas sanitasi yang memenuhi standar
         dan persyaratan kesehatan yaitu: a. Tidak mengakibatkan terjadinya
@@ -106,20 +105,20 @@ const factors = [
   {
     title: "Penyakit Infeksi",
     description: (
-      <p>
+      <p className="text-justify">
+        <img
+          src="/images/dropdown/infeksi.svg"
+          alt="Air Bersih"
+          width={400}
+          height={400}
+          className="mb-3 mx-auto"
+        />
         Penyakit infeksi adalah kondisi yang disebabkan oleh mikroorganisme
         patogen, seperti bakteri, virus, jamur, atau parasit, yang masuk ke
         dalam tubuh dan menyebabkan gangguan kesehatan. Gejala penyakit infeksi
         sangat bervariasi tergantung pada jenis infeksi dan bagian tubuh yang
         terpengaruh. Beberapa gejala umum meliputi: demam, nyeri, kelelahan,
         batuk, dan mual.
-        <img
-          src="/images/dropdown/infeksi.svg"
-          alt="Air Bersih"
-          width={400}
-          height={400}
-          className="mx-2 inline"
-        />
         Penyakit infeksi dapat memiliki dampak signifikan pada kesehatan
         individu, terutama pada anak-anak dan orang dengan sistem imun yang
         lemah. Oleh karena itu, penting untuk mengenali gejala, mendapatkan
@@ -139,7 +138,14 @@ const factors = [
   {
     title: "Imunisasi",
     description: (
-      <p>
+      <p className="text-justify">
+        <img
+          src="/images/dropdown/imunisasi.svg"
+          alt="Air Bersih"
+          width={400}
+          height={400}
+          className="mb-3 mx-auto"
+        />
         Pelaksanaan imunisasi kejar atau catch-up immunization perlu dipahami
         oleh klinisi dengan baik agar perlindungan optimal terhadap penyakit
         menular dapat tercapai, termasuk pada anak yang belum atau terlambat
@@ -147,13 +153,6 @@ const factors = [
         dengan jadwal yang telah ditentukan. Namun, banyak kondisi yang
         menyebabkan anak tidak mendapatkan imunisasi sesuai dengan jadwal yang
         ditentukan.
-        <img
-          src="/images/dropdown/imunisasi.svg"
-          alt="Air Bersih"
-          width={400}
-          height={400}
-          className="mx-2 inline"
-        />
         Berdasarkan data Riset Kesehatan Dasar (Riskesdas), terjadi peningkatan
         prevalensi pneumonia pada populasi balita di Indonesia, yaitu dari 1,6%
         pada tahun 2013 menjadi 2% pada tahun 2018. Indonesia juga masih
@@ -174,20 +173,20 @@ const factors = [
   {
     title: "BBLR",
     description: (
-      <p>
+      <p className="text-justify">
+        <img
+          src="/images/dropdown/bblr.svg"
+          alt="Air Bersih"
+          width={400}
+          height={400}
+          className="mb-3 mx-auto"
+        />
         Berat Badan Lahir Rendah (BBLR) adalah kondisi di mana bayi lahir dengan
         berat badan kurang dari 2.500 gram (2,5 kg) saat dilahirkan, terlepas
         dari usia kehamilan. BBLR dapat disebabkan oleh berbagai faktor yang
         berinteraksi secara kompleks. Misalnya, ibu yang mengalami malnutrisi
         atau memiliki penyakit tertentu, seperti diabetes atau hipertensi,
         berisiko lebih tinggi melahirkan bayi dengan BBLR.
-        <img
-          src="/images/dropdown/bblr.svg"
-          alt="Air Bersih"
-          width={400}
-          height={400}
-          className="mx-2 inline"
-        />
         BBLR adalah kondisi yang dapat memiliki dampak serius pada kesehatan
         bayi, baik jangka pendek maupun jangka panjang. Penting bagi ibu hamil
         untuk mendapatkan perawatan prenatal yang baik, menjalani gaya hidup
@@ -220,20 +219,20 @@ const factors = [
   {
     title: "Gangguan Tumbuh Kembang",
     description: (
-      <p>
+      <p className="text-justify">
+        <img
+          src="/images/dropdown/gangguan.svg"
+          alt="Air Bersih"
+          width={400}
+          height={400}
+          className="mb-3 mx-auto"
+        />
         Gangguan tumbuh kembang adalah kondisi yang memengaruhi kemampuan anak
         untuk tumbuh dan berkembang secara fisik, kognitif, atau emosional.
         Gangguan ini dapat memengaruhi berbagai aspek perkembangan anak,
         termasuk kemampuan motorik, dan bahasa, sosial. Ketika salah satu atau
         beberapa aspek ini terhambat, dapat muncul gangguan tumbuh kembang yang
         memerlukan perhatian dan intervensi khusus.
-        <img
-          src="/images/dropdown/gangguan.svg"
-          alt="Air Bersih"
-          width={400}
-          height={400}
-          className="mx-2 inline"
-        />
         Upaya pencegahan, deteksi dini, dan dukungan yang berkelanjutan sangat
         penting untuk membantu anak mencapai potensi maksimal mereka. Dengan
         dukungan yang tepat, anak-anak dengan gangguan tumbuh kembang dapat
@@ -279,20 +278,20 @@ const factors = [
   {
     title: "Riwayat Kehamilan Ibu",
     description: (
-      <p>
+      <p className="text-justify">
+        <img
+          src="/images/dropdown/hamil.svg"
+          alt="Air Bersih"
+          width={400}
+          height={400}
+          className="mb-3 mx-auto"
+        />
         Riwayat kehamilan ibu dapat dikaji pada Pengukuran obstetri pertama
         kali. Anamnesis pada ibu hamil meliputi: Identitas dan biodata ibu dan
         suami, Keluhan ibu, Penerimaan ibu terhadap kehamilannya,
         Ketidaknyamanan ibu akibat kehamilan. Selain itu, anamnesa juga dapat
         mencakup riwayat keluarga, seperti: Adakah penyakit keturunan dalam
         keluarga, Adakah riwayat anak kembar.
-        <img
-          src="/images/dropdown/hamil.svg"
-          alt="Air Bersih"
-          width={400}
-          height={400}
-          className="mx-2 inline"
-        />
         Riwayat kehamilan yang bermasalah sebelumnya dapat berdampak negatif
         pada kehamilan berikutnya. Misalnya, riwayat kelahiran prematur dapat
         memicu gangguan pernapasan pada bayi dan berat badan lahir rendah
@@ -428,7 +427,7 @@ const FaktorStunting = () => {
 
           {/* Modal */}
           {selectedFactor === index && (
-            <Modal onClose={handleCloseModal}>
+            <Modal onClose={handleCloseModal} size="large" height="500px" className="custom-modal">
               <div className="p-4">
                 <div className="mb-4 flex items-center">
                   <div className="mr-2">{factor.icon}</div>
@@ -436,10 +435,10 @@ const FaktorStunting = () => {
                     {factor.title}
                   </h2>
                 </div>
-                <div className="mb-3 text-sm text-gray-700">
+                <div className="mb-3 text-m text-gray-700">
                   {factor.description}
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="mt-5 flex items-center justify-center space-x-4">
                   <button
                     className={`flex h-10 w-30 items-center justify-center rounded text-sm ${
                       status[index] === "Ada"
@@ -448,7 +447,7 @@ const FaktorStunting = () => {
                     }`}
                     onClick={() => handleStatusChange(index, "Ada")}
                   >
-                    <IconCheck className="mr-2" size={18} /> Ada
+                    <IconCheck className="mr-2" size={20} /> Ada
                   </button>
                   <button
                     className={`flex h-10 w-30 items-center justify-center rounded text-sm ${
@@ -458,7 +457,7 @@ const FaktorStunting = () => {
                     }`}
                     onClick={() => handleStatusChange(index, "Tidak Ada")}
                   >
-                    <IconX className="mr-2" size={18} /> Tidak Ada
+                    <IconX className="mr-2" size={20} /> Tidak Ada
                   </button>
                 </div>
               </div>
